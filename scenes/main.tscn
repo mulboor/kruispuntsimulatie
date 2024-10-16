@@ -1,5 +1,55 @@
-[gd_scene format=3 uid="uid://3ptqecnw5ex2"]
+[gd_scene load_steps=6 format=3 uid="uid://3ptqecnw5ex2"]
+
+[ext_resource type="Script" path="res://scenes/road_user.gd" id="2_gdmyt"]
+
+[sub_resource type="GDScript" id="GDScript_fvmhc"]
+script/source = "extends Node3D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+	
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_akgbg"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cm5tb"]
+
+[sub_resource type="Curve3D" id="Curve3D_bf7es"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
 
 [node name="Node3D" type="Node3D"]
+script = SubResource("GDScript_fvmhc")
 
-[node name="Marker3D" type="Marker3D" parent="."]
+[node name="RigidBody3D2" type="RigidBody3D" parent="."]
+can_sleep = false
+freeze = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D2"]
+shape = SubResource("WorldBoundaryShape3D_akgbg")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="RigidBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+shape = SubResource("BoxShape3D_cm5tb")
+
+[node name="Node" type="Node3D" parent="."]
+script = ExtResource("2_gdmyt")
+
+[node name="Path3D" type="Path3D" parent="."]
+curve = SubResource("Curve3D_bf7es")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.317006, 4.81936)
