@@ -1,5 +1,33 @@
-[gd_scene format=3 uid="uid://bne2usp40hi4o"]
+[gd_scene load_steps=6 format=3 uid="uid://bne2usp40hi4o"]
 
-[node name="Car" type="Node3D"]
+[ext_resource type="Script" path="res://scripts/car.gd" id="1_1apap"]
+[ext_resource type="Script" path="res://scripts/follow_path.gd" id="2_6b7u3"]
+[ext_resource type="Script" path="res://scripts/state_machine.gd" id="2_m5yyp"]
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
+[sub_resource type="BoxShape3D" id="BoxShape3D_nk13o"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y2qi2"]
+albedo_color = Color(0.368566, 0.132097, 0, 1)
+
+[node name="Car" type="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.66818, 0)
+script = ExtResource("1_1apap")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0134912, 0.00443017, 7.62939e-06)
+shape = SubResource("BoxShape3D_nk13o")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CollisionShape3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0219845, 0, -0.649877)
+size = Vector3(0.3, 0.3, 0.3)
+material = SubResource("StandardMaterial3D_y2qi2")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CollisionShape3D"]
+
+[node name="Statemachine" type="Node" parent="." node_paths=PackedStringArray("inital_state")]
+script = ExtResource("2_m5yyp")
+inital_state = NodePath("FollowPath")
+
+[node name="FollowPath" type="Node" parent="Statemachine" node_paths=PackedStringArray("rb")]
+script = ExtResource("2_6b7u3")
+rb = NodePath("../..")
