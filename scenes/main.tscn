@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://3ptqecnw5ex2"]
+[gd_scene load_steps=7 format=3 uid="uid://3ptqecnw5ex2"]
 
 [ext_resource type="PackedScene" uid="uid://bne2usp40hi4o" path="res://scenes/car.tscn" id="1_wcm35"]
 
@@ -11,7 +11,13 @@ point_count = 4
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_bnp7v"]
 
+[sub_resource type="PlaneMesh" id="PlaneMesh_656gl"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hikoc"]
+albedo_color = Color(0, 0, 0, 1)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_e4k3p"]
+size = Vector3(3.83746, 1, 1)
 
 [node name="Node3D" type="Node3D"]
 
@@ -19,12 +25,13 @@ point_count = 4
 curve = SubResource("Curve3D_mngxt")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Path3D"]
-transform = Transform3D(-0.984878, 0, -0.173216, 0, 1.00002, 0, 0.173216, 0, -0.984878, -2.0997, 0, -11.9385)
+transform = Transform3D(-0.984878, 0, -0.173217, 0, 1.00002, 0, 0.173217, 0, -0.984878, -2.0997, 0, -11.9385)
 rotation_mode = 4
 loop = false
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-0.0915885, 0.144816, -0.985211, 0, 0.989369, 0.145427, 0.995797, 0.0133194, -0.0906148, -18.3726, 0.90524, 0.0648928)
+transform = Transform3D(-0.0888322, 0.381349, -0.920153, 0.0222999, 0.924335, 0.380929, 0.995797, 0.0133195, -0.0906148, -16.3638, 7.51753, 0.0648928)
+fov = 49.6
 
 [node name="Car" parent="." node_paths=PackedStringArray("path_follow") instance=ExtResource("1_wcm35")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.598067, -2.91266)
@@ -38,17 +45,22 @@ freeze = true
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
 shape = SubResource("WorldBoundaryShape3D_bnp7v")
 
+[node name="CSGMesh3D" type="CSGMesh3D" parent="Ground"]
+transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0)
+mesh = SubResource("PlaneMesh_656gl")
+material = SubResource("StandardMaterial3D_hikoc")
+
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.726575, 0.52402, -0.444401, 0, 0.64679, 0.762668, 0.687088, 0.554136, -0.469941, -48.2264, 16.2122, 68.9945)
 light_energy = 3.292
 
 [node name="RigidBody3D2" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.21442, -7.01629)
+mass = 224.57
 
 [node name="CSGBox3D" type="CSGBox3D" parent="RigidBody3D2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.17681, -0.745433, 7.62088)
 size = Vector3(3.86768, 1, 1)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.17681, -0.745433, 7.62088)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00552368, 0, 0)
 shape = SubResource("BoxShape3D_e4k3p")

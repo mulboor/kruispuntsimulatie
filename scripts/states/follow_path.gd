@@ -21,6 +21,8 @@ func enter() -> void:
 	path_follow = rb.path_follow
 	
 	rb.freeze = true
+	rb.contact_monitor = true
+	rb.max_contacts_reported = 3
 	
 	follow_path = true
 
@@ -32,7 +34,13 @@ func physics_update(_delta) -> void:
 			speed = max_speed
 		
 		path_follow.progress += speed
+		print("following")
 
 	rb.global_position.z = path_follow.position.z
 	rb.global_position.x = path_follow.position.x
 	rb.rotation = path_follow.rotation
+
+func update(_delta):
+	for bodies in rb.get_colliding_bodies():
+		if bodies.name != "Ground":
+			Transitioned.emit(self, "Crash")
