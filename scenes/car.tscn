@@ -1,20 +1,22 @@
-[gd_scene load_steps=7 format=3 uid="uid://bne2usp40hi4o"]
+[gd_scene load_steps=8 format=3 uid="uid://bne2usp40hi4o"]
 
-[ext_resource type="Script" path="res://scripts/car.gd" id="1_1apap"]
+[ext_resource type="Script" path="res://scripts/states/mover_state.gd" id="1_1apap"]
 [ext_resource type="Script" path="res://scripts/states/follow_path.gd" id="2_6b7u3"]
 [ext_resource type="Script" path="res://scripts/states/state base/state_machine.gd" id="2_m5yyp"]
 [ext_resource type="Script" path="res://scripts/states/crash.gd" id="4_ocaxt"]
+[ext_resource type="Script" path="res://scripts/states/delete_self.gd" id="5_3y7bu"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nk13o"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y2qi2"]
 albedo_color = Color(0.368566, 0.132097, 0, 1)
 
-[node name="Car" type="RigidBody3D"]
+[node name="Car" type="RigidBody3D" node_paths=PackedStringArray("rigidbody")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.66818, 0)
 disable_mode = 2
 freeze_mode = 1
 script = ExtResource("1_1apap")
+rigidbody = NodePath(".")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0134912, 0.00443017, 7.62939e-06)
@@ -31,10 +33,12 @@ material = SubResource("StandardMaterial3D_y2qi2")
 script = ExtResource("2_m5yyp")
 inital_state = NodePath("FollowPath")
 
-[node name="FollowPath" type="Node" parent="Statemachine" node_paths=PackedStringArray("rb")]
+[node name="FollowPath" type="Node" parent="Statemachine"]
 script = ExtResource("2_6b7u3")
-rb = NodePath("../..")
 
-[node name="Crash" type="Node" parent="Statemachine" node_paths=PackedStringArray("rb")]
+[node name="Crash" type="Node" parent="Statemachine"]
 script = ExtResource("4_ocaxt")
-rb = NodePath("../..")
+
+[node name="DeleteSelf" type="Node" parent="Statemachine"]
+script = ExtResource("5_3y7bu")
+countdown = 1.0
