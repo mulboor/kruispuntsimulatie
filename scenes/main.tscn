@@ -35,14 +35,14 @@ fov = 49.6
 [node name="Car2" parent="." node_paths=PackedStringArray("path_follow") instance=ExtResource("1_wcm35")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.6035, 0.541071, -12.0866)
 mass = 87.671
-max_speed = 0.6
+max_speed = 0.2
 accel = 0.4
 path_follow = NodePath("../Path3D/PathFollow3D")
 
 [node name="Car" parent="." node_paths=PackedStringArray("path_follow") instance=ExtResource("1_wcm35")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.598067, -10.2476)
 mass = 87.671
-max_speed = 0.5
+max_speed = 0.3
 accel = 0.1
 path_follow = NodePath("../Path3D2/PathFollow3D2")
 
@@ -83,7 +83,7 @@ progress = 0.1
 loop = false
 
 [node name="Path3D2" type="Path3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.58459, 0, 0)
+transform = Transform3D(0.651503, 0, 0.758646, 0, 1, 0, -0.758646, 0, 0.651503, -7.58459, 0, 4.67423)
 curve = SubResource("Curve3D_71ijq")
 
 [node name="PathFollow3D2" type="PathFollow3D" parent="Path3D2"]

@@ -7,6 +7,11 @@ var current_speed: float
 
 @onready var parent_state: MoverState = $"../.."
 
+@onready var current_position: Vector3
+@onready var last_position: Vector3
+
+@onready var frame: int
+
 func enter() -> void:
 	# Zet de waardes gelijk aan de waardes van de ouder
 	rigidbody = parent_state.rigidbody
@@ -22,10 +27,11 @@ func enter() -> void:
 	rigidbody.max_contacts_reported = 3
 	
 	follow_path = true
+	
+	# Zet de framecounter op nul
+	frame = 0
 
 func physics_update(_delta: float) -> void:
-	var last_position: Vector3 = path_follow.global_position
-	
 	# Laat snelheid toenemen tot de max_speed. 
 	if follow_path:
 		if current_speed < max_speed:
@@ -45,19 +51,9 @@ func physics_update(_delta: float) -> void:
 	# Verwijder de auto als het pad voltooid is
 	if path_follow.progress_ratio >= 1.0:
 		Transitioned.emit(self, "deleteself")
-	
-	var current_position: Vector3 = path_follow.global_position
-	rigidbody.linear_velocity = calc_velocity(_delta, last_position, current_position)
-	print(last_position - current_position)
 
 func update(_delta: float) -> void:
 	# Check of we gecrasht zijn, zoja switch dan van state.
 	for bodies in rigidbody.get_colliding_bodies():
 		if bodies.name != "Ground":
 			Transitioned.emit(self, "Crash")
-
-func calc_velocity(t: float, last_pos: Vector3, cur_pos: Vector3) -> Vector3:
-	var x: float = (cur_pos.x - last_pos.x) / t
-	var y: float = (cur_pos.y - last_pos.y) / t
-	var z: float = (cur_pos.z - last_pos.z) / t
-	return Vector3(x, y, z)
