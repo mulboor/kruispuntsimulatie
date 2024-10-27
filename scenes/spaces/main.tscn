@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://3ptqecnw5ex2"]
 
-[ext_resource type="PackedScene" uid="uid://bne2usp40hi4o" path="res://scenes/car.tscn" id="1_wcm35"]
+[ext_resource type="PackedScene" uid="uid://bne2usp40hi4o" path="res://scenes/components/car.tscn" id="1_v6fqk"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_bnp7v"]
 
@@ -32,14 +32,14 @@ point_count = 2
 transform = Transform3D(-0.0888322, 0.381349, -0.920153, 0.0222999, 0.924335, 0.380929, 0.995797, 0.0133195, -0.0906148, -16.3638, 7.51753, 0.0648928)
 fov = 49.6
 
-[node name="Car2" parent="." node_paths=PackedStringArray("path_follow") instance=ExtResource("1_wcm35")]
+[node name="Car2" parent="." node_paths=PackedStringArray("path_follow") instance=ExtResource("1_v6fqk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.6035, 0.541071, -12.0866)
 mass = 87.671
 max_speed = 0.2
 accel = 0.4
 path_follow = NodePath("../Path3D/PathFollow3D")
 
-[node name="Car" parent="." node_paths=PackedStringArray("path_follow") instance=ExtResource("1_wcm35")]
+[node name="Car" parent="." node_paths=PackedStringArray("path_follow") instance=ExtResource("1_v6fqk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.598067, -10.2476)
 mass = 87.671
 max_speed = 0.3
