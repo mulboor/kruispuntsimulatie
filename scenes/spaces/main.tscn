@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://3ptqecnw5ex2"]
+[gd_scene load_steps=9 format=3 uid="uid://3ptqecnw5ex2"]
 
 [ext_resource type="PackedScene" uid="uid://bne2usp40hi4o" path="res://scenes/components/car.tscn" id="1_v6fqk"]
+[ext_resource type="PackedScene" uid="uid://pinigidfvlxb" path="res://scenes/components/road_user_spawner.tscn" id="2_2l4r4"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_bnp7v"]
 
@@ -89,3 +90,5 @@ curve = SubResource("Curve3D_71ijq")
 [node name="PathFollow3D2" type="PathFollow3D" parent="Path3D2"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.015, 0, 0)
 loop = false
+
+[node name="RoadUserSpawner" parent="." instance=ExtResource("2_2l4r4")]
