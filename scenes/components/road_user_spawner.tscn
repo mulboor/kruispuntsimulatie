@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://pinigidfvlxb"]
 
 [ext_resource type="Script" path="res://scripts/road_user_spawner.gd" id="1_if5ap"]
-[ext_resource type="Script" path="res://scenes/components/sim_stats.gd" id="2_03eyv"]
+[ext_resource type="Script" path="res://scripts/sim_time.gd" id="2_03eyv"]
 
 [node name="RoadUserSpawner" type="Node"]
 script = ExtResource("1_if5ap")
