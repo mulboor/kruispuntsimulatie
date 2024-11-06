@@ -1,13 +1,22 @@
 extends Node
-
-@export var user_per_minute: int
+class_name RoadUserSpawner
 
 @onready var path: Path3D
 
 @onready var user: MoverState
 
+@onready var time_between_spawns: float 
+@onready var current_time_between_spawns: float
+
 func _ready() -> void:
-	print(calc_spawnrate())
+	current_time_between_spawns = 0 
+
+func _physics_process(delta: float) -> void:
+	if current_time_between_spawns <= 0: 
+		spawn_user(user)
+		current_time_between_spawns = time_between_spawns
+	elif current_time_between_spawns > 0: 
+		current_time_between_spawns -= delta
 
 func spawn_user(user: Node) -> void:
 	# Maak een nieuwe path_follow die de gebruiker gaat volgen
@@ -18,14 +27,3 @@ func spawn_user(user: Node) -> void:
 	# Maak de gebruiker
 	add_child(user)
 	user.path_follow = path_follow
-
-func spawn_users(spawnrate: int) -> void: 
-	for n in (spawnrate + 1):
-		spawn_user(user)
-
-# Bereken het aantal gebruikers die per frame moeten spawnen
-func calc_spawnrate() -> int: 
-	var upm_float: float = float(user_per_minute)
-	var fpm: float = Engine.get_frames_per_second() * 60
-	var spawnrate_float: float = upm_float / fpm
-	return int(spawnrate_float)

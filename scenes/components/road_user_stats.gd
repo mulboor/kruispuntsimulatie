@@ -1,11 +1,15 @@
 extends Node
+class_name RoadUserStats
 
+@export_category("Movement")
+@export var max_speed: float
+@export var accel: float
+@export var deccel: float
+@export_category("Cognition")
+@export var visibility: float 
+@export var reaction_time: float
 
-# Called when the node enters the scene tree for the first time.
+signal SendVars(max_speed: float, accel: float, deccel: float, visibility: float, reaction_time: float)
+
 func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+	SendVars.emit(max_speed, accel, deccel, visibility, reaction_time) 
