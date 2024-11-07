@@ -11,13 +11,6 @@ class_name RoadUserSpawner
 func _ready() -> void:
 	current_time_between_spawns = 0 
 
-func _physics_process(delta: float) -> void:
-	if current_time_between_spawns <= 0: 
-		spawn_user(user)
-		current_time_between_spawns = time_between_spawns
-	elif current_time_between_spawns > 0: 
-		current_time_between_spawns -= delta
-
 func spawn_user(user: Node) -> void:
 	# Maak een nieuwe path_follow die de gebruiker gaat volgen
 	var path_follow: PathFollow3D = PathFollow3D.new()
@@ -27,3 +20,10 @@ func spawn_user(user: Node) -> void:
 	# Maak de gebruiker
 	add_child(user)
 	user.path_follow = path_follow
+
+func spawn_users(_delta: float): 
+	if current_time_between_spawns <= 0: 
+		spawn_user(user)
+		current_time_between_spawns = time_between_spawns
+	elif current_time_between_spawns > 0: 
+		current_time_between_spawns -= _delta
