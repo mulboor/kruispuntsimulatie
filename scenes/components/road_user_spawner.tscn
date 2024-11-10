@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://pinigidfvlxb"]
 
 [ext_resource type="Script" path="res://scripts/road_user_spawner.gd" id="1_if5ap"]
-[ext_resource type="Script" path="res://scripts/road_user_stats.gd" id="3_4ae1e"]
+[ext_resource type="Script" path="res://scripts/general_road_user_stats.gd" id="3_4ae1e"]
 
 [sub_resource type="GDScript" id="GDScript_4i71t"]
 script/source = "extends Node

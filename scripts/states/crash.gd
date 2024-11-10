@@ -1,13 +1,11 @@
-extends MoverState
+extends State
 class_name Crash
-
-@onready var parent_state: MoverState = $"../.."
 
 signal Crashed(type: String)
 
+@export var rigidbody: RigidBody3D
+
 func enter() -> void: 
-	rigidbody = parent_state.rigidbody
-	
 	rigidbody.freeze = false
 	Crashed.emit("vehicle")
 

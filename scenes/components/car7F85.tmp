@@ -1,0 +1,46 @@
+[gd_scene load_steps=8 format=3 uid="uid://bne2usp40hi4o"]
+
+[ext_resource type="Script" path="res://scenes/components/user_var_holder.gd" id="1_bx5tm"]
+[ext_resource type="Script" path="res://scripts/states/follow_path.gd" id="2_6b7u3"]
+[ext_resource type="Script" path="res://scripts/states/state base/state_machine.gd" id="2_m5yyp"]
+[ext_resource type="Script" path="res://scripts/states/crash.gd" id="4_ocaxt"]
+[ext_resource type="Script" path="res://scripts/states/delete_self.gd" id="5_3y7bu"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nk13o"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y2qi2"]
+albedo_color = Color(0.368566, 0.132097, 0, 1)
+
+[node name="Car" type="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.66818, 0)
+disable_mode = 2
+freeze_mode = 1
+script = ExtResource("1_bx5tm")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0134912, 0.00443017, 7.62939e-06)
+shape = SubResource("BoxShape3D_nk13o")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CollisionShape3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0219845, 0, -0.649877)
+size = Vector3(0.3, 0.3, 0.3)
+material = SubResource("StandardMaterial3D_y2qi2")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CollisionShape3D"]
+
+[node name="Statemachine" type="Node" parent="CollisionShape3D" node_paths=PackedStringArray("inital_state")]
+script = ExtResource("2_m5yyp")
+inital_state = NodePath("FollowPath")
+
+[node name="FollowPath" type="Node" parent="CollisionShape3D/Statemachine" node_paths=PackedStringArray("user_var_holder")]
+script = ExtResource("2_6b7u3")
+user_var_holder = NodePath("../../..")
+
+[node name="Crash" type="Node" parent="CollisionShape3D/Statemachine" node_paths=PackedStringArray("user_var_holder")]
+script = ExtResource("4_ocaxt")
+user_var_holder = NodePath("../../..")
+
+[node name="DeleteSelf" type="Node" parent="CollisionShape3D/Statemachine" node_paths=PackedStringArray("parent")]
+script = ExtResource("5_3y7bu")
+countdown = 1.0
+parent = NodePath("../../..")
