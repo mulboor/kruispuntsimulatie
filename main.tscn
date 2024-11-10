@@ -1,0 +1,86 @@
+[gd_scene load_steps=9 format=3 uid="uid://b67nfs2jgvc4i"]
+
+[ext_resource type="Script" path="res://scripts/road_user_spawner.gd" id="1_03i1o"]
+[ext_resource type="PackedScene" uid="uid://bne2usp40hi4o" path="res://scenes/components/car.tscn" id="2_h37aa"]
+[ext_resource type="Script" path="res://scripts/general_road_user_stats.gd" id="3_mghry"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_bnp7v"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_656gl"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hikoc"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_e4k3p"]
+size = Vector3(3.83746, 1, 1)
+
+[sub_resource type="Curve3D" id="Curve3D_cvp35"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 300, 0, 0),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Enviroment" type="Node" parent="."]
+
+[node name="Ground" type="RigidBody3D" parent="Enviroment"]
+freeze = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Enviroment/Ground"]
+shape = SubResource("WorldBoundaryShape3D_bnp7v")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="Enviroment/Ground"]
+transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0)
+mesh = SubResource("PlaneMesh_656gl")
+material = SubResource("StandardMaterial3D_hikoc")
+
+[node name="RigidBody3D2" type="RigidBody3D" parent="Enviroment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.0971, 0.652096, 11.6077)
+mass = 1000.0
+metadata/_edit_group_ = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Enviroment/RigidBody3D2"]
+size = Vector3(3.86768, 1, 1)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Enviroment/RigidBody3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00552368, 0, 0)
+shape = SubResource("BoxShape3D_e4k3p")
+
+[node name="Spawners" type="Node" parent="."]
+
+[node name="CarSpawner" type="Node3D" parent="Spawners" node_paths=PackedStringArray("general_user_stats", "path")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.6572, 0, 0)
+script = ExtResource("1_03i1o")
+time_between_spawns = 0.5
+general_user_stats = NodePath("../../RoadUserStats")
+path = NodePath("Path3D")
+user = ExtResource("2_h37aa")
+
+[node name="Path3D" type="Path3D" parent="Spawners/CarSpawner"]
+curve = SubResource("Curve3D_cvp35")
+
+[node name="CarSpawner2" type="Node3D" parent="Spawners" node_paths=PackedStringArray("general_user_stats", "path")]
+transform = Transform3D(-5.92058e-07, 0, -1, 0, 1, 0, 1, 0, -5.92058e-07, 5.07781, 0, -8.9708)
+script = ExtResource("1_03i1o")
+time_between_spawns = 1.0
+general_user_stats = NodePath("../../RoadUserStats")
+path = NodePath("Path3D")
+user = ExtResource("2_h37aa")
+
+[node name="Path3D" type="Path3D" parent="Spawners/CarSpawner2"]
+curve = SubResource("Curve3D_cvp35")
+
+[node name="RoadUserStats" type="Node" parent="."]
+script = ExtResource("3_mghry")
+max_speed = 0.5
+accel = 0.1
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-0.0888322, 0.381349, -0.920153, 0.0222999, 0.924335, 0.380929, 0.995797, 0.0133195, -0.0906148, -5.44542, 1.76972, 1.30317)
+fov = 92.8125
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.726575, 0.52402, -0.444401, 0, 0.64679, 0.762668, 0.687088, 0.554136, -0.469941, -48.2264, 16.2122, 68.9945)
+light_energy = 3.292

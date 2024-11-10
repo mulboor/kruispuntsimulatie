@@ -10,7 +10,9 @@ class_name FollowPath
 @onready var current_speed: float
 
 @onready var current_pos: Vector3
-@onready var last_post: Vector3
+@onready var last_pos: Vector3
+
+@onready var frame: int
 
 func enter() -> void:
 	user_vars.path_follow.loop = false
@@ -21,11 +23,13 @@ func enter() -> void:
 	
 	follow_path = true
 
-func update(_delta: float) -> void: 
-	current_pos = user_vars.path_follow.position
-
 func physics_update(_delta: float) -> void:
 	print(rigidbody.linear_velocity)
+	if frame == 0 || frame % 2 == 0: 
+		current_pos = user_vars.path_follow.global_position
+	else: 
+		last_pos = user_vars.path_follow.global_position
+	
 	# Laat snelheid toenemen tot de max_speed. 
 	if follow_path:
 		if current_speed < user_vars.max_speed:
@@ -38,9 +42,9 @@ func physics_update(_delta: float) -> void:
 	
 	# Zet de positie van de auto gelijk aan die van de path_follow. 
 	# Niet op de y want dan zou het de grond in gaan. 
-	rigidbody.linear_velocity.z = user_vars.path_follow.global_position.z
+	rigidbody.linear_velocity.z = (current_pos.z - last_pos.z) / _delta
 	rigidbody.linear_velocity.x = user_vars.path_follow.global_position.x
-	rigidbody.global_rotation = user_vars.path_follow.rotation
+	rigidbody.global_rotation = user_vars.path_follow.global_rotation
 	
 	# Verwijder de auto als het pad voltooid is
 	if user_vars.path_follow.progress_ratio >= 1.0:

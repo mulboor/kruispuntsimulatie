@@ -1,0 +1,58 @@
+[gd_scene load_steps=8 format=3 uid="uid://dbgxwpyniukwv"]
+
+[ext_resource type="Script" path="res://scenes/components/road_user_vars.gd" id="1_gfqbc"]
+[ext_resource type="Script" path="res://scripts/states/state base/state_machine.gd" id="2_fbpe4"]
+[ext_resource type="Script" path="res://scripts/states/follow_path.gd" id="3_5p355"]
+[ext_resource type="Script" path="res://scripts/states/crash.gd" id="4_83dcm"]
+[ext_resource type="Script" path="res://scripts/states/delete_self.gd" id="5_1kxum"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nk13o"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y2qi2"]
+albedo_color = Color(0.368566, 0.132097, 0, 1)
+
+[node name="Car" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.591327, 0)
+script = ExtResource("1_gfqbc")
+
+[node name="Statemachine" type="Node" parent="." node_paths=PackedStringArray("inital_state")]
+script = ExtResource("2_fbpe4")
+inital_state = NodePath("FollowPath")
+
+[node name="FollowPath" type="Node" parent="Statemachine" node_paths=PackedStringArray("rigidbody")]
+script = ExtResource("3_5p355")
+rigidbody = NodePath("../../RigidBody3D")
+
+[node name="Crash" type="Node" parent="Statemachine" node_paths=PackedStringArray("rigidbody")]
+script = ExtResource("4_83dcm")
+rigidbody = NodePath("../../RigidBody3D")
+
+[node name="DeleteSelf" type="Node" parent="Statemachine"]
+script = ExtResource("5_1kxum")
+countdown = 1.0
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0134912, 0.00443017, 7.62939e-06)
+shape = SubResource("BoxShape3D_nk13o")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="RigidBody3D/CollisionShape3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0219845, 0, -0.649877)
+size = Vector3(0.3, 0.3, 0.3)
+material = SubResource("StandardMaterial3D_y2qi2")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="RigidBody3D/CollisionShape3D"]
+
+[node name="RigidBody3D2" type="RigidBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0134912, 0.00443017, 7.62939e-06)
+shape = SubResource("BoxShape3D_nk13o")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="RigidBody3D2/CollisionShape3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0219845, 0, -0.649877)
+size = Vector3(0.3, 0.3, 0.3)
+material = SubResource("StandardMaterial3D_y2qi2")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="RigidBody3D2/CollisionShape3D"]
