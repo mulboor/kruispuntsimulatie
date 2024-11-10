@@ -1,4 +1,4 @@
-extends Node
+extends Node3D
 class_name RoadUserSpawner
 
 @export_category("Spawn variables")
@@ -36,7 +36,6 @@ func spawn_user() -> void:
 
 func spawn_users(_delta: float): 
 	if current_time_between_spawns <= 0: 
-		print("jerking off")
 		spawn_user()
 		current_time_between_spawns = time_between_spawns
 	elif current_time_between_spawns > 0: 

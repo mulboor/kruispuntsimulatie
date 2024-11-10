@@ -9,17 +9,23 @@ class_name FollowPath
 
 @onready var current_speed: float
 
+@onready var current_pos: Vector3
+@onready var last_post: Vector3
+
 func enter() -> void:
 	user_vars.path_follow.loop = false
 	
-	# Bevries de rigidbody zodat later de positie direct aangepast kan worden.
-	rigidbody.freeze = true
 	rigidbody.contact_monitor = true
-	rigidbody.max_contacts_reported = 3
+	rigidbody.max_contacts_reported = 10
+	rigidbody.body_entered.connect(on_body_entered)
 	
 	follow_path = true
 
+func update(_delta: float) -> void: 
+	current_pos = user_vars.path_follow.position
+
 func physics_update(_delta: float) -> void:
+	print(rigidbody.linear_velocity)
 	# Laat snelheid toenemen tot de max_speed. 
 	if follow_path:
 		if current_speed < user_vars.max_speed:
@@ -32,15 +38,14 @@ func physics_update(_delta: float) -> void:
 	
 	# Zet de positie van de auto gelijk aan die van de path_follow. 
 	# Niet op de y want dan zou het de grond in gaan. 
-	rigidbody.global_position.z = user_vars.path_follow.global_position.z
-	rigidbody.global_position.x = user_vars.path_follow.global_position.x
-	rigidbody.rotation = user_vars.path_follow.rotation
+	rigidbody.linear_velocity.z = user_vars.path_follow.global_position.z
+	rigidbody.linear_velocity.x = user_vars.path_follow.global_position.x
+	rigidbody.global_rotation = user_vars.path_follow.rotation
 	
 	# Verwijder de auto als het pad voltooid is
 	if user_vars.path_follow.progress_ratio >= 1.0:
 		Transitioned.emit(self, "deleteself")
-	
-	# Check of we gecrasht zijn, zoja switch dan van state.
-	for bodies in rigidbody.get_colliding_bodies():
-		if bodies.name != "Ground":
-			Transitioned.emit(self, "Crash")
+
+func on_body_entered(body: Node) -> void: 
+	if body.name != "Ground": 
+		Transitioned.emit(self, "Crash")

@@ -12,7 +12,7 @@
 albedo_color = Color(0.368566, 0.132097, 0, 1)
 
 [node name="Car" type="Node3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.66818, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.591327, 0)
 script = ExtResource("1_khxhq")
 
 [node name="Statemachine" type="Node" parent="." node_paths=PackedStringArray("inital_state")]
