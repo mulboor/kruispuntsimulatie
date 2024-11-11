@@ -4,7 +4,6 @@
 
 [node name="Visioncone" type="Node3D"]
 script = ExtResource("1_bkj6i")
-ray_length = 10.0
 
 [node name="Horizontal rays" type="Node3D" parent="."]
 visible = false

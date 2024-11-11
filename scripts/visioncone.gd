@@ -1,7 +1,7 @@
 extends Node3D
 class_name VisionCone
 
-@export var ray_length: float
+@export var user_vars: RoadUserVars
 
 @onready var rays: Array[RayCast3D]
 
@@ -14,7 +14,7 @@ func _ready() -> void:
 	for child in get_children():
 		if child == RayCast3D:
 			var ray: RayCast3D = child
-			ray.target_position.x = ray_length
+			ray.target_position.z = user_vars.visibility
 			rays.append(ray)
 
 func _physics_process(delta):
