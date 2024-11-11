@@ -14,7 +14,7 @@ func _ready() -> void:
 	for child in get_children():
 		if child == RayCast3D:
 			var ray: RayCast3D = child
-			ray.target_position.z = user_vars.visibility
+			ray.target_position.z = -user_vars.visibility
 			rays.append(ray)
 
 func _physics_process(delta):

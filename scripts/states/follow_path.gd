@@ -2,11 +2,15 @@ extends State
 class_name FollowPath
 
 @export var user_vars: RoadUserVars
+
+@export var visioncone: VisionCone
+
 @export var rigidbody: RigidBody3D
 
 @onready var follow_path: bool
 
 @onready var current_speed: float
+@onready var current_reaction_time: float
 
 func enter() -> void:
 	user_vars.path_follow.loop = false
@@ -20,7 +24,7 @@ func enter() -> void:
 	follow_path = true
 
 func physics_update(_delta: float) -> void:
-	# Laat snelheid toenemen tot de max_speed. 
+	# Laat snelheid toenemen tot de max_speed als er niks in de weg staat
 	if follow_path:
 		if current_speed < user_vars.max_speed:
 			current_speed += user_vars.accel
@@ -29,6 +33,12 @@ func physics_update(_delta: float) -> void:
 		
 		# Laat de pahtfollow over het pad lopen. 
 		user_vars.path_follow.progress += current_speed
+	else: 
+		pass
+		#current_reaction_time -= _delta
+		
+		#if current_reaction_time <= 0 : 
+		# TODO: stoppen voor obstakels
 	
 	# Zet de positie van de auto gelijk aan die van de path_follow. 
 	# Niet op de y want dan zou het de grond in gaan. 
