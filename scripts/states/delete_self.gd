@@ -4,7 +4,6 @@ class_name DeleteSelf
 @export var countdown: float 
 @export var parent: Node
 
-
 @onready var current_countdown: float
 
 func enter() -> void:

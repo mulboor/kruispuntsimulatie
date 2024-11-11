@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://bne2usp40hi4o"]
+[gd_scene load_steps=9 format=3 uid="uid://bne2usp40hi4o"]
 
 [ext_resource type="Script" path="res://scripts/road_user_vars.gd" id="1_khxhq"]
 [ext_resource type="Script" path="res://scripts/states/follow_path.gd" id="2_6b7u3"]
 [ext_resource type="Script" path="res://scripts/states/state base/state_machine.gd" id="2_m5yyp"]
 [ext_resource type="Script" path="res://scripts/states/crash.gd" id="4_ocaxt"]
 [ext_resource type="Script" path="res://scripts/states/delete_self.gd" id="5_3y7bu"]
+[ext_resource type="Script" path="res://scenes/components/test.gd" id="6_lrj1u"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nk13o"]
 
@@ -19,9 +20,8 @@ script = ExtResource("1_khxhq")
 script = ExtResource("2_m5yyp")
 inital_state = NodePath("FollowPath")
 
-[node name="FollowPath" type="Node" parent="Statemachine" node_paths=PackedStringArray("user_vars", "rigidbody")]
+[node name="FollowPath" type="Node" parent="Statemachine" node_paths=PackedStringArray("rigidbody")]
 script = ExtResource("2_6b7u3")
-user_vars = NodePath("../..")
 rigidbody = NodePath("../../RigidBody3D")
 
 [node name="Crash" type="Node" parent="Statemachine" node_paths=PackedStringArray("rigidbody")]
@@ -46,3 +46,6 @@ size = Vector3(0.3, 0.3, 0.3)
 material = SubResource("StandardMaterial3D_y2qi2")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="RigidBody3D/CollisionShape3D"]
+
+[node name="Node3D" type="Node3D" parent="."]
+script = ExtResource("6_lrj1u")

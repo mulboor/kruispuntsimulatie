@@ -1,9 +1,18 @@
 extends State
 class_name FollowPath
 
-@export var user_vars: RoadUserVars
+@export_category("Movement")
+@onready var max_speed: float
+@export var accel: float
+var deccel: float
 
+@export_category("Cognition")
+@export var reaction_time: float
+
+@export_category("Misc")
 @export var rigidbody: RigidBody3D
+
+@export var path_follow: PathFollow3D
 
 @onready var follow_path: bool
 
@@ -15,7 +24,7 @@ class_name FollowPath
 @onready var frame: int
 
 func enter() -> void:
-	user_vars.path_follow.loop = false
+	path_follow.loop = false
 	
 	rigidbody.freeze_mode = RigidBody3D.FREEZE_MODE_KINEMATIC
 	rigidbody.freeze = true
@@ -28,22 +37,22 @@ func enter() -> void:
 func physics_update(_delta: float) -> void:
 	# Laat snelheid toenemen tot de max_speed. 
 	if follow_path:
-		if current_speed < user_vars.max_speed:
-			current_speed += user_vars.accel
+		if current_speed < max_speed:
+			current_speed += accel
 		else:
-			current_speed = user_vars.max_speed
+			current_speed = max_speed
 		
 		# Laat de pahtfollow over het pad lopen. 
-		user_vars.path_follow.progress += current_speed
+		path_follow.progress += current_speed
 	
 	# Zet de positie van de auto gelijk aan die van de path_follow. 
 	# Niet op de y want dan zou het de grond in gaan. 
-	rigidbody.global_position.z = user_vars.path_follow.global_position.z
-	rigidbody.global_position.x = user_vars.path_follow.global_position.x
-	rigidbody.global_rotation = user_vars.path_follow.global_rotation
+	rigidbody.global_position.z = path_follow.global_position.z
+	rigidbody.global_position.x = path_follow.global_position.x
+	rigidbody.global_rotation = path_follow.global_rotation
 	
 	# Verwijder de auto als het pad voltooid is
-	if user_vars.path_follow.progress_ratio >= 1.0:
+	if path_follow.progress_ratio >= 1.0:
 		Transitioned.emit(self, "deleteself")
 
 func on_body_entered(body: Node) -> void: 

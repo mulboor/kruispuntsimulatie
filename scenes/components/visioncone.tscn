@@ -1,9 +1,10 @@
 [gd_scene load_steps=2 format=3 uid="uid://dob5n0rie65js"]
 
-[ext_resource type="Script" path="res://scenes/components/visioncone.gd" id="1_bkj6i"]
+[ext_resource type="Script" path="res://scripts/visioncone.gd" id="1_bkj6i"]
 
 [node name="Visioncone" type="Node3D"]
 script = ExtResource("1_bkj6i")
+ray_length = 10.0
 
 [node name="Horizontal rays" type="Node3D" parent="."]
 visible = false
@@ -45,7 +46,6 @@ transform = Transform3D(0.984808, 0, -0.173648, 0, 1, 0, 0.173648, 0, 0.984808, 
 target_position = Vector3(1, 0, 0)
 
 [node name="Forward" type="RayCast3D" parent="Horizontal rays"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 target_position = Vector3(1, 0, 0)
 
 [node name="Hor9" type="RayCast3D" parent="Horizontal rays"]
