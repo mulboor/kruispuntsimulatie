@@ -3,9 +3,9 @@ class_name StateMachine
 
 @export var inital_state: State
 
-var current_state: State
+@onready var current_state: State
 
-var states: Dictionary = {}
+@onready var states: Dictionary = {}
 
 func _ready() -> void: 
 	# Vind alle states die deze statemachine beheert en zet ze in de lijst.
