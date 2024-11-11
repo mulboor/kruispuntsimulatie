@@ -17,6 +17,8 @@ class_name FollowPath
 func enter() -> void:
 	user_vars.path_follow.loop = false
 	
+	rigidbody.freeze_mode = RigidBody3D.FREEZE_MODE_KINEMATIC
+	rigidbody.freeze = true
 	rigidbody.contact_monitor = true
 	rigidbody.max_contacts_reported = 10
 	rigidbody.body_entered.connect(on_body_entered)
@@ -24,11 +26,6 @@ func enter() -> void:
 	follow_path = true
 
 func physics_update(_delta: float) -> void:
-	print(rigidbody.linear_velocity)
-	if frame == 0 || frame % 2 == 0: 
-		current_pos = user_vars.path_follow.global_position
-	else: 
-		last_pos = user_vars.path_follow.global_position
 	
 	# Laat snelheid toenemen tot de max_speed. 
 	if follow_path:
@@ -42,8 +39,8 @@ func physics_update(_delta: float) -> void:
 	
 	# Zet de positie van de auto gelijk aan die van de path_follow. 
 	# Niet op de y want dan zou het de grond in gaan. 
-	rigidbody.linear_velocity.z = (current_pos.z - last_pos.z) / _delta
-	rigidbody.linear_velocity.x = user_vars.path_follow.global_position.x
+	rigidbody.global_position.z = user_vars.path_follow.global_position.z
+	rigidbody.global_position.x = user_vars.path_follow.global_position.x
 	rigidbody.global_rotation = user_vars.path_follow.global_rotation
 	
 	# Verwijder de auto als het pad voltooid is
