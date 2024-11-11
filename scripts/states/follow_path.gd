@@ -26,7 +26,6 @@ func enter() -> void:
 	follow_path = true
 
 func physics_update(_delta: float) -> void:
-	
 	# Laat snelheid toenemen tot de max_speed. 
 	if follow_path:
 		if current_speed < user_vars.max_speed:

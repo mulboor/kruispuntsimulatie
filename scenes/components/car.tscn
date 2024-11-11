@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://bne2usp40hi4o"]
 
-[ext_resource type="Script" path="res://scenes/components/road_user_vars.gd" id="1_khxhq"]
+[ext_resource type="Script" path="res://scripts/road_user_vars.gd" id="1_khxhq"]
 [ext_resource type="Script" path="res://scripts/states/follow_path.gd" id="2_6b7u3"]
 [ext_resource type="Script" path="res://scripts/states/state base/state_machine.gd" id="2_m5yyp"]
 [ext_resource type="Script" path="res://scripts/states/crash.gd" id="4_ocaxt"]
@@ -34,6 +34,7 @@ countdown = 1.0
 parent = NodePath("../..")
 
 [node name="RigidBody3D" type="RigidBody3D" parent="."]
+mass = 286.512
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0134912, 0.00443017, 7.62939e-06)
