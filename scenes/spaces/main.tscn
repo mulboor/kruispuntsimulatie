@@ -76,6 +76,7 @@ curve = SubResource("Curve3D_cvp35")
 script = ExtResource("1_xpqr5")
 max_speed = 0.5
 accel = 0.1
+visibility = 100.0
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(-0.0888322, 0.381349, -0.920153, 0.0222999, 0.924335, 0.380929, 0.995797, 0.0133195, -0.0906148, -5.44542, 1.76972, 1.30317)

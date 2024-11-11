@@ -24,21 +24,19 @@ func enter() -> void:
 	follow_path = true
 
 func physics_update(_delta: float) -> void:
-	# Laat snelheid toenemen tot de max_speed als er niks in de weg staat
+	print(visioncone.objects_hit)
+	
+	for object in visioncone.objects_hit:
+		if object != null && object.name != "Ground": 
+			follow_path = false
+		
+	
 	if follow_path:
-		if current_speed < user_vars.max_speed:
-			current_speed += user_vars.accel
-		else:
-			current_speed = user_vars.max_speed
-		
-		# Laat de pahtfollow over het pad lopen. 
-		user_vars.path_follow.progress += current_speed
+		current_reaction_time = user_vars.reaction_time
+		accelerate()
 	else: 
-		pass
-		#current_reaction_time -= _delta
-		
-		#if current_reaction_time <= 0 : 
-		# TODO: stoppen voor obstakels
+		current_reaction_time -= _delta
+		deccelerate()
 	
 	# Zet de positie van de auto gelijk aan die van de path_follow. 
 	# Niet op de y want dan zou het de grond in gaan. 
@@ -49,6 +47,22 @@ func physics_update(_delta: float) -> void:
 	# Verwijder de auto als het pad voltooid is
 	if user_vars.path_follow.progress_ratio >= 1.0:
 		Transitioned.emit(self, "deleteself")
+
+func accelerate() -> void: 
+	# Laat snelheid toenemen tot de max_speed
+	if current_speed < user_vars.max_speed:
+		current_speed += user_vars.accel
+	else:
+		current_speed = user_vars.max_speed
+	
+	# Laat de pahtfollow over het pad lopen. 
+	user_vars.path_follow.progress += current_speed
+
+func deccelerate() -> void: 
+	if current_reaction_time <= 0: 
+			current_speed -= user_vars.deccel
+			if current_speed > 0: 
+				user_vars.path_follow.progress -= current_speed
 
 func on_body_entered(body: Node) -> void: 
 	if body.name != "Ground": 
