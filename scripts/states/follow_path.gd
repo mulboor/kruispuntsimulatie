@@ -2,26 +2,21 @@ extends State
 class_name FollowPath
 
 @export_category("Movement")
-@onready var max_speed: float
-@export var accel: float
+var max_speed: float
+var accel: float
 var deccel: float
 
 @export_category("Cognition")
-@export var reaction_time: float
+var reaction_time: float
 
 @export_category("Misc")
-@export var rigidbody: RigidBody3D
+var rigidbody: RigidBody3D
 
-@export var path_follow: PathFollow3D
+var path_follow: PathFollow3D
 
-@onready var follow_path: bool
+var follow_path: bool
 
-@onready var current_speed: float
-
-@onready var current_pos: Vector3
-@onready var last_pos: Vector3
-
-@onready var frame: int
+var current_speed: float
 
 func enter() -> void:
 	path_follow.loop = false

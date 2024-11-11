@@ -36,7 +36,7 @@ func spawn_user() -> void:
 	path.add_child(path_follow)
 	
 	# Maak de weggebruiker
-	var inst_user: RoadUserVars = user.instantiate()
+	var inst_user = user.instantiate()
 	inst_user.max_speed = general_user_stats.max_speed
 	inst_user.accel = general_user_stats.accel
 	inst_user.path_follow = path_follow
