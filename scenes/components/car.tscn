@@ -20,11 +20,12 @@ script = ExtResource("1_khxhq")
 script = ExtResource("2_m5yyp")
 inital_state = NodePath("FollowPath")
 
-[node name="FollowPath" type="Node" parent="Statemachine" node_paths=PackedStringArray("user_vars", "visioncone", "rigidbody")]
+[node name="FollowPath" type="Node" parent="Statemachine" node_paths=PackedStringArray("user_vars", "visioncone", "rigidbody", "road_user")]
 script = ExtResource("2_6b7u3")
 user_vars = NodePath("../..")
 visioncone = NodePath("../../Visioncone")
 rigidbody = NodePath("../../RigidBody3D")
+road_user = NodePath("../..")
 
 [node name="Crash" type="Node" parent="Statemachine" node_paths=PackedStringArray("rigidbody")]
 script = ExtResource("4_ocaxt")
@@ -50,5 +51,5 @@ material = SubResource("StandardMaterial3D_y2qi2")
 [node name="CSGBox3D" type="CSGBox3D" parent="RigidBody3D/CollisionShape3D"]
 
 [node name="Visioncone" parent="." node_paths=PackedStringArray("user_vars") instance=ExtResource("6_xosei")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.830644)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, -0.830644)
 user_vars = NodePath("..")

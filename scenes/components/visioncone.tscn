@@ -1,13 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://dob5n0rie65js"]
+[gd_scene load_steps=2 format=3 uid="uid://dob5n0rie65js"]
 
 [ext_resource type="Script" path="res://scripts/visioncone.gd" id="1_bkj6i"]
-[ext_resource type="Script" path="res://scripts/road_user_vars.gd" id="2_1q1cn"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_pt37w"]
 
 [node name="Visioncone" type="Node3D" node_paths=PackedStringArray("user_vars")]
 script = ExtResource("1_bkj6i")
-user_vars = NodePath("RoadUserVars")
+user_vars = NodePath("")
 
 [node name="Horizontal rays" type="Node3D" parent="."]
 
@@ -274,13 +271,3 @@ target_position = Vector3(1, 0, 0)
 [node name="Vertical lower limit" type="RayCast3D" parent="Vertical rays/Vertical R/Vertical3"]
 transform = Transform3D(0.5, 0.866025, 0, -0.866025, 0.5, 0, 0, 0, 1, 0, 0, 0)
 target_position = Vector3(1, 0, 0)
-
-[node name="RoadUserVars" type="Node3D" parent="."]
-script = ExtResource("2_1q1cn")
-visibility = 10.0
-
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.983111, 0, 0)
-shape = SubResource("BoxShape3D_pt37w")
