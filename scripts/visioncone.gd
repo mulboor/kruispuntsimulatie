@@ -7,12 +7,21 @@ class_name VisionCone
 
 @onready var objects_hit: Array[CollisionObject3D]
 
+@onready var children: Array[Node]
+
 signal HitObjects(objects: Array[CollisionObject3D])
 
 func _ready() -> void: 
-	# Vind alle rays, zet hun lengte gelijk aan de ray length, en voeg ze toe aan de dictionary
-	find_rays(self)
-	print(rays)
+	# Vind all rays en zet ze in de array
+	get_all_children(self)
+	for child in children: 
+		if child.get_class() == "RayCast3D":
+			rays.append(child)
+	
+	# Zet de lengte van alle rays
+	for ray: RayCast3D in rays: 
+		ray.target_position.z = user_vars.visibility
+
 
 func _physics_process(delta):
 	# Zet alle geraakte objecten in de array en verzend ze
@@ -22,9 +31,7 @@ func _physics_process(delta):
 	
 	HitObjects.emit(objects_hit)
 
-func find_rays(search_node: Node) -> void: 
-	for child in search_node.get_children():
-		if child != RayCast3D: 
-			find_rays(child)
-		elif child == RayCast3D: 
-			print(child.name)
+func get_all_children(search_node: Node) -> void: 
+	for child: Node in search_node.get_children():
+		get_all_children(child)
+		children.append(child)

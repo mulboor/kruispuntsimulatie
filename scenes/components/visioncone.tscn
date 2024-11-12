@@ -5,8 +5,9 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_pt37w"]
 
-[node name="Visioncone" type="Node3D"]
+[node name="Visioncone" type="Node3D" node_paths=PackedStringArray("user_vars")]
 script = ExtResource("1_bkj6i")
+user_vars = NodePath("RoadUserVars")
 
 [node name="Horizontal rays" type="Node3D" parent="."]
 
