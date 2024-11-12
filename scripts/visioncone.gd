@@ -11,11 +11,8 @@ signal HitObjects(objects: Array[CollisionObject3D])
 
 func _ready() -> void: 
 	# Vind alle rays, zet hun lengte gelijk aan de ray length, en voeg ze toe aan de dictionary
-	for child in get_children():
-		if child == RayCast3D:
-			var ray: RayCast3D = child
-			ray.target_position.z = -user_vars.visibility
-			rays.append(ray)
+	find_rays(self)
+	print(rays)
 
 func _physics_process(delta):
 	# Zet alle geraakte objecten in de array en verzend ze
@@ -24,3 +21,10 @@ func _physics_process(delta):
 			objects_hit.append(ray.get_collider())
 	
 	HitObjects.emit(objects_hit)
+
+func find_rays(search_node: Node) -> void: 
+	for child in search_node.get_children():
+		if child != RayCast3D: 
+			find_rays(child)
+		elif child == RayCast3D: 
+			print(child.name)
