@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://dum8snyf0rocq"]
+
+[node name="Game_test" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="."]
