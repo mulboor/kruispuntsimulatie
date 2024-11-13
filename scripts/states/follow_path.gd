@@ -26,13 +26,6 @@ func enter() -> void:
 	follow_path = true
 
 func physics_update(_delta: float) -> void:
-	print(visioncone.objects_hit)
-	
-	if is_instance_valid(visioncone):
-		for object: CollisionObject3D in visioncone.objects_hit: 
-			if object.name != "Ground": 
-				follow_path = false
-	
 	if follow_path:
 		accelerate()
 	else: 
@@ -46,8 +39,8 @@ func physics_update(_delta: float) -> void:
 	road_user.global_rotation = user_vars.path_follow.global_rotation
 	
 	# Verwijder de auto als het pad voltooid is
-	if user_vars.path_follow.progress_ratio >= 1.0:
-		Transitioned.emit(self, "deleteself")
+	if user_vars.path_follow.progress_ratio >= 0.99:
+		road_user.queue_free()
 
 func accelerate() -> void: 
 	# Laat snelheid toenemen tot de max_speed
@@ -68,3 +61,13 @@ func deccelerate() -> void:
 func on_body_entered(body: Node) -> void: 
 	if body.name != "Ground": 
 		Transitioned.emit(self, "Crash")
+
+func on_objects_spotted(bodies: Array[CollisionObject3D]) -> void:
+	for body in bodies: 
+		if is_instance_valid(body):
+			if body.name != "Ground": 
+				follow_path = false
+				break
+	
+	if bodies.is_empty(): 
+		follow_path = true

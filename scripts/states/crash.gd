@@ -1,14 +1,17 @@
 extends State
 class_name Crash
 
-signal Crashed(type: String)
-
 @export var rigidbody: RigidBody3D
+@export var road_user: Node
+@export var delete_timer: float
+
+@onready var current_delete_timer: float
 
 func enter() -> void: 
 	rigidbody.freeze = false
-	Crashed.emit("vehicle")
+	current_delete_timer = delete_timer
 
 func physics_update(_delta):
-	if rigidbody.linear_velocity < Vector3(0.001, 0.001, 0.001) && rigidbody.angular_velocity < Vector3(0.001, 0.001, 0.001):
-		Transitioned.emit(self, "deleteself")
+	current_delete_timer -= _delta
+	if current_delete_timer <= 0 && is_instance_valid(road_user): 
+		road_user.queue_free()

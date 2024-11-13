@@ -3,35 +3,31 @@ class_name VisionCone
 
 @export var user_vars: RoadUserVars
 
-@onready var rays: Array[RayCast3D]
+@export var col_box_width: float 
+@export var col_box_depth: float
+@export var col_box_height: float
 
-@onready var objects_hit: Array[CollisionObject3D]
+@onready var col_shape: CollisionShape3D = $Area3D/CollisionShape3D
 
-@onready var children: Array[Node]
+@onready var area: Area3D = $Area3D
 
-signal HitObjects(objects: Array[CollisionObject3D])
+signal non_ground_hit(object_hit: Node)
 
-func _ready() -> void: 
-	# Vind all rays en zet ze in de array
-	get_all_children(self)
-	for child in children: 
-		if child.get_class() == "RayCast3D":
-			rays.append(child)
+func _ready() -> void:
+	if is_instance_valid(user_vars):
+		col_box_depth = user_vars.visibility
 	
-	# Zet de lengte van alle rays
-	for ray: RayCast3D in rays: 
-		ray.target_position.z = user_vars.visibility
-
-
-func _physics_process(delta):
-	# Zet alle geraakte objecten in de array en verzend ze
-	for ray in rays: 
-		if ray.get_collider() != null: 
-			objects_hit.append(ray.get_collider())
+	var col_box: BoxShape3D = BoxShape3D.new()
+	col_box.size.z = col_box_depth
+	col_box.size.y = col_box_height
+	col_box.size.x = col_box_width
+	col_shape.shape = col_box
+	col_shape.position.z = col_box_depth / 2 # Omdat het zwaartepunt van col_shape in het midden zit
 	
-	HitObjects.emit(objects_hit)
+	area.monitoring = true
 
-func get_all_children(search_node: Node) -> void: 
-	for child: Node in search_node.get_children():
-		get_all_children(child)
-		children.append(child)
+func _physics_process(delta: float) -> void:
+	var overlapped_bodies: Array[Node3D] = area.get_overlapping_bodies()
+	for body in overlapped_bodies:
+		if body.name != "Ground":
+			non_ground_hit.emit(body)

@@ -1,11 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://bne2usp40hi4o"]
+[gd_scene load_steps=8 format=3 uid="uid://bne2usp40hi4o"]
 
 [ext_resource type="Script" path="res://scripts/road_user_vars.gd" id="1_khxhq"]
 [ext_resource type="Script" path="res://scripts/states/follow_path.gd" id="2_6b7u3"]
 [ext_resource type="Script" path="res://scripts/states/state base/state_machine.gd" id="2_m5yyp"]
 [ext_resource type="Script" path="res://scripts/states/crash.gd" id="4_ocaxt"]
-[ext_resource type="Script" path="res://scripts/states/delete_self.gd" id="5_3y7bu"]
-[ext_resource type="PackedScene" uid="uid://dob5n0rie65js" path="res://scenes/components/visioncone.tscn" id="6_xosei"]
+[ext_resource type="PackedScene" uid="uid://b8rm582527xqy" path="res://scenes/components/visioncone.tscn" id="6_xosei"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nk13o"]
 
@@ -27,14 +26,11 @@ visioncone = NodePath("../../Visioncone")
 rigidbody = NodePath("../../RigidBody3D")
 road_user = NodePath("../..")
 
-[node name="Crash" type="Node" parent="Statemachine" node_paths=PackedStringArray("rigidbody")]
+[node name="Crash" type="Node" parent="Statemachine" node_paths=PackedStringArray("rigidbody", "road_user")]
 script = ExtResource("4_ocaxt")
 rigidbody = NodePath("../../RigidBody3D")
-
-[node name="DeleteSelf" type="Node" parent="Statemachine" node_paths=PackedStringArray("parent")]
-script = ExtResource("5_3y7bu")
-countdown = 1.0
-parent = NodePath("../..")
+road_user = NodePath("../..")
+delete_timer = 1.0
 
 [node name="RigidBody3D" type="RigidBody3D" parent="."]
 mass = 286.512
@@ -51,5 +47,6 @@ material = SubResource("StandardMaterial3D_y2qi2")
 [node name="CSGBox3D" type="CSGBox3D" parent="RigidBody3D/CollisionShape3D"]
 
 [node name="Visioncone" parent="." node_paths=PackedStringArray("user_vars") instance=ExtResource("6_xosei")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, -0.830644)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.783075)
 user_vars = NodePath("..")
+col_box_width = 2.0
