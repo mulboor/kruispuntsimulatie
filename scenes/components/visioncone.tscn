@@ -5,8 +5,9 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_n5fhc"]
 size = Vector3(1, 1, 20)
 
-[node name="Visioncone" type="Node3D"]
+[node name="Visioncone" type="Node3D" node_paths=PackedStringArray("col_shape")]
 script = ExtResource("1_bkj6i")
+col_shape = NodePath("Area3D/CollisionShape3D")
 
 [node name="Area3D" type="Area3D" parent="."]
 

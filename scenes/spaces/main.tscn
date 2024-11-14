@@ -16,7 +16,7 @@ size = Vector3(3.83746, 1, 1)
 
 [sub_resource type="Curve3D" id="Curve3D_0077t"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 19.449, 0, 0),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 64.0843, 0, 0),
 "tilts": PackedFloat32Array(0, 0)
 }
 point_count = 2
@@ -37,7 +37,7 @@ mesh = SubResource("PlaneMesh_656gl")
 material = SubResource("StandardMaterial3D_hikoc")
 
 [node name="RigidBody3D2" type="RigidBody3D" parent="Enviroment"]
-transform = Transform3D(0.0575814, 0, -0.998341, 0, 1, 0, 0.998341, 0, 0.0575814, 17.4275, 0.652096, -0.340727)
+transform = Transform3D(-0.502975, 0, -0.864301, 0, 1, 0, 0.864301, 0, -0.502975, 14.9838, 0.652096, -0.340727)
 mass = 1000.0
 metadata/_edit_group_ = true
 
@@ -62,12 +62,13 @@ curve = SubResource("Curve3D_0077t")
 
 [node name="GlobalRoadUserStats" type="Node" parent="."]
 script = ExtResource("1_xpqr5")
-max_speed = 0.1
+max_speed = 0.5
 accel = 0.1
-visibility = 2000.0
+deccel = 0.225
+visibility = 2.0
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-0.0888322, 0.381349, -0.920153, 0.0222999, 0.924335, 0.380929, 0.995797, 0.0133195, -0.0906148, -5.44542, 1.76972, 1.30317)
+transform = Transform3D(-0.987914, -0.0380867, 0.150251, 0.0222999, 0.924335, 0.380929, -0.153391, 0.379676, -0.912314, 12.468, 3.34856, -7.93969)
 fov = 92.8125
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]

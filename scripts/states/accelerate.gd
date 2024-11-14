@@ -1,24 +1,8 @@
-extends State
+extends PathFollowState
 class_name Accelerate
 
-@export var user_vars: RoadUserVars
-
-@export var visioncone: VisionCone
-
-@export var rigidbody: RigidBody3D
-
-@onready var current_speed: float
-
 func enter() -> void:
-	user_vars.path_follow.loop = false
-	
-	rigidbody.freeze_mode = RigidBody3D.FREEZE_MODE_KINEMATIC
-	rigidbody.freeze = true
-	rigidbody.contact_monitor = true
-	rigidbody.max_contacts_reported = 10
-	rigidbody.body_entered.connect(on_body_entered)
-	
-	visioncone.non_ground_hit.connect(on_non_ground_hit)
+	init_path_follow_state()
 
 func physics_update(_delta: float) -> void:
 	# Laat snelheid toenemen tot de max_speed
