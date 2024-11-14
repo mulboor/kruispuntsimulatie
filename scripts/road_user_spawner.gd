@@ -39,5 +39,4 @@ func spawn_user() -> void:
 	inst_user.max_speed = general_user_stats.max_speed
 	inst_user.accel = general_user_stats.accel
 	inst_user.path_follow = path_follow
-	#inst_user.global_position = path_follow.global_position
 	add_child(inst_user)

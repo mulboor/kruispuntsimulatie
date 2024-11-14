@@ -16,7 +16,7 @@ size = Vector3(3.83746, 1, 1)
 
 [sub_resource type="Curve3D" id="Curve3D_0077t"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 19.449, 0, 0),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 19.449, 0, 0),
 "tilts": PackedFloat32Array(0, 0)
 }
 point_count = 2
@@ -37,7 +37,7 @@ mesh = SubResource("PlaneMesh_656gl")
 material = SubResource("StandardMaterial3D_hikoc")
 
 [node name="RigidBody3D2" type="RigidBody3D" parent="Enviroment"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.0971, 0.652096, 11.6077)
+transform = Transform3D(0.0575814, 0, -0.998341, 0, 1, 0, 0.998341, 0, 0.0575814, 17.4275, 0.652096, -0.340727)
 mass = 1000.0
 metadata/_edit_group_ = true
 

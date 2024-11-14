@@ -1,13 +1,11 @@
 extends State
-class_name FollowPath
+class_name Accelerate
 
 @export var user_vars: RoadUserVars
 
 @export var visioncone: VisionCone
 
 @export var rigidbody: RigidBody3D
-
-@onready var follow_path: bool
 
 @onready var current_speed: float
 
@@ -21,8 +19,6 @@ func enter() -> void:
 	rigidbody.body_entered.connect(on_body_entered)
 	
 	visioncone.non_ground_hit.connect(on_non_ground_hit)
-	
-	follow_path = true
 
 func physics_update(_delta: float) -> void:
 	# Laat snelheid toenemen tot de max_speed
