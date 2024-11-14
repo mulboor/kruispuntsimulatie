@@ -31,6 +31,8 @@ func physics_update(_delta: float) -> void:
 	else:
 		current_speed = user_vars.max_speed
 	
+	user_vars.path_follow.progress += current_speed
+	
 	# Zet de positie van de auto gelijk aan die van de path_follow. 
 	# Niet op de y want dan zou het de grond in gaan. 
 	user_vars.global_position.z = user_vars.path_follow.global_position.z
@@ -47,3 +49,4 @@ func on_body_entered(body: Node) -> void:
 
 func on_non_ground_hit(bode: Node) -> void:
 	Transitioned.emit(self, "brake")
+	print("braking")

@@ -32,7 +32,6 @@ func spawn_users(_delta: float):
 func spawn_user() -> void:
 	# Maak een nieuwe path_follow die de weggebruiker gaat volgen
 	var path_follow: PathFollow3D = PathFollow3D.new()
-	path_follow.position = Vector3(0.0, 0.0, 0.0)
 	path.add_child(path_follow)
 	
 	# Maak de weggebruiker
@@ -40,4 +39,5 @@ func spawn_user() -> void:
 	inst_user.max_speed = general_user_stats.max_speed
 	inst_user.accel = general_user_stats.accel
 	inst_user.path_follow = path_follow
+	#inst_user.global_position = path_follow.global_position
 	add_child(inst_user)

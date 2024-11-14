@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://scripts/states/follow_path.gd" id="2_6b7u3"]
 [ext_resource type="Script" path="res://scripts/states/state base/state_machine.gd" id="2_m5yyp"]
 [ext_resource type="Script" path="res://scripts/states/crash.gd" id="4_ocaxt"]
-[ext_resource type="PackedScene" uid="uid://b8rm582527xqy" path="res://scenes/components/visioncone.tscn" id="6_xosei"]
+[ext_resource type="PackedScene" uid="uid://dob5n0rie65js" path="res://scenes/components/visioncone.tscn" id="6_xosei"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nk13o"]
 
@@ -49,3 +49,4 @@ material = SubResource("StandardMaterial3D_y2qi2")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.783075)
 user_vars = NodePath("..")
 col_box_width = 2.0
+col_box_height = 2.0
