@@ -20,6 +20,7 @@ func _ready() -> void:
 
 func _physics_process(delta):
 	spawn_users(delta)
+	print(current_time_between_spawns)
 
 func spawn_users(_delta: float): 
 	# Spawn elke x seconden een nieuwe weggebruiker

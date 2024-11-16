@@ -5,6 +5,7 @@ class_name RoadUserVars
 @export var max_speed: float
 @export var accel: float
 @export var deccel: float
+@export var current_speed: float
 
 @export_category("Cognition")
 @export var visibility: float

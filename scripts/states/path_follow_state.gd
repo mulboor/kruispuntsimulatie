@@ -7,8 +7,6 @@ class_name PathFollowState
 
 @export var rigidbody: RigidBody3D
 
-@onready var current_speed: float
-
 func init_path_follow_state() -> void: 
 	user_vars.path_follow.loop = false
 	
@@ -21,7 +19,13 @@ func init_path_follow_state() -> void:
 	visioncone.non_ground_hit.connect(on_non_ground_hit)
 
 func on_body_entered(body: Node) -> void: 
-	pass
+	if body.name != "Ground": 
+		Transitioned.emit(self, "Crash")
 
 func on_non_ground_hit(body: Node) -> void: 
 	pass
+
+func set_position_to(node: Node) -> void:  
+	user_vars.global_position.z = node.global_position.z
+	user_vars.global_position.x = node.global_position.x
+	user_vars.global_rotation = node.global_rotation

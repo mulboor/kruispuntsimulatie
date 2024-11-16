@@ -12,6 +12,7 @@ class_name VisionCone
 @onready var area: Area3D = $Area3D
 
 signal non_ground_hit(object_hit: Node)
+signal no_hits
 
 func _ready() -> void:
 	if is_instance_valid(user_vars):
@@ -22,16 +23,18 @@ func _ready() -> void:
 	col_box.size.y = col_box_height
 	col_box.size.x = col_box_width
 	col_shape.set_shape(col_box)
-	col_shape.shape = col_box
-	col_shape.position.z = col_box_depth / 2 # Omdat het zwaartepunt van col_shape in het midden zit
+	col_shape.position.z = -(user_vars.visibility / 2) # Omdat het zwaartepunt van col_shape in het midden zit
 	
 	area.monitoring = true
-	print("fappen")
 
 func _physics_process(delta: float) -> void:
 	var overlapped_bodies: Array[Node3D] = area.get_overlapping_bodies()
-	print(overlapped_bodies)
 	for body in overlapped_bodies:
-		if body.name != "Ground" && body.name != "Carbody":
-			print("gezien")
+		if body.name != "Ground":
 			non_ground_hit.emit(body)
+			break
+	
+	if overlapped_bodies.size() == 0: 
+		no_hits.emit()
+	
+	print(global_position)
