@@ -11,7 +11,7 @@ class_name VisionCone
 
 @onready var area: Area3D = $Area3D
 
-signal non_ground_hit(object_hit: Node)
+signal non_ground_hit(object_hit: Node, object_distance: float)
 signal no_hits
 
 func _ready() -> void:
@@ -31,7 +31,8 @@ func _physics_process(delta: float) -> void:
 	var overlapped_bodies: Array[Node3D] = area.get_overlapping_bodies()
 	for body in overlapped_bodies:
 		if body.name != "Ground":
-			non_ground_hit.emit(body)
+			var distance: float = position.distance_to(body.position)
+			non_ground_hit.emit(body, distance)
 			break
 	
 	if overlapped_bodies.size() == 0: 

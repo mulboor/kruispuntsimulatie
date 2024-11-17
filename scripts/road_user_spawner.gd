@@ -42,5 +42,6 @@ func spawn_user() -> void:
 	inst_user.deccel = general_user_stats.deccel
 	inst_user.visibility = general_user_stats.visibility
 	inst_user.reaction_time = general_user_stats.reaction_time
+	inst_user.stopping_distance = general_user_stats.stopping_distance
 	inst_user.path_follow = path_follow
 	add_child(inst_user)

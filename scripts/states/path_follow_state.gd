@@ -22,7 +22,7 @@ func on_body_entered(body: Node) -> void:
 	if body.name != "Ground": 
 		Transitioned.emit(self, "Crash")
 
-func on_non_ground_hit(body: Node) -> void: 
+func on_non_ground_hit(body: Node, distance: float) -> void: 
 	pass
 
 func set_position_to(node: Node) -> void:  

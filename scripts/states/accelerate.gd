@@ -29,8 +29,11 @@ func physics_update(_delta: float) -> void:
 	if brake: 
 		count_down_to_brake(_delta)
 
-func on_non_ground_hit(body: Node) -> void:
-	brake = true
+func on_non_ground_hit(body: Node, distance: float) -> void:
+	if distance <= user_vars.stopping_distance: 
+		brake = true
+	else: 
+		pass
 
 func count_down_to_brake(_delta: float) -> void: 
 	current_reaction_time -= _delta
