@@ -50,7 +50,7 @@ shape = SubResource("BoxShape3D_ohesk")
 [node name="Spawner A" type="Node3D" parent="Spawners" node_paths=PackedStringArray("general_user_stats", "path")]
 script = ExtResource("2_xc2x4")
 time_between_spawns = 2.0
-random_deviation = 0.021
+random_deviation = 0.036
 general_user_stats = NodePath("../../GlobalRoadUserStats")
 path = NodePath("Path3D")
 user = ExtResource("1_v6fqk")
@@ -62,7 +62,7 @@ curve = SubResource("Curve3D_b61m1")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.87177, 0, 17.3273)
 script = ExtResource("2_xc2x4")
 time_between_spawns = 1.0
-random_deviation = 0.04
+random_deviation = 0.036
 general_user_stats = NodePath("../../GlobalRoadUserStats")
 path = NodePath("Path3D")
 user = ExtResource("1_v6fqk")
