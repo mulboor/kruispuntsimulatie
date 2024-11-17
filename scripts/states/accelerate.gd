@@ -1,8 +1,14 @@
 extends PathFollowState
 class_name Accelerate
 
+@onready var current_reaction_time: float
+
+@onready var brake: bool
+
 func enter() -> void:
 	init_path_follow_state()
+	current_reaction_time = user_vars.reaction_time
+	brake = false
 
 func physics_update(_delta: float) -> void:
 	# Laat snelheid toenemen tot de max_speed
@@ -18,6 +24,16 @@ func physics_update(_delta: float) -> void:
 	# Verwijder de auto als het pad voltooid is
 	if user_vars.path_follow.progress_ratio >= 1:
 		user_vars.queue_free()
+	
+	# Verander naar de rem state wanneer er een object in het pad zit
+	if brake: 
+		count_down_to_brake(_delta)
 
 func on_non_ground_hit(body: Node) -> void:
-	Transitioned.emit(self, "brake")
+	brake = true
+
+func count_down_to_brake(_delta: float) -> void: 
+	current_reaction_time -= _delta
+	
+	if current_reaction_time <= 0: 
+		Transitioned.emit(self, "brake")

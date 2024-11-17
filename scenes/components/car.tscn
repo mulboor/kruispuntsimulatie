@@ -55,3 +55,4 @@ material = SubResource("StandardMaterial3D_y2qi2")
 [node name="Visioncone" parent="." node_paths=PackedStringArray("user_vars") instance=ExtResource("6_xosei")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.979222)
 user_vars = NodePath("..")
+col_box_width = 1.5
