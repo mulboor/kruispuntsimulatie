@@ -7,7 +7,7 @@ func enter() -> void:
 
 func physics_update(_delta): 
 	# Minder de snelheid 
-	user_vars.current_speed = lerpf(user_vars.current_speed, 0.0, user_vars.deccel / user_vars.current_speed * user_vars.current_speed)
+	user_vars.current_speed = maxf(0, user_vars.current_speed - (user_vars.deccel / (user_vars.current_speed * user_vars.current_speed)))
 	user_vars.path_follow.progress += user_vars.current_speed
 	set_position_to(user_vars.path_follow)
 
