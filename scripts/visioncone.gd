@@ -37,5 +37,3 @@ func _physics_process(delta: float) -> void:
 	
 	if overlapped_bodies.size() == 0: 
 		no_hits.emit()
-	
-	print(global_position)

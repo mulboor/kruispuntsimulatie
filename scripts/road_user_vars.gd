@@ -10,7 +10,7 @@ class_name RoadUserVars
 @export_category("Cognition")
 @export var visibility: float
 @export var reaction_time: float
-@export var stopping_distance: float
+@export_range(0, 100) var stopping_distance: float
 
 @export_category("Position guide")
 @export var path_follow: PathFollow3D

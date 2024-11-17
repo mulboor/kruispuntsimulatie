@@ -16,12 +16,18 @@ class_name RoadUserSpawner
 
 @onready var current_time_between_spawns: float
 
+@onready var time: float
+@onready var frame: int
+
 func _ready() -> void:
 	current_time_between_spawns = 0 
+	frame = 0
 
 func _physics_process(delta):
 	spawn_users(delta)
-	print(current_time_between_spawns)
+	time += delta
+	frame += 1
+	print("Time:", time, " Frame:", frame)
 
 func spawn_users(_delta: float): 
 	# Spawn elke x seconden een nieuwe weggebruiker

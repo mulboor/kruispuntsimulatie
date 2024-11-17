@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://3ptqecnw5ex2"]
+[gd_scene load_steps=8 format=3 uid="uid://3ptqecnw5ex2"]
 
 [ext_resource type="PackedScene" uid="uid://bne2usp40hi4o" path="res://scenes/components/car.tscn" id="1_v6fqk"]
 [ext_resource type="Script" path="res://scripts/general_road_user_stats.gd" id="1_xpqr5"]
@@ -10,12 +10,19 @@ size = Vector3(3.83746, 1, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_ohesk"]
 size = Vector3(100, 0, 100)
 
-[sub_resource type="Curve3D" id="Curve3D_0077t"]
+[sub_resource type="Curve3D" id="Curve3D_b61m1"]
 _data = {
-"points": PackedVector3Array(3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 64, 0, 0),
-"tilts": PackedFloat32Array(0, 0)
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 12.1015, 0, 0, 0, 0, 0, 0, 0, 0, 20, 0, 2.31478),
+"tilts": PackedFloat32Array(0, 0, 0)
 }
-point_count = 2
+point_count = 3
+
+[sub_resource type="Curve3D" id="Curve3D_3c65l"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, -4, 3.249, 0, -12.161, 0, 0, 0, 0, 0, 0, 0, 0, -24.0928),
+"tilts": PackedFloat32Array(0, 0, 0)
+}
+point_count = 3
 
 [node name="Node3D" type="Node3D"]
 
@@ -40,53 +47,40 @@ shape = SubResource("BoxShape3D_ohesk")
 
 [node name="Spawners" type="Node" parent="."]
 
-[node name="RoadUserSpawner" type="Node3D" parent="Spawners" node_paths=PackedStringArray("general_user_stats", "path")]
+[node name="Spawner A" type="Node3D" parent="Spawners" node_paths=PackedStringArray("general_user_stats", "path")]
 script = ExtResource("2_xc2x4")
-time_between_spawns = 1.0
-random_deviation = 0.05
+time_between_spawns = 2.0
+random_deviation = 0.021
 general_user_stats = NodePath("../../GlobalRoadUserStats")
 path = NodePath("Path3D")
 user = ExtResource("1_v6fqk")
 
-[node name="Path3D" type="Path3D" parent="Spawners/RoadUserSpawner"]
-curve = SubResource("Curve3D_0077t")
+[node name="Path3D" type="Path3D" parent="Spawners/Spawner A"]
+curve = SubResource("Curve3D_b61m1")
 
-[node name="RoadUserSpawner2" type="Node3D" parent="Spawners" node_paths=PackedStringArray("general_user_stats", "path")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 10.7905, 0, -10.088)
+[node name="Spawner B" type="Node3D" parent="Spawners" node_paths=PackedStringArray("general_user_stats", "path")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.87177, 0, 17.3273)
 script = ExtResource("2_xc2x4")
 time_between_spawns = 1.0
-random_deviation = 0.054
+random_deviation = 0.04
 general_user_stats = NodePath("../../GlobalRoadUserStats")
 path = NodePath("Path3D")
 user = ExtResource("1_v6fqk")
 
-[node name="Path3D" type="Path3D" parent="Spawners/RoadUserSpawner2"]
-curve = SubResource("Curve3D_0077t")
-
-[node name="RoadUserSpawner3" type="Node3D" parent="Spawners" node_paths=PackedStringArray("general_user_stats", "path")]
-transform = Transform3D(-0.66614, -0.000675145, 0.745827, -0.00919202, 0.999931, -0.00730475, -0.74577, -0.0117216, -0.6661, 32.4227, 0, 22.2337)
-script = ExtResource("2_xc2x4")
-time_between_spawns = 1.0
-random_deviation = 0.013
-general_user_stats = NodePath("../../GlobalRoadUserStats")
-path = NodePath("Path3D")
-user = ExtResource("1_v6fqk")
-
-[node name="Path3D" type="Path3D" parent="Spawners/RoadUserSpawner3"]
-transform = Transform3D(0.639412, 0, 0.768864, 0, 1, 0, -0.768864, 0, 0.639412, 0, 0, 0)
-curve = SubResource("Curve3D_0077t")
+[node name="Path3D" type="Path3D" parent="Spawners/Spawner B"]
+curve = SubResource("Curve3D_3c65l")
 
 [node name="GlobalRoadUserStats" type="Node" parent="."]
 script = ExtResource("1_xpqr5")
-max_speed = 0.2
-accel = 0.1
-deccel = 1.0
+max_speed = 0.28
+accel = 0.05
+deccel = 0.2
 visibility = 6.0
 reaction_time = 0.5
-stopping_distance = 10.0
+stopping_distance = 85.586
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-0.73118, 0.274933, -0.624329, 0.0222999, 0.924335, 0.380929, 0.68182, 0.264606, -0.681987, 0, 6.018, 0.321)
+transform = Transform3D(0.224866, 0.366624, -0.902786, 0.0222999, 0.924335, 0.38093, 0.974135, -0.10579, 0.199676, 0.085, 5, 2.566)
 fov = 90.0
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
