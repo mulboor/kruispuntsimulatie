@@ -2,6 +2,7 @@ extends PathFollowState
 class_name Accelerate
 
 @onready var current_reaction_time: float
+@onready var distance_to_obstacle: float
 
 @onready var brake: bool
 
@@ -30,13 +31,11 @@ func physics_update(_delta: float) -> void:
 		count_down_to_brake(_delta)
 
 func on_non_ground_hit(body: Node, distance: float) -> void:
-	if distance <= user_vars.stopping_distance: 
-		brake = true
-	else: 
-		pass
+	brake = true
+	distance_to_obstacle = distance
 
 func count_down_to_brake(_delta: float) -> void: 
 	current_reaction_time -= _delta
 	
-	if current_reaction_time <= 0: 
+	if current_reaction_time <= 0 && distance_to_obstacle < user_vars.stopping_distance: 
 		Transitioned.emit(self, "brake")
