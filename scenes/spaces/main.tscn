@@ -78,12 +78,12 @@ curve = SubResource("Curve3D_0077t")
 
 [node name="GlobalRoadUserStats" type="Node" parent="."]
 script = ExtResource("1_xpqr5")
-max_speed = 0.3
+max_speed = 0.2
 accel = 0.1
-deccel = 0.1
-visibility = 10.0
+deccel = 1.0
+visibility = 6.0
 reaction_time = 0.5
-stopping_distance = 5.0
+stopping_distance = 10.0
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(-0.73118, 0.274933, -0.624329, 0.0222999, 0.924335, 0.380929, 0.68182, 0.264606, -0.681987, 0, 6.018, 0.321)

@@ -3,6 +3,7 @@ class_name Accelerate
 
 @onready var current_reaction_time: float
 @onready var distance_to_obstacle: float
+@onready var stopping_distance
 
 @onready var brake: bool
 
@@ -37,5 +38,6 @@ func on_non_ground_hit(body: Node, distance: float) -> void:
 func count_down_to_brake(_delta: float) -> void: 
 	current_reaction_time -= _delta
 	
-	if current_reaction_time <= 0 && distance_to_obstacle < user_vars.stopping_distance: 
+	stopping_distance = (user_vars.stopping_distance * user_vars.current_speed) / user_vars.visibility
+	if current_reaction_time <= 0 && distance_to_obstacle < stopping_distance: 
 		Transitioned.emit(self, "brake")
