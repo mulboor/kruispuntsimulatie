@@ -49,8 +49,8 @@ shape = SubResource("BoxShape3D_ohesk")
 
 [node name="Spawner A" type="Node3D" parent="Spawners" node_paths=PackedStringArray("general_user_stats", "path")]
 script = ExtResource("2_xc2x4")
-time_between_spawns = 1.0
-random_deviation = 0.036
+time_between_spawns = 0.8
+random_deviation = 0.018
 general_user_stats = NodePath("../../GlobalRoadUserStats")
 path = NodePath("Path3D")
 user = ExtResource("1_v6fqk")
@@ -62,7 +62,7 @@ curve = SubResource("Curve3D_b61m1")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.87177, 0, 17.3273)
 script = ExtResource("2_xc2x4")
 time_between_spawns = 0.8
-random_deviation = 0.036
+random_deviation = 0.018
 general_user_stats = NodePath("../../GlobalRoadUserStats")
 path = NodePath("Path3D")
 user = ExtResource("1_v6fqk")
@@ -72,12 +72,12 @@ curve = SubResource("Curve3D_3c65l")
 
 [node name="GlobalRoadUserStats" type="Node" parent="."]
 script = ExtResource("1_xpqr5")
-max_speed = 0.28
-accel = 0.05
+max_speed = 0.14
+accel = 0.001
 deccel = 0.2
-visibility = 6.0
+visibility = 6.8
 reaction_time = 0.5
-stopping_distance = 85.586
+stopping_distance = 34.316
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(0.224866, 0.366624, -0.902786, 0.0222999, 0.924335, 0.38093, 0.974135, -0.10579, 0.199676, 0.085, 5, 2.566)
