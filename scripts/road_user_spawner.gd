@@ -3,7 +3,6 @@ class_name RoadUserSpawner
 
 @export_category("Spawn variables")
 @export var time_between_spawns: float
-@export_range(0, 0.1) var random_deviation: float
 
 @export_category("User variables")
 @export var general_user_stats: GeneralRoadUserStats
@@ -44,11 +43,11 @@ func spawn_user() -> void:
 	
 	# Maak de weggebruiker
 	var inst_user: RoadUserVars = user.instantiate()
-	inst_user.max_speed = randfn(general_user_stats.max_speed, random_deviation)
-	inst_user.accel = randfn(general_user_stats.accel, random_deviation)
-	inst_user.deccel = randfn(general_user_stats.deccel, random_deviation)
-	inst_user.visibility = randfn(general_user_stats.visibility, random_deviation)
-	inst_user.reaction_time = randfn(general_user_stats.reaction_time, random_deviation)
-	inst_user.stopping_distance = randfn(general_user_stats.stopping_distance, random_deviation)
+	inst_user.max_speed = maxf(randfn(general_user_stats.max_speed, general_user_stats.max_speed_deviation), 0.0)
+	inst_user.accel = maxf(randfn(general_user_stats.accel, general_user_stats.accel_deviation), 0.0)
+	inst_user.deccel = maxf(randfn(general_user_stats.deccel, general_user_stats.deccel_deviation), 0.0)
+	inst_user.visibility = maxf(randfn(general_user_stats.visibility, general_user_stats.visibility_deviation), 0.0)
+	inst_user.reaction_time = maxf(randfn(general_user_stats.reaction_time, general_user_stats.reaction_time_deviation), 0.0)
+	inst_user.stopping_distance = maxf(randfn(general_user_stats.stopping_distance, general_user_stats.stopping_distance_deviation), 0.0)
 	inst_user.path_follow = path_follow
 	add_child(inst_user)

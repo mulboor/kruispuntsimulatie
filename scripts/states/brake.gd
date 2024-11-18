@@ -2,8 +2,7 @@ extends PathFollowState
 class_name Brake
 
 func enter() -> void: 
-	init_path_follow_state()
-	visioncone.no_hits.connect(on_no_hits)
+	init_active_state()
 
 func physics_update(_delta): 
 	# Minder de snelheid 

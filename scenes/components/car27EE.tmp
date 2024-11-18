@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://bne2usp40hi4o"]
+[gd_scene load_steps=10 format=3 uid="uid://bne2usp40hi4o"]
 
 [ext_resource type="Script" path="res://scripts/road_user_vars.gd" id="1_khxhq"]
 [ext_resource type="Script" path="res://scripts/states/accelerate.gd" id="2_6b7u3"]
 [ext_resource type="Script" path="res://scripts/states/state base/state_machine.gd" id="2_m5yyp"]
 [ext_resource type="Script" path="res://scripts/states/crash.gd" id="4_ocaxt"]
 [ext_resource type="Script" path="res://scripts/states/brake.gd" id="5_deujp"]
+[ext_resource type="Script" path="res://scenes/components/sleep.gd" id="6_spg1b"]
 [ext_resource type="PackedScene" uid="uid://dob5n0rie65js" path="res://scenes/components/visioncone.tscn" id="6_xosei"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nk13o"]
@@ -20,12 +21,11 @@ script = ExtResource("1_khxhq")
 script = ExtResource("2_m5yyp")
 inital_state = NodePath("Accelerate")
 
-[node name="Accelerate" type="Node" parent="Statemachine" node_paths=PackedStringArray("user_vars", "visioncone", "rigidbody", "col_shape")]
+[node name="Accelerate" type="Node" parent="Statemachine" node_paths=PackedStringArray("user_vars", "visioncone", "rigidbody")]
 script = ExtResource("2_6b7u3")
 user_vars = NodePath("../..")
 visioncone = NodePath("../../Visioncone")
 rigidbody = NodePath("../../Carbody")
-col_shape = NodePath("../../Carbody/CollisionShape3D")
 
 [node name="Crash" type="Node" parent="Statemachine" node_paths=PackedStringArray("rigidbody", "road_user")]
 script = ExtResource("4_ocaxt")
@@ -33,12 +33,14 @@ rigidbody = NodePath("../../Carbody")
 road_user = NodePath("../..")
 delete_timer = 1.0
 
-[node name="Brake" type="Node" parent="Statemachine" node_paths=PackedStringArray("user_vars", "visioncone", "rigidbody", "col_shape")]
+[node name="Brake" type="Node" parent="Statemachine" node_paths=PackedStringArray("user_vars", "visioncone", "rigidbody")]
 script = ExtResource("5_deujp")
 user_vars = NodePath("../..")
 visioncone = NodePath("../../Visioncone")
 rigidbody = NodePath("../../Carbody")
-col_shape = NodePath("../../Carbody/CollisionShape3D")
+
+[node name="Sleep" type="Node" parent="Statemachine"]
+script = ExtResource("6_spg1b")
 
 [node name="Carbody" type="RigidBody3D" parent="."]
 mass = 286.512

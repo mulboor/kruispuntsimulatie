@@ -8,14 +8,14 @@ class_name Accelerate
 @onready var brake: bool
 
 func enter() -> void:
-	init_path_follow_state()
+	init_active_state()
 	current_reaction_time = user_vars.reaction_time
 	brake = false
 
 func physics_update(_delta: float) -> void:
 	# Laat snelheid toenemen tot de max_speed
 	if user_vars.current_speed < user_vars.max_speed:
-		user_vars.current_speed += user_vars.accel
+		user_vars.current_speed = lerpf(user_vars.current_speed, user_vars.current_speed + user_vars.accel, 0.2)
 	else:
 		user_vars.current_speed = user_vars.max_speed
 	

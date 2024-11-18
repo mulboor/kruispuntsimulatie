@@ -19,7 +19,7 @@ point_count = 3
 
 [sub_resource type="Curve3D" id="Curve3D_3c65l"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 44.1112, 0, 0, 4, 0, 0, -4, 3.249, 0, -12.161, 0, 0, 0, 0, 0, 0, 0, 0, -24.0928),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, -4, 3.249, 0, -12.161, 0, 0, 0, 0, 0, 0, 0, 0, -24.0928),
 "tilts": PackedFloat32Array(0, 0, 0)
 }
 point_count = 3
@@ -29,7 +29,7 @@ point_count = 3
 [node name="Enviroment" type="Node" parent="."]
 
 [node name="RigidBody3D2" type="RigidBody3D" parent="Enviroment"]
-transform = Transform3D(-0.502975, 0, -0.864301, 0, 1, 0, 0.864301, 0, -0.502975, 2.09554, 0.652096, -5.09524)
+transform = Transform3D(-0.502975, 0, -0.864301, 0, 1, 0, 0.864301, 0, -0.502975, -20.509, 0.652096, -5.09524)
 mass = 1000.0
 metadata/_edit_group_ = true
 
@@ -49,8 +49,7 @@ shape = SubResource("BoxShape3D_ohesk")
 
 [node name="Spawner A" type="Node3D" parent="Spawners" node_paths=PackedStringArray("general_user_stats", "path")]
 script = ExtResource("2_xc2x4")
-time_between_spawns = 0.8
-random_deviation = 0.018
+time_between_spawns = 1.0
 general_user_stats = NodePath("../../GlobalRoadUserStats")
 path = NodePath("Path3D")
 user = ExtResource("1_v6fqk")
@@ -61,8 +60,7 @@ curve = SubResource("Curve3D_b61m1")
 [node name="Spawner B" type="Node3D" parent="Spawners" node_paths=PackedStringArray("general_user_stats", "path")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.87177, 0, 17.3273)
 script = ExtResource("2_xc2x4")
-time_between_spawns = 0.8
-random_deviation = 0.018
+time_between_spawns = 1.0
 general_user_stats = NodePath("../../GlobalRoadUserStats")
 path = NodePath("Path3D")
 user = ExtResource("1_v6fqk")
@@ -73,14 +71,20 @@ curve = SubResource("Curve3D_3c65l")
 [node name="GlobalRoadUserStats" type="Node" parent="."]
 script = ExtResource("1_xpqr5")
 max_speed = 0.14
-accel = 0.001
+max_speed_deviation = 0.01
+accel = 0.08
+accel_deviation = 0.02
 deccel = 0.2
+deccel_deviation = 0.02
 visibility = 6.8
-reaction_time = 0.5
+visibility_deviation = 0.5
+reaction_time = 1.5
+reaction_time_deviation = 1.2
 stopping_distance = 34.316
+stopping_distance_deviation = 10.0
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.224866, 0.366624, -0.902786, 0.0222999, 0.924335, 0.38093, 0.974135, -0.10579, 0.199676, 0.085, 5, 2.566)
+transform = Transform3D(-0.170209, -0.0343903, -0.984808, 0, 0.999392, -0.0348995, 0.985407, -0.00594023, -0.170106, 0.085, 5, 2.566)
 fov = 90.0
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
