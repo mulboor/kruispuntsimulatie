@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://3ptqecnw5ex2"]
+[gd_scene load_steps=10 format=3 uid="uid://3ptqecnw5ex2"]
 
 [ext_resource type="PackedScene" uid="uid://bne2usp40hi4o" path="res://scenes/components/car.tscn" id="1_v6fqk"]
 [ext_resource type="Script" path="res://scripts/general_road_user_stats.gd" id="1_xpqr5"]
 [ext_resource type="Script" path="res://scripts/road_user_spawner.gd" id="2_xc2x4"]
+[ext_resource type="Script" path="res://scripts/traffic_signal.gd" id="4_sv8g1"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_e4k3p"]
 size = Vector3(3.83746, 1, 1)
@@ -23,6 +24,8 @@ _data = {
 "tilts": PackedFloat32Array(0, 0, 0)
 }
 point_count = 3
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ae6fo"]
 
 [node name="Node3D" type="Node3D"]
 
@@ -90,3 +93,11 @@ fov = 90.0
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.726575, 0.52402, -0.444401, 0, 0.64679, 0.762668, 0.687088, 0.554136, -0.469941, -48.2264, 16.2122, 68.9945)
 light_energy = 3.292
+
+[node name="Traffic Signal" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.35401, 0, 0)
+script = ExtResource("4_sv8g1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Traffic Signal"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_ae6fo")

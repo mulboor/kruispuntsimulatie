@@ -12,6 +12,7 @@ class_name VisionCone
 @onready var area: Area3D = $Area3D
 
 signal non_ground_hit(object_hit: Node, object_distance: float)
+signal area_hit(area_hit: Node)
 signal no_hits
 
 func _ready() -> void:
@@ -28,6 +29,7 @@ func _ready() -> void:
 	area.monitoring = true
 
 func _physics_process(delta: float) -> void:
+	# Detecteer andere weggebruikers
 	var overlapped_bodies: Array[Node3D] = area.get_overlapping_bodies()
 	for body in overlapped_bodies:
 		if body.name != "Ground":
@@ -35,6 +37,19 @@ func _physics_process(delta: float) -> void:
 			non_ground_hit.emit(body, distance)
 			break
 	
-	if overlapped_bodies.size() == 0: 
+	# Detecteer verkeerstekens
+	var overlapped_areas: Array[Node3D]
+	for area in overlapped_areas:
+		if area.is_class("TrafficSignal"): 
+			var traffic_signal: TrafficSignal = area
+			if traffic_signal.stop_for_signal:
+				area_hit.emit(area)
+				break
+	
+	# Als er geen verkeerstekens en andere weggebruikers in de weg zitten
+	if overlapped_bodies.size() == 0 && overlapped_areas.size() == 0: 
 		no_hits.emit()
 		print("no hits")
+
+func sweep() -> void:
+	pass

@@ -21,6 +21,7 @@ func init_active_state() -> void:
 	
 	visioncone.non_ground_hit.connect(on_non_ground_hit)
 	visioncone.no_hits.connect(on_no_hits)
+	visioncone.area_hit.connect(on_area_hit)
 
 func on_body_entered(body: Node) -> void: 
 	if body.name != "Ground": 
@@ -30,6 +31,9 @@ func on_non_ground_hit(body: Node, distance: float) -> void:
 	pass
 
 func on_no_hits() -> void: 
+	pass
+
+func on_area_hit() -> void:
 	pass
 
 func set_position_to(node: Node) -> void:  

@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://bne2usp40hi4o"]
+[gd_scene load_steps=10 format=3 uid="uid://bne2usp40hi4o"]
 
 [ext_resource type="Script" path="res://scripts/road_user_vars.gd" id="1_khxhq"]
 [ext_resource type="Script" path="res://scripts/states/accelerate.gd" id="2_6b7u3"]
 [ext_resource type="Script" path="res://scripts/states/state base/state_machine.gd" id="2_m5yyp"]
 [ext_resource type="Script" path="res://scripts/states/crash.gd" id="4_ocaxt"]
 [ext_resource type="Script" path="res://scripts/states/brake.gd" id="5_deujp"]
+[ext_resource type="Script" path="res://scripts/states/sweep.gd" id="6_0jj7n"]
 [ext_resource type="PackedScene" uid="uid://dob5n0rie65js" path="res://scenes/components/visioncone.tscn" id="6_xosei"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nk13o"]
@@ -39,6 +40,9 @@ user_vars = NodePath("../..")
 visioncone = NodePath("../../Visioncone")
 rigidbody = NodePath("../../Carbody")
 col_shape = NodePath("../../Carbody/CollisionShape3D")
+
+[node name="Sweep" type="Node" parent="Statemachine"]
+script = ExtResource("6_0jj7n")
 
 [node name="Carbody" type="RigidBody3D" parent="."]
 mass = 286.512
