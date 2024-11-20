@@ -33,7 +33,7 @@ func on_non_ground_hit(body: Node, distance: float) -> void:
 func on_no_hits() -> void: 
 	pass
 
-func on_area_hit() -> void:
+func on_area_hit(area: Node) -> void:
 	pass
 
 func set_position_to(node: Node) -> void:  

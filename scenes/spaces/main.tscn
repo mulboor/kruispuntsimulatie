@@ -25,7 +25,8 @@ _data = {
 }
 point_count = 3
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_ae6fo"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_2nhmh"]
+size = Vector3(1, 1, 4.1665)
 
 [node name="Node3D" type="Node3D"]
 
@@ -77,14 +78,14 @@ max_speed = 0.14
 max_speed_deviation = 0.01
 accel = 0.08
 accel_deviation = 0.02
-deccel = 0.2
+deccel = 0.7
 deccel_deviation = 0.02
-visibility = 6.8
+visibility = 6.0
 visibility_deviation = 0.5
-reaction_time = 1.5
+reaction_time = 0.5
 reaction_time_deviation = 1.2
-stopping_distance = 34.316
-stopping_distance_deviation = 10.0
+stopping_distance = 64.673
+stopping_distance_deviation = 5.0
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(-0.170209, -0.0343903, -0.984808, 0, 0.999392, -0.0348995, 0.985407, -0.00594023, -0.170106, 0.085, 5, 2.566)
@@ -94,10 +95,9 @@ fov = 90.0
 transform = Transform3D(-0.726575, 0.52402, -0.444401, 0, 0.64679, 0.762668, 0.687088, 0.554136, -0.469941, -48.2264, 16.2122, 68.9945)
 light_energy = 3.292
 
-[node name="Traffic Signal" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.35401, 0, 0)
+[node name="TrafficSignal" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.4014, 0.451355, 4.9639)
 script = ExtResource("4_sv8g1")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Traffic Signal"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-shape = SubResource("BoxShape3D_ae6fo")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TrafficSignal"]
+shape = SubResource("BoxShape3D_2nhmh")
