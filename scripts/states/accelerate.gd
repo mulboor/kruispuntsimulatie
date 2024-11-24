@@ -3,14 +3,13 @@ class_name Accelerate
 
 @onready var current_reaction_time: float
 @onready var distance_to_obstacle: float
-@onready var stopping_distance
+@onready var stopping_distance: float
 
-@onready var brake: bool
+@onready var obstacle_spotted: float
 
 func enter() -> void:
 	init_state()
 	current_reaction_time = user_vars.reaction_time
-	brake = false
 
 func physics_update(_delta: float) -> void:
 	# Laat snelheid toenemen tot de max_speed
@@ -32,14 +31,13 @@ func physics_update(_delta: float) -> void:
 	if brake: 
 		count_down_to_brake(_delta)
 	
-	print("Brake distance: ", calc_brake_distance(user_vars.current_speed, user_vars.deccel))
+	#print("Brake distance: ", calc_brake_distance(user_vars.current_speed, user_vars.deccel))
 
 func on_non_ground_hit(body: Node, distance: float) -> void:
-	brake = true
 	distance_to_obstacle = distance
 
 func on_area_hit(area: Node) -> void: 
-	brake = true
+	pass
 
 func count_down_to_brake(_delta: float) -> void: 
 	current_reaction_time -= _delta
@@ -51,3 +49,6 @@ func count_down_to_brake(_delta: float) -> void:
 func calc_brake_distance(velocity: float, brake_force: float) -> float: 
 	var distance: float = (velocity * velocity) / 2 * brake_force * 9.81
 	return distance
+
+func brake() -> bool: 
+	return false

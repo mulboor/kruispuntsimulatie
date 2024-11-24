@@ -32,7 +32,7 @@ col_shape = NodePath("../../Carbody/CollisionShape3D")
 script = ExtResource("4_ocaxt")
 rigidbody = NodePath("../../Carbody")
 road_user = NodePath("../..")
-delete_timer = 1.0
+delete_timer = 0.5
 
 [node name="Brake" type="Node" parent="Statemachine" node_paths=PackedStringArray("user_vars", "visioncone", "rigidbody", "col_shape")]
 script = ExtResource("5_deujp")
@@ -58,7 +58,5 @@ material = SubResource("StandardMaterial3D_y2qi2")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Carbody/CollisionShape3D"]
 
-[node name="Visioncone" parent="." node_paths=PackedStringArray("user_vars") instance=ExtResource("6_xosei")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.979222)
-user_vars = NodePath("..")
-col_box_width = 2.0
+[node name="Visioncone" parent="." instance=ExtResource("6_xosei")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.514626)
