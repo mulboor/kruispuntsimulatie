@@ -9,7 +9,7 @@ class_name PathFollowState
 
 @export var col_shape: CollisionShape3D
 
-func init_active_state() -> void: 
+func init_state() -> void: 
 	user_vars.path_follow.loop = false
 	
 	col_shape.disabled = false

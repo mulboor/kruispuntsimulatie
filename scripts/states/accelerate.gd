@@ -8,7 +8,7 @@ class_name Accelerate
 @onready var brake: bool
 
 func enter() -> void:
-	init_active_state()
+	init_state()
 	current_reaction_time = user_vars.reaction_time
 	brake = false
 

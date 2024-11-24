@@ -2,7 +2,7 @@ extends PathFollowState
 class_name Brake
 
 func enter() -> void: 
-	init_active_state()
+	init_state()
 
 func physics_update(_delta): 
 	# Minder de snelheid 
