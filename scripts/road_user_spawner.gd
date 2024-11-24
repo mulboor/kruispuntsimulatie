@@ -26,7 +26,7 @@ func _physics_process(delta):
 	spawn_users(delta)
 	time += delta
 	frame += 1
-	print("Time:", time, " Frame:", frame)
+	#print("Time:", time, " Frame:", frame)
 
 func spawn_users(_delta: float): 
 	# Spawn elke x seconden een nieuwe weggebruiker

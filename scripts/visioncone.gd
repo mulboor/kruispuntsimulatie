@@ -38,9 +38,10 @@ func _physics_process(delta: float) -> void:
 			break
 	
 	# Detecteer verkeerstekens
-	var overlapped_areas: Array[Node3D]
+	var overlapped_areas: Array[Area3D] = area.get_overlapping_areas()
+	print(overlapped_areas)
 	for area in overlapped_areas:
-		if area.is_class("TrafficSignal"): 
+		if area is TrafficSignal:
 			var traffic_signal: TrafficSignal = area
 			if traffic_signal.stop_for_signal:
 				area_hit.emit(area)

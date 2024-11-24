@@ -31,10 +31,15 @@ func physics_update(_delta: float) -> void:
 	# Verander naar de rem state wanneer er een object in het pad zit
 	if brake: 
 		count_down_to_brake(_delta)
+	
+	print("Brake distance: ", calc_brake_distance(user_vars.current_speed, user_vars.deccel))
 
 func on_non_ground_hit(body: Node, distance: float) -> void:
 	brake = true
 	distance_to_obstacle = distance
+
+func on_area_hit(area: Node) -> void: 
+	brake = true
 
 func count_down_to_brake(_delta: float) -> void: 
 	current_reaction_time -= _delta
@@ -42,3 +47,7 @@ func count_down_to_brake(_delta: float) -> void:
 	stopping_distance = minf((user_vars.visibility / 100) * user_vars.stopping_distance * user_vars.current_speed, user_vars.visibility)
 	if current_reaction_time <= 0 && distance_to_obstacle < stopping_distance: 
 		Transitioned.emit(self, "brake")
+
+func calc_brake_distance(velocity: float, brake_force: float) -> float: 
+	var distance: float = (velocity * velocity) / 2 * brake_force * 9.81
+	return distance
