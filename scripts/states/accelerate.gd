@@ -28,7 +28,8 @@ func physics_update(_delta: float) -> void:
 		user_vars.queue_free()
 	
 	# Verander naar de rem state wanneer er een object in het pad zit
-	if brake: 
+	stopping_distance = minf((user_vars.visibility / 100) * user_vars.stopping_distance * user_vars.current_speed, user_vars.visibility)
+	if brake  && distance_to_obstacle < stopping_distance: 
 		count_down_to_brake(_delta)
 	
 	#print("Brake distance: ", calc_brake_distance(user_vars.current_speed, user_vars.deccel))
@@ -42,8 +43,7 @@ func on_area_hit(area: Node) -> void:
 func count_down_to_brake(_delta: float) -> void: 
 	current_reaction_time -= _delta
 	
-	stopping_distance = minf((user_vars.visibility / 100) * user_vars.stopping_distance * user_vars.current_speed, user_vars.visibility)
-	if current_reaction_time <= 0 && distance_to_obstacle < stopping_distance: 
+	if current_reaction_time <= 0: 
 		Transitioned.emit(self, "brake")
 
 func calc_brake_distance(velocity: float, brake_force: float) -> float: 

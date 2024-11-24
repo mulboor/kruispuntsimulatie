@@ -8,6 +8,8 @@ class_name Brake
 
 var stopping_distance: float
 
+var brake_distance: float
+
 func enter() -> void: 
 	init_state()
 	
@@ -21,10 +23,11 @@ func physics_update(_delta):
 	# Minder de snelheid 
 	if user_vars.current_speed - user_vars.deccel <= 0:
 		user_vars.current_speed = 0
-		print("Brake distance: ", (user_vars.path_follow.progress - last_progress))
+		print("brake distance: ", brake_distance)
 	else:
 		user_vars.current_speed = lerpf(user_vars.current_speed, user_vars.current_speed - user_vars.deccel, 0.2)
-		print("current_speed: ", user_vars.deccel)
+		brake_distance += lerpf(user_vars.current_speed, user_vars.current_speed - user_vars.deccel, 0.2)
+		print("current_speed: ", user_vars.current_speed)
 	
 	user_vars.path_follow.progress += user_vars.current_speed
 	set_position_to(user_vars.path_follow)

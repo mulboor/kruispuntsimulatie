@@ -13,14 +13,14 @@ size = Vector3(100, 0, 100)
 
 [sub_resource type="Curve3D" id="Curve3D_b61m1"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 12.1015, 0, 0, 0, 0, 0, 0, 0, 0, 20, 0, 2.31478),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 12.1015, 0, 0, 0, 0, 0, 0, 0, 0, 34.7563, 0, 0.0993164),
 "tilts": PackedFloat32Array(0, 0, 0)
 }
 point_count = 3
 
 [sub_resource type="Curve3D" id="Curve3D_3c65l"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, -4, 3.249, 0, -12.161, 0, 0, 0, 0, 0, 0, 3.00065, 0, -24.0928, 0, 0, 0, 0, 0, 0, 0, 0, -44.6699),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, -4, 3.249, 0, -12.161, 0, 0, 0, 0, 0, 0, 3.00065, 0, -24.0928, 2.5, 0, 0, 0, 0, 0, 0, 0, -44.6699),
 "tilts": PackedFloat32Array(0, 0, 0, 0)
 }
 point_count = 4
@@ -52,6 +52,7 @@ shape = SubResource("BoxShape3D_ohesk")
 [node name="Spawners" type="Node" parent="."]
 
 [node name="Spawner A" type="Node3D" parent="Spawners" node_paths=PackedStringArray("general_user_stats", "path")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.56022, 0, 0)
 script = ExtResource("2_xc2x4")
 time_between_spawns = 1.0
 general_user_stats = NodePath("../../GlobalRoadUserStats")
@@ -74,21 +75,21 @@ curve = SubResource("Curve3D_3c65l")
 
 [node name="GlobalRoadUserStats" type="Node" parent="."]
 script = ExtResource("1_xpqr5")
-max_speed = 0.14
+max_speed = 0.28
 max_speed_deviation = 0.01
-accel = 0.05
-accel_deviation = 0.02
+accel = 0.08
+accel_deviation = 0.03
 deccel = 0.05
-deccel_deviation = 0.01
+deccel_deviation = 0.02
 visibility = 6.0
 visibility_deviation = 0.5
 reaction_time = 0.5
 reaction_time_deviation = 1.2
-stopping_distance = 64.673
+stopping_distance = 11.005
 stopping_distance_deviation = 5.0
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-0.170209, -0.0343903, -0.984808, 0, 0.999392, -0.0348995, 0.985407, -0.00594023, -0.170106, 0.085, 5, 2.566)
+transform = Transform3D(0.903025, -0.390266, 0.179549, 0.07578, 0.556119, 0.827641, -0.422851, -0.733774, 0.531763, 0.085, 5, 2.566)
 fov = 90.0
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
