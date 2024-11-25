@@ -32,9 +32,10 @@ func _ready() -> void:
 	
 	# Check of alle arrays dezelfde lengte hebben
 	if !equal_arrays(): 
-		print("Amount of spawners and amount of spawner percentages are not ") 
+		print("Amount of spawners and amount of spawner percentages are not equal!") 
 	
-	
+	# Bereken de delay van de spawners
+	ped_upm = get_spawn_delay(get_percentage(total_upm, ped_percentage))
 
 func equal_arrays() -> bool: 
 	if car_percentage_per_spawner.size() != car_spawners.size() || ped_percentage_per_spawner.size() != ped_spawners.size() || bike_percentage_per_spawner.size() != bike_spawners.size():
