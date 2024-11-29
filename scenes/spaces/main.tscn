@@ -50,8 +50,12 @@ shape = SubResource("BoxShape3D_e4k3p")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Enviroment/Ground"]
 shape = SubResource("BoxShape3D_ohesk")
 
-[node name="Spawners" type="Node" parent="."]
+[node name="Spawners" type="Node" parent="." node_paths=PackedStringArray("car_spawners")]
 script = ExtResource("1_whyfp")
+car_spawners = [NodePath("Spawner A"), NodePath("Spawner B")]
+total_upm = 60.0
+car_percentage = 100.0
+car_percentage_per_spawner = Array[float]([30.0, 70.0])
 
 [node name="Spawner A" type="Node3D" parent="Spawners" node_paths=PackedStringArray("general_user_stats", "path")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.6503, 0, 0)
@@ -91,7 +95,7 @@ stopping_distance = 5.769
 stopping_distance_deviation = 5.0
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.559932, 0.663069, -0.496806, 0.07578, 0.556119, 0.827641, 0.825066, -0.501071, 0.261142, 2.35431, 11.8159, 3.64234)
+transform = Transform3D(-0.783938, -0.479706, 0.394109, 0.07578, 0.556119, 0.827641, -0.616195, 0.678686, -0.399612, 2.35431, 11.8159, 3.64234)
 fov = 90.0
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]

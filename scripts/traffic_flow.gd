@@ -50,8 +50,10 @@ func get_spawn_delay(user_per_minute: float) -> float:
 func get_delays(percentages: Array[float], upm: float) -> Array[float]: 
 	var delays: Array[float]
 	for percentage in percentages: 
+		var specif_upm: float
+		specif_upm = get_percentage_of(upm, percentage)
 		var delay: float
-		delay = get_percentage_of(upm, percentage)
+		delay = 60 / specif_upm
 		delays.append(delay)
 	return delays
 
