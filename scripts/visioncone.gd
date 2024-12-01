@@ -4,7 +4,7 @@ class_name VisionCone
 @onready var area: Area3D = $Area3D
 
 signal non_ground_hit(object_hit: Node, object_distance: float)
-signal area_hit(area_hit: Node)
+signal area_hit(area_hit: Node, area_distance: float)
 signal no_hits
 
 func _ready() -> void:	
@@ -27,12 +27,13 @@ func _physics_process(delta: float) -> void:
 	for area in overlapped_areas:
 		if area is TrafficSignal:
 			var traffic_signal: TrafficSignal = area
+			var distance: float = position.distance_to(area.position)
 			if traffic_signal.stop_for_signal:
-				area_hit.emit(area)
+				area_hit.emit(area, distance)
 				break
 	
 	# Als er geen verkeerstekens en andere weggebruikers in de weg zitten
-	if no_significant_hits(overlapped_bodies, traffic_signals): 
+	if no_significant_hits(overlapped_bodies): 
 		no_hits.emit()
 		print("no hits")
 
@@ -40,7 +41,7 @@ func sweep() -> void:
 	pass
 
 # Returns true als alleen de grond wordt geraakt
-func no_significant_hits(bodies: Array[Node3D], areas: Array[TrafficSignal]) -> bool: 
-	if bodies.size() == 1 && bodies[0].name == "Ground" && areas.size() == 0: 
+func no_significant_hits(bodies: Array[Node3D]) -> bool: 
+	if bodies.size() <= 1 && bodies[0].name == "Ground": 
 		return true
 	return false

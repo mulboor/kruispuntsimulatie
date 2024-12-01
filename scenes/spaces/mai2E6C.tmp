@@ -34,7 +34,7 @@ size = Vector3(1, 1, 4.1665)
 [node name="Enviroment" type="Node" parent="."]
 
 [node name="RigidBody3D2" type="RigidBody3D" parent="Enviroment"]
-transform = Transform3D(-0.502975, 0, -0.864301, 0, 1, 0, 0.864301, 0, -0.502975, -10.5933, 0.652096, -3.3278)
+transform = Transform3D(-0.502975, 0, -0.864301, 0, 1, 0, 0.864301, 0, -0.502975, -20.509, 0.652096, -5.09524)
 mass = 1000.0
 metadata/_edit_group_ = true
 
@@ -53,9 +53,9 @@ shape = SubResource("BoxShape3D_ohesk")
 [node name="Spawners" type="Node" parent="." node_paths=PackedStringArray("car_spawners")]
 script = ExtResource("1_whyfp")
 car_spawners = [NodePath("Spawner A"), NodePath("Spawner B")]
-total_upm = 40.0
+total_upm = 60.0
 car_percentage = 100.0
-car_percentage_per_spawner = Array[float]([40.0, 60.0])
+car_percentage_per_spawner = Array[float]([30.0, 70.0])
 
 [node name="Spawner A" type="Node3D" parent="Spawners" node_paths=PackedStringArray("general_user_stats", "path")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.6503, 0, 0)
@@ -81,20 +81,20 @@ curve = SubResource("Curve3D_3c65l")
 
 [node name="GlobalRoadUserStats" type="Node" parent="."]
 script = ExtResource("1_xpqr5")
-max_speed = 0.14
+max_speed = 0.28
 max_speed_deviation = 0.01
 accel = 0.08
 accel_deviation = 0.03
-deccel = 0.09
-deccel_deviation = 0.01
-visibility = 2.0
+deccel = 0.05
+deccel_deviation = 0.02
+visibility = 10.0
 visibility_deviation = 0.5
 reaction_time = 0.5
 reaction_time_deviation = 1.2
 stopping_distance = 2.571
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.837052, 0.415568, -0.355876, 0.0757801, 0.556119, 0.827641, 0.54185, -0.719746, 0.434009, 2.35431, 11.8159, 3.64234)
+transform = Transform3D(-0.783938, -0.479706, 0.394109, 0.07578, 0.556119, 0.827641, -0.616195, 0.678686, -0.399612, 2.35431, 11.8159, 3.64234)
 fov = 90.0
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]

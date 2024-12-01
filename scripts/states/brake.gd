@@ -29,17 +29,18 @@ func physics_update(_delta):
 		brake_distance += lerpf(user_vars.current_speed, user_vars.current_speed - user_vars.deccel, 0.2)
 		print("current_speed: ", user_vars.current_speed)
 	
-	user_vars.path_follow.progress += user_vars.current_speed
-	set_position_to(user_vars.path_follow)
+	if is_instance_valid(user_vars.path_follow):
+		user_vars.path_follow.progress += user_vars.current_speed
+		set_position_to(user_vars.path_follow)
 	
 	# Verander naar sweep als self in een verkeersignaal staat en stilstaat
 	if start_sweep(): 
 		Transitioned.emit(self, "sweep")
 
-func on_no_hits() -> void: 
+func on_vis_no_hits() -> void: 
 	Transitioned.emit(self, "accelerate")
 
-func on_area_hit(area: Node) -> void: 
+func on_area_hit(area: Node, distance: float) -> void: 
 	in_area = true
 
 func start_sweep() -> bool: 
