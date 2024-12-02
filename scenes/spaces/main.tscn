@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://3ptqecnw5ex2"]
+[gd_scene load_steps=12 format=3 uid="uid://3ptqecnw5ex2"]
 
 [ext_resource type="PackedScene" uid="uid://bne2usp40hi4o" path="res://scenes/components/car.tscn" id="1_v6fqk"]
 [ext_resource type="Script" path="res://scripts/traffic_flow.gd" id="1_whyfp"]
 [ext_resource type="Script" path="res://scripts/general_road_user_stats.gd" id="1_xpqr5"]
 [ext_resource type="Script" path="res://scripts/road_user_spawner.gd" id="2_xc2x4"]
 [ext_resource type="Script" path="res://scripts/traffic_signal.gd" id="4_sv8g1"]
+[ext_resource type="Script" path="res://scripts/freecam.gd" id="5_ts16x"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_e4k3p"]
 size = Vector3(3.83746, 1, 1)
@@ -94,8 +95,10 @@ reaction_time_deviation = 1.2
 stopping_distance = 2.571
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.837052, 0.415568, -0.355876, 0.0757801, 0.556119, 0.827641, 0.54185, -0.719746, 0.434009, 2.35431, 11.8159, 3.64234)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 11.816, 4.642)
 fov = 90.0
+script = ExtResource("5_ts16x")
+accel = 10.0
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.726575, 0.52402, -0.444401, 0, 0.64679, 0.762668, 0.687088, 0.554136, -0.469941, -48.2264, 16.2122, 68.9945)
