@@ -43,14 +43,12 @@ func _physics_process(delta: float) -> void:
 		no_hits.emit()
 		print("no hits")
 	
-	# Check de ray 
+	# Check de rays voor een hit 
 	for ray in rays: 
 		print("Collider: ", ray.get_collider())
 		if ray.is_colliding() && ray.get_collider() != null: 
 			ray_hit.emit(ray.get_collider(), global_position.distance_to(ray.get_collider().position))
 			print("gezien")
-	
-	print("Rays: ", rays)
 
 func sweep() -> void:
 	pass

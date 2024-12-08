@@ -39,7 +39,11 @@ func physics_update(_delta):
 		Transitioned.emit(self, "sweep")
 
 func on_vis_ray_hit(object_hit: Node, distance: float) -> void: 
-	pass
+	if distance > user_vars.visibility: 
+		Transitioned.emit(self, "accelerate")
+
+func on_vis_no_hits() -> void: 
+	Transitioned.emit(self, "accelerate")
 
 func on_area_hit(area: Node, distance: float) -> void: 
 	in_area = true
