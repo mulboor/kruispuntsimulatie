@@ -35,10 +35,10 @@ func on_vis_no_hits() -> void:
 	pass
 
 func on_vis_area_hit(area: Node, distance: float) -> void:
-	pass
+	print("Gezien")
 
 func on_vis_ray_hit(object_hit: Node, distance: float) -> void: 
-	pass
+	print("Gezien")
 
 func set_position_to(pos: Vector3, rot: Vector3) -> void:  
 	user_vars.global_position.z = pos.z

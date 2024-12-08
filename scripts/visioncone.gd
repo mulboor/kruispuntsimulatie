@@ -1,16 +1,22 @@
 extends Node3D
 class_name VisionCone
 
-@export var rays: Array[RayCast3D] 
+@onready var rays: Array[RayCast3D] 
 @onready var area: Area3D = $Visionarea
+
+@onready var ray_hits: bool
 
 signal non_ground_hit(object_hit: Node, object_distance: float)
 signal area_hit(area_hit: Node, area_distance: float)
-signal ray_hit(object_hit: Node, object_distance: float)
+signal ray_hit(object_hit: CollisionObject3D, object_distance: float)
 signal no_hits
 
 func _ready() -> void:	
 	area.monitoring = true
+	
+	for child in get_children(): 
+		if child is RayCast3D: 
+			rays.append(child)
 
 func _physics_process(delta: float) -> void:
 	# Detecteer andere weggebruikers met de grote cone
@@ -38,22 +44,25 @@ func _physics_process(delta: float) -> void:
 		print("no hits")
 	
 	# Check de ray 
-	check_rays_hit(rays)
+	for ray in rays: 
+		print("Collider: ", ray.get_collider())
+		if ray.is_colliding() && ray.get_collider() != null: 
+			ray_hit.emit(ray.get_collider(), global_position.distance_to(ray.get_collider().position))
+			print("gezien")
+	
+	print("Rays: ", rays)
 
 func sweep() -> void:
 	pass
 
-func check_rays_hit(rays: Array[RayCast3D]) -> bool: 
+func check_rays_hit(rays: Array[RayCast3D]) -> void: 
 	for ray in rays: 
 		if ray.is_colliding() && ray.get_collider() != null: 
 			ray_hit.emit(ray.get_collider(), global_position.distance_to(ray.get_collider().position))
-			return true
 			break
-		return false
-	return false
 
 # Returns true als alleen de grond wordt geraakt
 func no_significant_hits(bodies: Array[Node3D]) -> bool: 
-	if bodies.size() == 1 && bodies[0].name == "Ground" && !check_rays_hit(rays)|| bodies.size() == 0: 
+	if bodies.size() == 1 && bodies[0].name == "Ground" && !ray_hits || bodies.size() == 0: 
 		return true
 	return false
