@@ -32,7 +32,7 @@ col_shape = NodePath("../../Carbody/CollisionShape3D")
 script = ExtResource("4_ocaxt")
 rigidbody = NodePath("../../Carbody")
 road_user = NodePath("../..")
-delete_timer = 2.5
+delete_timer = 3.0
 
 [node name="Brake" type="Node" parent="Statemachine" node_paths=PackedStringArray("user_vars", "visioncone", "rigidbody", "col_shape")]
 script = ExtResource("5_deujp")
