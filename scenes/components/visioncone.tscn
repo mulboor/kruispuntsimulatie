@@ -9,13 +9,17 @@ points = PackedVector3Array(-0.000195742, 1, -0.000195742, 0.194988, -1, -0.9808
 [node name="Visioncone" type="Node3D"]
 script = ExtResource("1_bkj6i")
 
-[node name="Area3D" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
+[node name="Visionarea" type="Area3D" parent="."]
+monitorable = false
 
-[node name="cone" parent="Area3D" instance=ExtResource("2_40lhh")]
+[node name="cone" parent="Visionarea" instance=ExtResource("2_40lhh")]
 transform = Transform3D(10, 0, 0, 0, -4.37114e-07, -10, 0, 10, -4.37114e-07, 0, 0, 0)
 visible = false
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-transform = Transform3D(15, 0, 0, 0, -6.55671e-07, -15, 0, 15, -6.55671e-07, 0, 0, 0)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Visionarea"]
+transform = Transform3D(5, 0, 0, 0, -2.18557e-07, -5, 0, 5, -2.18557e-07, 0, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_ry4ud")
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.95677)
+target_position = Vector3(0, 0, -100)

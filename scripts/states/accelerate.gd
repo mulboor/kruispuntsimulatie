@@ -12,6 +12,7 @@ class_name Accelerate
 func enter() -> void:
 	init_state()
 	current_reaction_time = user_vars.reaction_time
+	obstacle_spotted = false
 
 func physics_update(_delta: float) -> void:
 	# Laat snelheid toenemen tot de max_speed
@@ -20,31 +21,36 @@ func physics_update(_delta: float) -> void:
 	else:
 		user_vars.current_speed = user_vars.max_speed
 	
-	if is_instance_valid(user_vars):
-		user_vars.path_follow.progress += user_vars.current_speed
+	user_vars.path_follow.progress += user_vars.current_speed
+	set_position_to(user_vars.path_follow.global_position, user_vars.path_follow.global_rotation)
 	
-	set_position_to(user_vars.path_follow)
+	# Laat de reactietijd aflopen als er een object gezien is 
+	if obstacle_spotted: 
+		current_reaction_time -= _delta
+		print("Cur reaction time: ", current_reaction_time)
+	else: 
+		current_reaction_time = user_vars.reaction_time
 	
-	# Verwijder de auto als het pad voltooid is
-	if user_vars.path_follow.progress_ratio >= 1:
+	# Rem af als het object te dichtbij is
+	if current_reaction_time <= 0 && distance_to_obstacle <= calc_brake_distance(user_vars.current_speed, user_vars.deccel) * 1.5: 
+		Transitioned.emit(self, "brake")
+		print("braking")
+	
+	# Verwijder deze weggebruiker als het pad voltooid is 
+	if user_vars.path_follow.progress_ratio >= 1: 
 		user_vars.queue_free()
-	
-	# Verander naar de rem state wanneer er een object in het pad zit
-	if brake: 
-		count_down_to_brake(_delta)
 	
 	print("Brake distance: ", calc_brake_distance(user_vars.current_speed, user_vars.deccel))
 
-func on_vis_non_ground_hit(body: Node, distance: float) -> void:
-	if distance < calc_brake_distance(user_vars.current_speed, user_vars.deccel) * 5:
-		brake = true
-		print("Brake true")
+# Wanneer er een object in de grote visioncone zit
+func on_vis_ray_hit(object_hit: Node, distance: float) -> void: 
+	if distance <= user_vars.visibility: 
+		obstacle_spotted = true
+		distance_to_obstacle = distance
 
-func count_down_to_brake(_delta: float) -> void: 
-	current_reaction_time -= _delta
-	
-	if current_reaction_time <= 0: 
-		Transitioned.emit(self, "brake")
+func on_no_vis_hits() -> void: 
+	# obstacle_spotted = false
+	pass
 
 func calc_brake_distance(velocity: float, brake_force: float) -> float: 
 	var delta_ticks: int = roundi(velocity / brake_force)

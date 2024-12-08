@@ -9,6 +9,7 @@ class_name RoadUserSpawner
 
 @export_category("Spawner path")
 @export var path: Path3D
+@export var path_follow: PackedScene
 
 @export_category("User scene")
 @export var user: PackedScene
@@ -38,8 +39,8 @@ func spawn_users(_delta: float):
 
 func spawn_user() -> void:
 	# Maak een nieuwe path_follow die de weggebruiker gaat volgen
-	var path_follow: SelfDeletingPathFollow3D = SelfDeletingPathFollow3D.new()
-	path.add_child(path_follow)
+	var current_path_follow = path_follow.instantiate()
+	path.add_child(current_path_follow)
 	
 	# Maak de weggebruiker
 	var inst_user: RoadUserVars = user.instantiate()
@@ -49,5 +50,5 @@ func spawn_user() -> void:
 	inst_user.visibility = maxf(randfn(general_user_stats.visibility, general_user_stats.visibility_deviation), 0.0)
 	inst_user.reaction_time = maxf(randfn(general_user_stats.reaction_time, general_user_stats.reaction_time_deviation), 0.0)
 	inst_user.stopping_distance = maxf(randfn(general_user_stats.stopping_distance, general_user_stats.stopping_distance_deviation), 0.0)
-	inst_user.path_follow = path_follow
+	inst_user.path_follow = current_path_follow
 	add_child(inst_user)

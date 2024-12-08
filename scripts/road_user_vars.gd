@@ -13,4 +13,4 @@ class_name RoadUserVars
 @export_range(0, 100) var stopping_distance: float
 
 @export_category("Position guide")
-@export var path_follow: PathFollow3D
+@export var path_follow: SelfDeletingPathFollow3D

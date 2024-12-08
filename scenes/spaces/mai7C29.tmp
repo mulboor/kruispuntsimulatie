@@ -91,7 +91,7 @@ accel = 1.0
 accel_deviation = 0.03
 deccel = 0.09
 deccel_deviation = 0.01
-visibility = 1.0
+visibility = 10.0
 visibility_deviation = 0.5
 stopping_distance = 2.571
 

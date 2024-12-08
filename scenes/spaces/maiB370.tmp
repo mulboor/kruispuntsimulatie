@@ -1,10 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://3ptqecnw5ex2"]
+[gd_scene load_steps=12 format=3 uid="uid://3ptqecnw5ex2"]
 
 [ext_resource type="PackedScene" uid="uid://bne2usp40hi4o" path="res://scenes/components/car.tscn" id="1_v6fqk"]
 [ext_resource type="Script" path="res://scripts/traffic_flow.gd" id="1_whyfp"]
 [ext_resource type="Script" path="res://scripts/general_road_user_stats.gd" id="1_xpqr5"]
 [ext_resource type="Script" path="res://scripts/road_user_spawner.gd" id="2_xc2x4"]
-[ext_resource type="PackedScene" uid="uid://d1ob28jf3jyjy" path="res://scenes/components/self_deleting_path_follow.tscn" id="3_57cep"]
 [ext_resource type="Script" path="res://scripts/traffic_signal.gd" id="4_sv8g1"]
 [ext_resource type="Script" path="res://scripts/freecam.gd" id="5_ts16x"]
 
@@ -65,7 +64,6 @@ script = ExtResource("2_xc2x4")
 time_between_spawns = 1.0
 general_user_stats = NodePath("../../GlobalRoadUserStats")
 path = NodePath("Path3D")
-path_follow = ExtResource("3_57cep")
 user = ExtResource("1_v6fqk")
 
 [node name="Path3D" type="Path3D" parent="Spawners/Spawner A"]
@@ -77,7 +75,6 @@ script = ExtResource("2_xc2x4")
 time_between_spawns = 1.0
 general_user_stats = NodePath("../../GlobalRoadUserStats")
 path = NodePath("Path3D")
-path_follow = ExtResource("3_57cep")
 user = ExtResource("1_v6fqk")
 
 [node name="Path3D" type="Path3D" parent="Spawners/Spawner B"]
@@ -91,7 +88,7 @@ accel = 1.0
 accel_deviation = 0.03
 deccel = 0.09
 deccel_deviation = 0.01
-visibility = 1.0
+visibility = 10.0
 visibility_deviation = 0.5
 stopping_distance = 2.571
 
