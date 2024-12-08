@@ -1,8 +1,8 @@
 extends Node3D
 class_name VisionCone
 
+@export var rays: Array[RayCast3D] 
 @onready var area: Area3D = $Visionarea
-@onready var ray: RayCast3D = $RayCast3D
 
 signal non_ground_hit(object_hit: Node, object_distance: float)
 signal area_hit(area_hit: Node, area_distance: float)
@@ -38,14 +38,22 @@ func _physics_process(delta: float) -> void:
 		print("no hits")
 	
 	# Check de ray 
-	if ray.is_colliding() && ray.get_collider() != null: 
-		ray_hit.emit(ray.get_collider(), global_position.distance_to(ray.get_collider().position))
+	check_rays_hit(rays)
 
 func sweep() -> void:
 	pass
 
+func check_rays_hit(rays: Array[RayCast3D]) -> bool: 
+	for ray in rays: 
+		if ray.is_colliding() && ray.get_collider() != null: 
+			ray_hit.emit(ray.get_collider(), global_position.distance_to(ray.get_collider().position))
+			return true
+			break
+		return false
+	return false
+
 # Returns true als alleen de grond wordt geraakt
 func no_significant_hits(bodies: Array[Node3D]) -> bool: 
-	if bodies.size() == 1 && bodies[0].name == "Ground" && ray.get_collider()|| bodies.size() == 0: 
+	if bodies.size() == 1 && bodies[0].name == "Ground" && !check_rays_hit(rays)|| bodies.size() == 0: 
 		return true
 	return false
