@@ -26,7 +26,6 @@ func physics_update(_delta):
 	if is_instance_valid(user_vars.path_follow):
 		user_vars.path_follow.progress += user_vars.current_speed
 		set_position_to(user_vars.path_follow.global_position, user_vars.path_follow.global_rotation)
-		print("dikke lul")
 	
 	# Verander naar sweep als self in een verkeersignaal staat en stilstaat
 	if start_sweep(): 

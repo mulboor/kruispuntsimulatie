@@ -49,6 +49,5 @@ func spawn_user() -> void:
 	inst_user.deccel = maxf(randfn(general_user_stats.deccel, general_user_stats.deccel_deviation), 0.0)
 	inst_user.visibility = maxf(randfn(general_user_stats.visibility, general_user_stats.visibility_deviation), 0.0)
 	inst_user.reaction_time = maxf(randfn(general_user_stats.reaction_time, general_user_stats.reaction_time_deviation), 0.0)
-	inst_user.stopping_distance_multiplier= maxf(randfn(general_user_stats.stopping_distance_multiplier, general_user_stats.stopping_distance_deviation), 0.0)
 	inst_user.path_follow = current_path_follow
 	add_child(inst_user)

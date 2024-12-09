@@ -21,7 +21,6 @@ func init_state() -> void:
 	
 	visioncone.non_ground_hit.connect(on_vis_non_ground_hit)
 	visioncone.no_hits.connect(on_vis_no_hits)
-	visioncone.area_hit.connect(on_vis_area_hit)
 	visioncone.ray_hit.connect(on_vis_ray_hit)
 
 func on_body_entered(body: Node) -> void: 
@@ -34,11 +33,8 @@ func on_vis_non_ground_hit(body: Node, distance: float) -> void:
 func on_vis_no_hits() -> void: 
 	pass
 
-func on_vis_area_hit(area: Node, distance: float) -> void:
-	print("Gezien")
-
 func on_vis_ray_hit(object_hit: Node, distance: float) -> void: 
-	print("Gezien")
+	pass
 
 func set_position_to(pos: Vector3, rot: Vector3) -> void:  
 	user_vars.global_position.z = pos.z

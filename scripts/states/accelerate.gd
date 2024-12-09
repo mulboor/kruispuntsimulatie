@@ -7,8 +7,6 @@ class_name Accelerate
 
 @onready var obstacle_spotted: float
 
-@onready var brake: bool
-
 func enter() -> void:
 	init_state()
 	current_reaction_time = user_vars.reaction_time
@@ -24,36 +22,23 @@ func physics_update(_delta: float) -> void:
 	user_vars.path_follow.progress += user_vars.current_speed
 	set_position_to(user_vars.path_follow.global_position, user_vars.path_follow.global_rotation)
 	
-	# Laat de reactietijd aflopen bij een gevaarlijke situatie 
+	# Rem wanneer een obstakel te dichtbij is
 	if obstacle_spotted: 
-		current_reaction_time -= _delta
-	else: 
-		current_reaction_time = user_vars.reaction_time
-	
-	# Rem af als de reactietijd is verlopen na een gevaarlijke situatie en als het obstakel te dichtbij is
-	if current_reaction_time <= 0 && obstacle_spotted && distance_to_obstacle <= 16: 
-		Transitioned.emit(self, "brake")
-		print("braking")
+		count_down_to_brake(_delta) 
 	
 	# Verwijder deze weggebruiker als het pad voltooid is 
 	if user_vars.path_follow.progress_ratio >= 1: 
 		user_vars.queue_free()
-	
-	print("Brake distance: ", calc_brake_distance(user_vars.current_speed, user_vars.deccel))
 
 func on_vis_ray_hit(object_hit: Node, distance: float) -> void: 
-	if distance <= user_vars.visibility: 
+	if distance < user_vars.visibility: 
 		obstacle_spotted = true
 	else: 
 		obstacle_spotted = false
-	distance_to_obstacle = distance
-	print("Object distance: ", distance)
+	print("Obstacle spotted: ", obstacle_spotted)
 
-func calc_brake_distance(init_velocity: float, brake_force: float) -> float: 
-	var delta_ticks: float = init_velocity / brake_force
+func count_down_to_brake(_delta: float) -> void: 
+	current_reaction_time -= _delta
 	
-	var brake_distance: float
-	for i in range(delta_ticks): 
-		brake_distance += init_velocity
-		init_velocity -= brake_force
-	return maxf(brake_distance * user_vars.stopping_distance_multiplier, 0) 
+	if current_reaction_time <= 0: 
+		Transitioned.emit(self, "brake")
