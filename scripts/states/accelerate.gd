@@ -33,6 +33,7 @@ func physics_update(_delta: float) -> void:
 	# Rem af als de reactietijd is verlopen na een gevaarlijke situatie en als het obstakel te dichtbij is
 	if current_reaction_time <= 0 && obstacle_spotted && distance_to_obstacle <= user_vars.stopping_distance: 
 		Transitioned.emit(self, "brake")
+		print("braking")
 	
 	# Verwijder deze weggebruiker als het pad voltooid is 
 	if user_vars.path_follow.progress_ratio >= 1: 
