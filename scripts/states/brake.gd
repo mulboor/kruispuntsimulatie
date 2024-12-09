@@ -21,13 +21,7 @@ func enter() -> void:
 
 func physics_update(_delta): 
 	# Minder de snelheid 
-	if user_vars.current_speed - user_vars.deccel <= 0:
-		user_vars.current_speed = 0
-		print("brake distance: ", brake_distance)
-	else:
-		user_vars.current_speed = lerpf(user_vars.current_speed, user_vars.current_speed - user_vars.deccel, 0.2)
-		brake_distance += lerpf(user_vars.current_speed, user_vars.current_speed - user_vars.deccel, 0.2)
-		print("current_speed: ", user_vars.current_speed)
+	user_vars.current_speed = maxf(user_vars.current_speed - user_vars.deccel, 0)
 	
 	if is_instance_valid(user_vars.path_follow):
 		user_vars.path_follow.progress += user_vars.current_speed

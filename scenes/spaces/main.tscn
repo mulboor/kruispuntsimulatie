@@ -55,7 +55,7 @@ shape = SubResource("BoxShape3D_ohesk")
 [node name="Spawners" type="Node" parent="." node_paths=PackedStringArray("car_spawners")]
 script = ExtResource("1_whyfp")
 car_spawners = [NodePath("Spawner A"), NodePath("Spawner B")]
-total_upm = 70.0
+total_upm = 40.0
 car_percentage = 100.0
 car_percentage_per_spawner = Array[float]([40.0, 60.0])
 
@@ -85,14 +85,13 @@ curve = SubResource("Curve3D_3c65l")
 
 [node name="GlobalRoadUserStats" type="Node" parent="."]
 script = ExtResource("1_xpqr5")
-max_speed = 0.14
-max_speed_deviation = 0.005
+max_speed = 0.07
 accel = 0.02
 deccel = 0.07
-visibility = 100.0
+visibility = 40.0
 reaction_time = 1.0
-reaction_time_deviation = 0.4
-stopping_distance = 16.0
+reaction_time_deviation = 0.3
+stopping_distance_multiplier = 50.0
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 11.816, 4.642)

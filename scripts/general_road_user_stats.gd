@@ -13,5 +13,5 @@ class_name GeneralRoadUserStats
 @export var visibility_deviation: float
 @export var reaction_time: float
 @export var reaction_time_deviation: float
-@export var stopping_distance: float
+@export var stopping_distance_multiplier: float
 @export var stopping_distance_deviation: float
