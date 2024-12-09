@@ -4,42 +4,32 @@ class_name VisionCone
 @export_category("Ray cone")
 @export var ray_cone_angle: float
 @export var angle_between_rays: float
+@export var max_view_distance: float
 @export_category("Collision shape")
 
+@onready var rays: Array[RayCast3D]
+
+signal ray_hit_obstacle(object: Node3D)
+
 func _ready() -> void:	
-	area.monitoring = true
-	
-	for child in get_children(): 
-		if child is RayCast3D: 
-			rays.append(child)
-	
-	print("Rays: ", rays)
+	generate_raycasts()
 
 func _physics_process(delta: float) -> void:
-	# Detecteer andere weggebruikers met de grote cone
-	var overlapped_bodies: Array[Node3D] = area.get_overlapping_bodies()
-	for body in overlapped_bodies:
-		if body.name != "Ground":
-			var distance: float = parent.global_position.distance_to(body.position)
-			non_ground_hit.emit(body, distance)
-			break
+	check_rays()
+
+func generate_raycasts() -> void: 
+	var ray_count: float = ray_cone_angle / angle_between_rays
 	
-	# Als er geen verkeerstekens en andere weggebruikers in grote cone zitten
-	if no_significant_hits(overlapped_bodies): 
-		no_hits.emit()
-		print("no hits")
-	
-	# Check de rays voor een hit 
+	for i in range(ray_count): 
+		var ray: RayCast3D = RayCast3D.new()
+		var angle: float = angle_between_rays * (i - ray_count / 2.0)
+		ray.target_position = Vector3(0.0, 0.0, -max_view_distance)
+		ray.rotate_y(angle)
+		add_child(ray)
+		rays.append(ray)
+
+func check_rays() -> void: 
 	for ray in rays: 
-		if ray.get_collider() != null && ray.is_colliding(): 
-			ray_hit.emit(ray.get_collider(), parent.global_position.distance_to(ray.get_collider().position))
+		if ray.is_colliding(): 
+			ray_hit_obstacle.emit(ray.get_collider())
 			break
-
-func sweep() -> void:
-	pass
-
-# Returns true als alleen de grond wordt geraakt
-func no_significant_hits(bodies: Array[Node3D]) -> bool: 
-	if bodies.size() == 1 && bodies[0].name == "Ground" && !ray_hits || bodies.size() == 0: 
-		return true
-	return false
