@@ -37,23 +37,9 @@ func physics_update(_delta: float) -> void:
 	if user_vars.path_follow.progress_ratio >= 1: 
 		user_vars.queue_free()
 
-func on_vis_ray_hit(object_hit: Node3D) -> void: 
-	if !is_instance_valid(user_vars.get_parent_node_3d().global_position): 
-		print("WAT")
-		return
-	
-	var distance_to_obstacle: float = user_vars.global_position.distance_to(object_hit.position)
-	print("visibility: ", user_vars.visibility, "distance: ", distance_to_obstacle)
-	if distance_to_obstacle <= user_vars.visibility: 
-		obstacle_is_visible = true
-	else: 
-		obstacle_is_visible = false
-	
-	if distance_to_obstacle < 10 && obstacle_is_visible: # TODO: maak dit gebaseerd op de snelheid van de auto
-		obstacle_is_close = true
-		print("obstacle is close")
-	else: 
-		obstacle_is_close = false
+func on_vis_ray_hit() -> void: 
+	obstacle_is_visible = true
+	obstacle_is_close = true
 
 func on_vis_ray_no_hit() -> void:
 	obstacle_is_visible = false

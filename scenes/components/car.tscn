@@ -60,3 +60,6 @@ material = SubResource("StandardMaterial3D_y2qi2")
 
 [node name="Visioncone" parent="." instance=ExtResource("6_xosei")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.971438)
+ray_cone_angle = 25.0
+angle_between_rays = 5.0
+max_view_distance = 10.0

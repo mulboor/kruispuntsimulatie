@@ -9,7 +9,7 @@ class_name VisionCone
 
 @onready var rays: Array[RayCast3D]
 
-signal ray_hit_obstacle(object: Node3D)
+signal ray_hit_obstacle()
 signal no_ray_hits()
 
 func _ready() -> void:	
@@ -24,7 +24,6 @@ func generate_raycasts() -> void:
 	for i in range(ray_count): 
 		var ray: RayCast3D = RayCast3D.new()
 		var angle: float = angle_between_rays * (i - ray_count / 2.0)
-		print("Angle: ", angle)
 		ray.target_position = Vector3(0.0, 0.0, -max_view_distance)
 		ray.enabled = true
 		ray.exclude_parent = true
@@ -33,10 +32,12 @@ func generate_raycasts() -> void:
 		rays.append(ray)
 
 func check_rays() -> void: 
+	var ray_hits: int
 	for ray in rays: 
-		if ray.is_colliding(): 
-			ray_hit_obstacle.emit(ray.get_collider())
-			print("collider: ", ray.get_collider())
-			break
-		else: 
-			no_ray_hits.emit()
+		if ray.is_colliding() && ray.get_collider() != null: 
+			ray_hits += 1
+	
+	if ray_hits > 0:
+		ray_hit_obstacle.emit()
+	else: 
+		no_ray_hits.emit()

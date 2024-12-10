@@ -29,7 +29,7 @@ func on_body_entered(body: Node) -> void:
 func on_vis_no_ray_hit() -> void: 
 	pass
 
-func on_vis_ray_hit(object_hit: Node3D) -> void: 
+func on_vis_ray_hit() -> void: 
 	pass
 
 func set_position_to(pos: Vector3, rot: Vector3) -> void:  
