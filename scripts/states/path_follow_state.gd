@@ -18,18 +18,18 @@ func init_state() -> void:
 	rigidbody.contact_monitor = true
 	rigidbody.max_contacts_reported = 10
 	rigidbody.body_entered.connect(on_body_entered)
+	
+	visioncone.ray_hit_obstacle.connect(on_vis_ray_hit)
+	visioncone.no_ray_hits.connect(on_vis_no_ray_hit)
 
 func on_body_entered(body: Node) -> void: 
 	if body.name != "Ground": 
 		Transitioned.emit(self, "Crash")
 
-func on_vis_non_ground_hit(body: Node, distance: float) -> void: 
+func on_vis_no_ray_hit() -> void: 
 	pass
 
-func on_vis_no_hits() -> void: 
-	pass
-
-func on_vis_ray_hit(object_hit: Node, distance: float) -> void: 
+func on_vis_ray_hit(object_hit: Node3D) -> void: 
 	pass
 
 func set_position_to(pos: Vector3, rot: Vector3) -> void:  

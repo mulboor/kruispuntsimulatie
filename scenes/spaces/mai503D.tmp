@@ -88,7 +88,7 @@ script = ExtResource("1_xpqr5")
 max_speed = 0.14
 accel = 0.02
 deccel = 0.02
-visibility = 20.0
+visibility = 10.0
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 11.816, 4.642)
