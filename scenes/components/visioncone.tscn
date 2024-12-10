@@ -8,8 +8,12 @@ points = PackedVector3Array(-0.000195742, 1, -0.000195742, 0.194988, -1, -0.9808
 
 [node name="Visioncone" type="Node3D"]
 script = ExtResource("1_bkj6i")
+ray_cone_angle = 40.0
+angle_between_rays = 5.0
+max_view_distance = 100.0
 
 [node name="Visionarea" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
 monitorable = false
 
 [node name="cone" parent="Visionarea" instance=ExtResource("2_40lhh")]
@@ -17,40 +21,5 @@ transform = Transform3D(10, 0, 0, 0, -4.37114e-07, -10, 0, 10, -4.37114e-07, 0, 
 visible = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Visionarea"]
-transform = Transform3D(10, 0, 0, 0, -4.37114e-07, -10, 0, 10, -4.37114e-07, 0, 0, -5)
+transform = Transform3D(10, 0, 0, 0, -4.37114e-07, -10, 0, 10, -4.37114e-07, 0, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_ry4ud")
-
-[node name="RayCast3D" type="RayCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.95677)
-exclude_parent = false
-target_position = Vector3(0, 0, -100)
-
-[node name="RayCast3D2" type="RayCast3D" parent="."]
-transform = Transform3D(0.999391, 0, 0.0348995, 0, 1, 0, -0.0348995, 0, 0.999391, 0, 0, 4.95677)
-exclude_parent = false
-target_position = Vector3(0, 0, -100)
-
-[node name="RayCast3D3" type="RayCast3D" parent="."]
-transform = Transform3D(0.999391, 0, -0.0348995, 0, 1, 0, 0.0348995, 0, 0.999391, 0, 0, 4.95677)
-exclude_parent = false
-target_position = Vector3(0, 0, -100)
-
-[node name="RayCast3D4" type="RayCast3D" parent="."]
-transform = Transform3D(0.997564, 0, -0.0697565, 0, 1, 0, 0.0697565, 0, 0.997564, 0, 0, 4.95677)
-exclude_parent = false
-target_position = Vector3(0, 0, -100)
-
-[node name="RayCast3D5" type="RayCast3D" parent="."]
-transform = Transform3D(0.997564, 0, 0.0697565, 0, 1, 0, -0.0697565, 0, 0.997564, 0, 0, 4.95677)
-exclude_parent = false
-target_position = Vector3(0, 0, -100)
-
-[node name="RayCast3D6" type="RayCast3D" parent="."]
-transform = Transform3D(0.994522, 0, 0.104528, 0, 1, 0, -0.104528, 0, 0.994522, 0, 0, 4.95677)
-exclude_parent = false
-target_position = Vector3(0, 0, -100)
-
-[node name="RayCast3D7" type="RayCast3D" parent="."]
-transform = Transform3D(0.994522, 0, -0.104528, 0, 1, 0, 0.104528, 0, 0.994522, 0, 0, 4.95677)
-exclude_parent = false
-target_position = Vector3(0, 0, -100)

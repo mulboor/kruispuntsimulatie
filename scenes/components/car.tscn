@@ -58,6 +58,5 @@ material = SubResource("StandardMaterial3D_y2qi2")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Carbody/CollisionShape3D"]
 
-[node name="Visioncone" parent="." node_paths=PackedStringArray("parent") instance=ExtResource("6_xosei")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5.85066)
-parent = NodePath("..")
+[node name="Visioncone" parent="." instance=ExtResource("6_xosei")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.988086)

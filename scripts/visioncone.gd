@@ -23,8 +23,9 @@ func generate_raycasts() -> void:
 	for i in range(ray_count): 
 		var ray: RayCast3D = RayCast3D.new()
 		var angle: float = angle_between_rays * (i - ray_count / 2.0)
+		print("Angle: ", angle)
 		ray.target_position = Vector3(0.0, 0.0, -max_view_distance)
-		ray.rotate_y(angle)
+		ray.rotation_degrees.y = angle
 		add_child(ray)
 		rays.append(ray)
 
@@ -32,4 +33,5 @@ func check_rays() -> void:
 	for ray in rays: 
 		if ray.is_colliding(): 
 			ray_hit_obstacle.emit(ray.get_collider())
+			print("ray hit")
 			break

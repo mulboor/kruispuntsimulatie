@@ -18,10 +18,6 @@ func init_state() -> void:
 	rigidbody.contact_monitor = true
 	rigidbody.max_contacts_reported = 10
 	rigidbody.body_entered.connect(on_body_entered)
-	
-	visioncone.non_ground_hit.connect(on_vis_non_ground_hit)
-	visioncone.no_hits.connect(on_vis_no_hits)
-	visioncone.ray_hit.connect(on_vis_ray_hit)
 
 func on_body_entered(body: Node) -> void: 
 	if body.name != "Ground": 
