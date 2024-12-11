@@ -23,7 +23,7 @@ point_count = 3
 
 [sub_resource type="Curve3D" id="Curve3D_3c65l"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, -4, 3.249, 0, -12.161, 2.5, 0, 0, 0, 0, 0, 0, 0, -95.0759),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, -4, 0, 0, -12.161, 0, 0, 0, 0, 0, 0, 0, 0, -95.0759),
 "tilts": PackedFloat32Array(0, 0, 0)
 }
 point_count = 3
@@ -88,7 +88,8 @@ script = ExtResource("1_xpqr5")
 max_speed = 0.14
 accel = 0.02
 deccel = 0.02
-visibility = 20.0
+visibility = 10.0
+visibility_deviation = 0.3
 reaction_time = 1.0
 reaction_time_deviation = 0.3
 

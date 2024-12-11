@@ -21,6 +21,7 @@ func init_state() -> void:
 	
 	visioncone.ray_hit_obstacle.connect(on_vis_ray_hit)
 	visioncone.no_ray_hits.connect(on_vis_no_ray_hit)
+	visioncone.max_view_distance = user_vars.visibility
 
 func on_body_entered(body: Node) -> void: 
 	if body.name != "Ground": 
