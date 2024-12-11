@@ -5,7 +5,6 @@ class_name VisionCone
 @export var ray_cone_angle: float
 @export var angle_between_rays: float
 @export var max_view_distance: float
-@export_category("Collision shape")
 
 @onready var rays: Array[RayCast3D]
 

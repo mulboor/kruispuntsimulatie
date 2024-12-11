@@ -9,7 +9,7 @@ class_name PathFollowState
 
 @export var traffic_signal_detection_area: Area3D
 
-func init_state() -> void: 
+func _ready() -> void: 
 	user_vars.path_follow.loop = false
 	
 	rigidbody.freeze_mode = RigidBody3D.FREEZE_MODE_KINEMATIC

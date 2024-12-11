@@ -9,10 +9,8 @@ class_name Accelerate
 @onready var obstacle_is_visible: bool
 
 @onready var should_brake: bool
-
-
+ 
 func enter() -> void:
-	init_state()
 	current_reaction_time = user_vars.reaction_time
 	user_vars.current_speed = user_vars.max_speed
 	obstacle_is_visible = false
