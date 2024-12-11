@@ -9,7 +9,8 @@ class_name PathFollowState
 
 @export var traffic_signal_detection_area: Area3D
 
-func _ready() -> void: 
+func init_state() -> void: 
+	print("dikke apen lul")
 	user_vars.path_follow.loop = false
 	
 	rigidbody.freeze_mode = RigidBody3D.FREEZE_MODE_KINEMATIC
@@ -33,9 +34,11 @@ func on_area_entered(area: Area3D) -> void:
 	pass
 
 func on_vis_ray_no_hits() -> void: 
+	print("geen hit")
 	pass
 
 func on_vis_ray_hit() -> void: 
+	print("een hit")
 	pass
 
 func set_position_to(pos: Vector3, rot: Vector3) -> void:  

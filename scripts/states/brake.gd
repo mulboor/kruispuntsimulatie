@@ -9,6 +9,8 @@ class_name Brake
 @onready var no_ray_hits: bool
 
 func _ready():
+	init_state()
+	
 	static_vision_cone.max_view_distance = user_vars.visibility
 	static_vision_cone.generate_raycasts()
 	static_vision_cone.no_ray_hits.connect(on_static_vis_ray_no_hits)
@@ -23,6 +25,7 @@ func physics_update(_delta):
 			Transitioned.emit(self, "accelerate")
 	
 	if !in_area() && no_ray_hits:
+		print("peimel!")
 		Transitioned.emit(self, "accelerate")
 
 func on_static_vis_ray_no_hits() -> void:
@@ -32,9 +35,11 @@ func on_static_vis_ray_hit() -> void:
 	no_static_ray_hits = false
 
 func on_vis_ray_hit() -> void: 
+	print("een hit") 
 	no_ray_hits = false
 
 func on_vis_ray_no_hits() -> void: 
+	print("geen hits")
 	no_ray_hits = true
 
 func deccelerate() -> void: 
