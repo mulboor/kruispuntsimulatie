@@ -26,7 +26,7 @@ inital_state = NodePath("Accelerate")
 [node name="Accelerate" type="Node" parent="Statemachine" node_paths=PackedStringArray("danger_cone", "user_vars", "visioncone", "rigidbody", "traffic_signal_detection_area")]
 script = ExtResource("2_6b7u3")
 danger_cone = NodePath("../../Accel visioncone (danger)")
-danger_cone_ray_distance = 2.0
+danger_cone_ray_distance = 3.0
 user_vars = NodePath("../..")
 visioncone = NodePath("../../Visioncone")
 rigidbody = NodePath("../../Carbody")
