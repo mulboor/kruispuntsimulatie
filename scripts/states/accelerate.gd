@@ -68,8 +68,7 @@ func check_for_obstacles(_delta: float) -> void:
 
 # Rem als de gebruiker bij een verkeersteken staat. Zonder reactievermogen want verkeerstekens zoals stoplichten kan een mens (meestal) goed anticiperen.
 func on_area_entered(area: Area3D) -> void:
-	print("STOP")
 	if area is TrafficSignal:
 		var traffic_signal: TrafficSignal = area
-		if traffic_signal.stop_for_signal:  
+		if traffic_signal.stop_at_signal || traffic_signal.wait_at_signal:  
 			Transitioned.emit(self, "brake")
