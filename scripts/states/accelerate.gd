@@ -47,7 +47,7 @@ func on_danger_ray_no_hit() -> void:
 
 func accelerate_user() -> void: 
 	if user_vars.current_speed < user_vars.max_speed:
-		user_vars.current_speed = lerpf(user_vars.current_speed, user_vars.current_speed + user_vars.accel, 0.2)
+		user_vars.current_speed = lerpf(user_vars.current_speed, user_vars.current_speed + user_vars.accel, 0.1)
 	else:
 		user_vars.current_speed = user_vars.max_speed
 	

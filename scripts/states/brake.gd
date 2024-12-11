@@ -8,7 +8,7 @@ class_name Brake
 @onready var no_static_ray_hits: bool
 @onready var no_ray_hits: bool
 
-func enter() -> void:
+func _ready():
 	static_vision_cone.max_view_distance = user_vars.visibility
 	static_vision_cone.generate_raycasts()
 	static_vision_cone.no_ray_hits.connect(on_static_vis_ray_no_hits)

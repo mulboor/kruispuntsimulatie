@@ -26,7 +26,7 @@ inital_state = NodePath("Accelerate")
 [node name="Accelerate" type="Node" parent="Statemachine" node_paths=PackedStringArray("danger_cone", "user_vars", "visioncone", "rigidbody", "traffic_signal_detection_area")]
 script = ExtResource("2_6b7u3")
 danger_cone = NodePath("../../Accel visioncone (danger)")
-danger_cone_ray_distance = 4.0
+danger_cone_ray_distance = 5.0
 user_vars = NodePath("../..")
 visioncone = NodePath("../../Visioncone")
 rigidbody = NodePath("../../Carbody")
@@ -64,7 +64,7 @@ material = SubResource("StandardMaterial3D_y2qi2")
 [node name="CSGBox3D" type="CSGBox3D" parent="Carbody/CollisionShape3D"]
 
 [node name="Static visioncone" parent="." instance=ExtResource("6_xosei")]
-ray_cone_angle = 120.0
+ray_cone_angle = 130.0
 angle_between_rays = 7.0
 
 [node name="Visioncone" parent="." instance=ExtResource("6_xosei")]

@@ -2,7 +2,7 @@ extends Node3D
 class_name RoadUserSpawner
 
 @export_category("Spawn variables")
-@export var time_between_spawns: float
+@export var spawn_time_deviation: float
 
 @export_category("User variables")
 @export var general_user_stats: GeneralRoadUserStats
@@ -14,20 +14,17 @@ class_name RoadUserSpawner
 @export_category("User scene")
 @export var user: PackedScene
 
+@onready var time_between_spawns: float
+@onready var random_time_between_spawns: float
 @onready var current_time_between_spawns: float
 
-@onready var time: float
 @onready var frame: int
 
 func _ready() -> void:
-	current_time_between_spawns = 0 
-	frame = 0
+	random_time_between_spawns = randfn(time_between_spawns, spawn_time_deviation)
 
 func _physics_process(delta):
 	spawn_users(delta)
-	time += delta
-	frame += 1
-	#print("Time:", time, " Frame:", frame)
 
 func spawn_users(_delta: float): 
 	# Spawn elke x seconden een nieuwe weggebruiker

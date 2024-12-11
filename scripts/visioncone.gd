@@ -19,7 +19,7 @@ func _physics_process(delta: float) -> void:
 
 func generate_raycasts() -> void: 
 	var ray_count: float = ray_cone_angle / angle_between_rays
-	
+	 
 	for i in range(ray_count): 
 		var ray: RayCast3D = RayCast3D.new()
 		var angle: float = angle_between_rays * (i - ray_count / 2.0)
