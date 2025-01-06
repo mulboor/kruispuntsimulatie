@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://3ptqecnw5ex2"]
+[gd_scene load_steps=14 format=3 uid="uid://3ptqecnw5ex2"]
 
 [ext_resource type="PackedScene" uid="uid://bne2usp40hi4o" path="res://scenes/components/car.tscn" id="1_v6fqk"]
 [ext_resource type="Script" path="res://scripts/traffic_flow.gd" id="1_whyfp"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://d1ob28jf3jyjy" path="res://scenes/components/self_deleting_path_follow.tscn" id="3_57cep"]
 [ext_resource type="Script" path="res://scripts/traffic_signal.gd" id="4_sv8g1"]
 [ext_resource type="Script" path="res://scripts/freecam.gd" id="5_ts16x"]
+[ext_resource type="Script" path="res://scripts/traffic_light.gd" id="8_mpscm"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_e4k3p"]
 size = Vector3(3.83746, 1, 1)
@@ -87,7 +88,7 @@ curve = SubResource("Curve3D_3c65l")
 script = ExtResource("1_xpqr5")
 max_speed = 0.14
 max_speed_deviation = 0.01
-accel = 0.01
+accel = 0.001
 deccel = 0.07
 visibility = 10.0
 visibility_deviation = 0.5
@@ -113,3 +114,6 @@ metadata/_edit_group_ = true
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TrafficSignal"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.814941, 0, 0)
 shape = SubResource("BoxShape3D_2nhmh")
+
+[node name="TrafficLight" type="Node3D" parent="."]
+script = ExtResource("8_mpscm")
