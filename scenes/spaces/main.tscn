@@ -115,5 +115,7 @@ metadata/_edit_group_ = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.814941, 0, 0)
 shape = SubResource("BoxShape3D_2nhmh")
 
-[node name="TrafficLight" type="Node3D" parent="."]
+[node name="TrafficLight" type="Area3D" parent="."]
 script = ExtResource("8_mpscm")
+green_time = 1.0
+red_time = 0.5
