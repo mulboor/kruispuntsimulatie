@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://b11q6x485qjql"
-path="res://.godot/imported/cone.glb-495fe00aee9d284141c95e91707ab80f.scn"
+uid="uid://x85qr3mehl5a"
+path="res://.godot/imported/Pws Auto(1).fbx-8b1d7f270eea3e6811c63189400999ae.scn"
 
 [deps]
 
-source_file="res://assets/cone.glb"
-dest_files=["res://.godot/imported/cone.glb-495fe00aee9d284141c95e91707ab80f.scn"]
+source_file="res://assets/models/Pws Auto(1).fbx"
+dest_files=["res://.godot/imported/Pws Auto(1).fbx-8b1d7f270eea3e6811c63189400999ae.scn"]
 
 [params]
 
@@ -27,10 +27,11 @@ meshes/force_disable_compression=false
 skins/use_named_skins=true
 animation/import=true
 animation/fps=30
-animation/trimming=false
+animation/trimming=true
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
 _subresources={}
-gltf/naming_version=1
-gltf/embedded_image_handling=1
+fbx/importer=0
+fbx/allow_geometry_helper_nodes=false
+fbx/embedded_image_handling=1

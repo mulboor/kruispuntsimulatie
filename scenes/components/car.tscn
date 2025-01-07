@@ -7,11 +7,10 @@
 [ext_resource type="Script" path="res://scripts/states/brake.gd" id="5_deujp"]
 [ext_resource type="Script" path="res://scripts/states/sweep.gd" id="6_0jj7n"]
 [ext_resource type="PackedScene" uid="uid://dob5n0rie65js" path="res://scenes/components/visioncone.tscn" id="6_xosei"]
+[ext_resource type="PackedScene" uid="uid://x85qr3mehl5a" path="res://assets/models/Pws Auto(1).fbx" id="7_14y68"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nk13o"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y2qi2"]
-albedo_color = Color(0.368566, 0.132097, 0, 1)
+size = Vector3(1.44312, 0.832413, 2.90613)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1o3ig"]
 
@@ -53,33 +52,28 @@ script = ExtResource("6_0jj7n")
 mass = 286.512
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Carbody"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0134912, 0.00443017, 7.62939e-06)
 shape = SubResource("BoxShape3D_nk13o")
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="Carbody/CollisionShape3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0219845, 0, -0.649877)
-size = Vector3(0.3, 0.3, 0.3)
-material = SubResource("StandardMaterial3D_y2qi2")
-
-[node name="CSGBox3D" type="CSGBox3D" parent="Carbody/CollisionShape3D"]
+[node name="Pws Auto(1)" parent="Carbody" instance=ExtResource("7_14y68")]
+transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, 0, -0.749368, 0)
 
 [node name="Static visioncone" parent="." instance=ExtResource("6_xosei")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000445366, 0, -0.886681)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000445366, -0.239299, -1.67553)
 ray_cone_angle = 130.0
 angle_between_rays = 7.0
 
 [node name="Visioncone" parent="." instance=ExtResource("6_xosei")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000445366, 0, -0.886681)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000445366, -0.239299, -1.67553)
 ray_cone_angle = 20.0
 angle_between_rays = 5.0
 
 [node name="Accel visioncone (danger)" parent="." instance=ExtResource("6_xosei")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000445366, 0, -0.886681)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000445366, -0.239299, -1.67553)
 ray_cone_angle = 20.0
 angle_between_rays = 10.0
 
 [node name="Traffic Sig detector" type="Area3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Traffic Sig detector"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.999519)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.169)
 shape = SubResource("BoxShape3D_1o3ig")
