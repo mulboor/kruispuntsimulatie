@@ -8,9 +8,7 @@
 [ext_resource type="Script" path="res://scripts/traffic_signal.gd" id="4_sv8g1"]
 [ext_resource type="Script" path="res://scripts/freecam.gd" id="5_ts16x"]
 [ext_resource type="Script" path="res://scripts/traffic_light.gd" id="8_mpscm"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_e4k3p"]
-size = Vector3(3.83746, 1, 1)
+[ext_resource type="PackedScene" uid="uid://bhjn6eq04134d" path="res://assets/models/Pws Omgeving(1).fbx" id="9_iv3n4"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ohesk"]
 size = Vector3(100, 0, 100)
@@ -35,18 +33,6 @@ size = Vector3(3.12988, 1, 2)
 [node name="Node3D" type="Node3D"]
 
 [node name="Enviroment" type="Node" parent="."]
-
-[node name="RigidBody3D2" type="RigidBody3D" parent="Enviroment"]
-transform = Transform3D(-0.502975, 0, -0.864301, 0, 1, 0, 0.864301, 0, -0.502975, -10.5933, 0.652096, -16.4467)
-mass = 1000.0
-metadata/_edit_group_ = true
-
-[node name="CSGBox3D" type="CSGBox3D" parent="Enviroment/RigidBody3D2"]
-size = Vector3(3.86768, 1, 1)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Enviroment/RigidBody3D2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00552368, 0, 0)
-shape = SubResource("BoxShape3D_e4k3p")
 
 [node name="Ground" type="StaticBody3D" parent="Enviroment"]
 
@@ -118,3 +104,6 @@ shape = SubResource("BoxShape3D_2nhmh")
 script = ExtResource("8_mpscm")
 green_time = 1.0
 red_time = 0.5
+
+[node name="Pws Omgeving(1)" parent="." instance=ExtResource("9_iv3n4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.98519, 0, 1.15666)

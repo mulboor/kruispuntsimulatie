@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bne2usp40hi4o"]
+[gd_scene load_steps=13 format=3 uid="uid://bne2usp40hi4o"]
 
 [ext_resource type="Script" path="res://scripts/road_user_vars.gd" id="1_khxhq"]
 [ext_resource type="Script" path="res://scripts/states/accelerate.gd" id="2_6b7u3"]
@@ -7,7 +7,9 @@
 [ext_resource type="Script" path="res://scripts/states/brake.gd" id="5_deujp"]
 [ext_resource type="Script" path="res://scripts/states/sweep.gd" id="6_0jj7n"]
 [ext_resource type="PackedScene" uid="uid://dob5n0rie65js" path="res://scenes/components/visioncone.tscn" id="6_xosei"]
+[ext_resource type="PackedScene" uid="uid://bm0seklaqgyds" path="res://assets/models/PWS Busje(1).fbx" id="7_06l08"]
 [ext_resource type="PackedScene" uid="uid://x85qr3mehl5a" path="res://assets/models/Pws Auto(1).fbx" id="7_14y68"]
+[ext_resource type="Script" path="res://scripts/random_model_generator.gd" id="7_iqjp2"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nk13o"]
 size = Vector3(1.44312, 0.832413, 2.90613)
@@ -54,7 +56,13 @@ mass = 286.512
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Carbody"]
 shape = SubResource("BoxShape3D_nk13o")
 
-[node name="Pws Auto(1)" parent="Carbody" instance=ExtResource("7_14y68")]
+[node name="RandomModel" type="Node3D" parent="Carbody"]
+script = ExtResource("7_iqjp2")
+
+[node name="PWS Busje(1)" parent="Carbody/RandomModel" instance=ExtResource("7_06l08")]
+transform = Transform3D(-1.74846e-08, 0, 0.4, 0, 0.4, 0, -0.4, 0, -1.74846e-08, 0, -0.704275, -0.0502611)
+
+[node name="Pws Auto(1)" parent="Carbody/RandomModel" instance=ExtResource("7_14y68")]
 transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, 0, -0.749368, 0)
 
 [node name="Static visioncone" parent="." instance=ExtResource("6_xosei")]
