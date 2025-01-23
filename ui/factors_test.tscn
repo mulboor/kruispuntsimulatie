@@ -27,21 +27,6 @@ scale = Vector2(2, 2)
 layout_mode = 2
 alignment = 1
 
-[node name="Snelheid" type="Button" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "Snelheid"
-expand_icon = true
-
-[node name="Reactie" type="Button" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "Reactie"
-expand_icon = true
-
-[node name="Zicht" type="Button" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "Zicht"
-expand_icon = true
-
 [node name="Back" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Back"
