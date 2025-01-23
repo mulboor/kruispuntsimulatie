@@ -31,4 +31,9 @@ alignment = 1
 layout_mode = 2
 text = "Back"
 
+[node name="LineEdit" type="LineEdit" parent="."]
+layout_mode = 0
+offset_right = 67.0625
+offset_bottom = 31.0
+
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]

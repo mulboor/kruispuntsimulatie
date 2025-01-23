@@ -1,11 +1,14 @@
 extends Control
 
-var number = "Hello"
+@onready var line_edit: LineEdit = $LineEdit
+@onready var label: Label = $Label
 
 func _ready():
-	print(number)
-	number = 100
-	print(number)
+	line_edit.text_submitted.connect(_on_LineEdit_text_entered)
+	
+func _on_LineEdit_text_entered(new_text: String) -> void:
+	label.text = "Your name is: " + new_text
+
 
 func _on_back_pressed() -> void:
 	get_tree().change_scene_to_file("res://ui/options_test.tscn")
