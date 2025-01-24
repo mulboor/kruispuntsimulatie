@@ -37,6 +37,7 @@ offset_left = 188.0
 offset_top = 97.0
 offset_right = 340.0
 offset_bottom = 150.0
+placeholder_text = "Snelheid"
 
 [node name="CheckBox" type="CheckBox" parent="."]
 layout_mode = 1
@@ -55,6 +56,7 @@ offset_left = 503.0
 offset_top = 95.0
 offset_right = 658.0
 offset_bottom = 151.0
+placeholder_text = "Reactievermogen"
 
 [node name="LineEdit3" type="LineEdit" parent="."]
 layout_mode = 0
@@ -62,5 +64,6 @@ offset_left = 788.0
 offset_top = 95.0
 offset_right = 954.0
 offset_bottom = 151.0
+placeholder_text = "Zichtvermogen"
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]
