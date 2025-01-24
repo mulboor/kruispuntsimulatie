@@ -47,23 +47,7 @@ offset_left = 370.0
 offset_top = 112.0
 offset_right = 382.48
 offset_bottom = 123.688
-
-[node name="CheckBox2" type="CheckBox" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 0.029
-anchor_bottom = 0.037
-offset_left = 698.0
-offset_top = 108.0
-offset_right = 688.592
-offset_bottom = 108.024
-
-[node name="CheckBox3" type="CheckBox" parent="."]
-layout_mode = 0
-offset_left = 985.0
-offset_top = 115.0
-offset_right = 1009.0
-offset_bottom = 139.0
+expand_icon = true
 
 [node name="LineEdit2" type="LineEdit" parent="."]
 layout_mode = 0
