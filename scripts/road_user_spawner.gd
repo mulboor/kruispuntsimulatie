@@ -8,7 +8,7 @@ class_name RoadUserSpawner
 @export var general_user_stats: GeneralRoadUserStats
 
 @export_category("Spawner path")
-@export var path: Path3D
+@export var path: Array[Path3D]
 @export var path_follow: PackedScene
 
 @export_category("User scene")
@@ -33,7 +33,8 @@ func spawn_users(_delta: float):
 func spawn_user() -> void:
 	# Maak een nieuwe path_follow die de weggebruiker gaat volgen
 	var current_path_follow = path_follow.instantiate()
-	path.add_child(current_path_follow)
+	var random_index: int = randi_range(0, path.size() - 1)
+	path[random_index].add_child(current_path_follow)
 	
 	# Maak de weggebruiker
 	var inst_user: RoadUserVars = user.instantiate()

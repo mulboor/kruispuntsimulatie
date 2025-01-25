@@ -7,9 +7,9 @@
 [ext_resource type="Script" path="res://scripts/states/brake.gd" id="5_deujp"]
 [ext_resource type="Script" path="res://scripts/states/sweep.gd" id="6_0jj7n"]
 [ext_resource type="PackedScene" uid="uid://dob5n0rie65js" path="res://scenes/components/visioncone.tscn" id="6_xosei"]
-[ext_resource type="PackedScene" uid="uid://bm0seklaqgyds" path="res://assets/models/PWS Busje(1).fbx" id="7_06l08"]
-[ext_resource type="PackedScene" uid="uid://x85qr3mehl5a" path="res://assets/models/Pws Auto(1).fbx" id="7_14y68"]
 [ext_resource type="Script" path="res://scripts/random_model_generator.gd" id="7_iqjp2"]
+[ext_resource type="PackedScene" uid="uid://cvpeu5c0kjlre" path="res://scenes/meshes/pws_auto(1).tscn" id="8_1ovr6"]
+[ext_resource type="PackedScene" uid="uid://ci36ucpi50n18" path="res://scenes/meshes/pws_busje(1).tscn" id="9_josq3"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nk13o"]
 size = Vector3(1.44312, 0.832413, 2.90613)
@@ -59,15 +59,15 @@ shape = SubResource("BoxShape3D_nk13o")
 [node name="RandomModel" type="Node3D" parent="Carbody"]
 script = ExtResource("7_iqjp2")
 
-[node name="PWS Busje(1)" parent="Carbody/RandomModel" instance=ExtResource("7_06l08")]
-transform = Transform3D(-1.74846e-08, 0, 0.4, 0, 0.4, 0, -0.4, 0, -1.74846e-08, 0, -0.704275, -0.0502611)
+[node name="Pws Auto(1)" parent="Carbody/RandomModel" instance=ExtResource("8_1ovr6")]
+transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, 0, 0, 0)
 
-[node name="Pws Auto(1)" parent="Carbody/RandomModel" instance=ExtResource("7_14y68")]
-transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, 0, -0.749368, 0)
+[node name="PWS Busje(1)" parent="Carbody/RandomModel" instance=ExtResource("9_josq3")]
+transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, 0, 0, 0)
 
 [node name="Static visioncone" parent="." instance=ExtResource("6_xosei")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000445366, -0.239299, -1.67553)
-ray_cone_angle = 130.0
+ray_cone_angle = 180.0
 angle_between_rays = 7.0
 
 [node name="Visioncone" parent="." instance=ExtResource("6_xosei")]
