@@ -1,9 +1,11 @@
-extends Node3D
+extends Camera3D
 
 @export var accel: float
 
 func _process(delta) -> void:
-	position += get_velocity(accel, delta)
+	position.x += get_velocity(accel, delta).x
+	position.z += get_velocity(accel, delta).z
+	size += get_velocity(accel, delta).y
 
 func get_velocity(accel: float, _delta: float) -> Vector3: 
 	var y: float = get_axis("move_up", "move_down") * accel * _delta

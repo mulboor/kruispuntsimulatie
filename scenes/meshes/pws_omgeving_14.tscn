@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://duiwbaifah0a"]
+
+[ext_resource type="PackedScene" uid="uid://c786pu0ma7iog" path="res://assets/models/Pws Omgeving 14.fbx" id="1_nhh3d"]
+
+[node name="Pws Omgeving 14" instance=ExtResource("1_nhh3d")]

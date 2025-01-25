@@ -8,7 +8,7 @@
 [ext_resource type="Script" path="res://scripts/traffic_signal.gd" id="4_sv8g1"]
 [ext_resource type="Script" path="res://scripts/freecam.gd" id="5_ts16x"]
 [ext_resource type="Script" path="res://scripts/traffic_light.gd" id="8_mpscm"]
-[ext_resource type="PackedScene" uid="uid://bhjn6eq04134d" path="res://assets/models/Pws Omgeving(1).fbx" id="9_iv3n4"]
+[ext_resource type="PackedScene" uid="uid://duiwbaifah0a" path="res://scenes/meshes/pws_omgeving_14.tscn" id="9_xh5fi"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ohesk"]
 size = Vector3(100, 0, 100)
@@ -82,14 +82,19 @@ reaction_time = 1.0
 reaction_time_deviation = 0.3
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 11.816, 4.642)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -33.7859, 36.8542, 4.642)
+projection = 1
 fov = 90.0
+size = 69.189
+near = 0.001
 script = ExtResource("5_ts16x")
 accel = 10.0
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.726575, 0.52402, -0.444401, 0, 0.64679, 0.762668, 0.687088, 0.554136, -0.469941, -48.2264, 16.2122, 68.9945)
-light_energy = 3.292
+transform = Transform3D(-0.601815, -0.541602, -0.586929, -1.28497e-07, -0.734915, 0.67816, -0.798635, 0.408127, 0.442283, -48.2264, 29.033, 68.9945)
+light_color = Color(0.585062, 0.585062, 0.585062, 1)
+shadow_enabled = true
+shadow_blur = 0.0
 
 [node name="TrafficSignal" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.14665, 0.451355, 0.0586784)
@@ -105,5 +110,5 @@ script = ExtResource("8_mpscm")
 green_time = 1.0
 red_time = 0.5
 
-[node name="Pws Omgeving(1)" parent="." instance=ExtResource("9_iv3n4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.98519, 0, 1.15666)
+[node name="Pws Omgeving 14" parent="." instance=ExtResource("9_xh5fi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.6399, 1.52588e-05, -37.1576)
