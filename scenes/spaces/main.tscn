@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://3ptqecnw5ex2"]
+[gd_scene load_steps=21 format=3 uid="uid://3ptqecnw5ex2"]
 
 [ext_resource type="PackedScene" uid="uid://bne2usp40hi4o" path="res://scenes/components/car.tscn" id="1_v6fqk"]
 [ext_resource type="Script" path="res://scripts/traffic_flow.gd" id="1_whyfp"]
@@ -15,21 +15,63 @@ size = Vector3(100, 0, 100)
 
 [sub_resource type="Curve3D" id="Curve3D_b61m1"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 12.1015, 0, 0, 0, 0, 0, 0, 0, 0, 177.157, 0, 0.0993164),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20, 0, 0, 45.2512, 3.57628e-07, 0.825271, 0, 0, 0, 5, 0, 0, 96.1688, 0, 0.820828, -5, 0, 0, 0, 0, 0, 115.041, 0, 0.013535, 0, 0, 0, 0, 0, 0, 177.568, 0, 0),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0)
+}
+point_count = 5
+
+[sub_resource type="Curve3D" id="Curve3D_qi87i"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 96.5098, 0, 0.810694, 0, 0, -5, 0, 0, 0, 101.661, 0, 6.0697, 0, 0, 0, 0, 0, 0, 103.593, 0, 38.9721),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
+}
+point_count = 4
+
+[sub_resource type="Curve3D" id="Curve3D_m6tod"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 97.2454, 0, 0.773927, 0, 0, 8.5, 0, 0, 0, 107.427, -0.000522614, -7.35793, 0, 0, 0, 0, 0, 0, 107.783, 0, -57.009),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
+}
+point_count = 4
+
+[sub_resource type="Curve3D" id="Curve3D_mt17p"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20, 0, 0, 0, -2.43408, 0, -45.0422, 0, 0, 0, 0, 0, 0, -2.21162, 0, -102.668),
 "tilts": PackedFloat32Array(0, 0, 0)
 }
 point_count = 3
 
-[sub_resource type="Curve3D" id="Curve3D_mt17p"]
+[sub_resource type="Curve3D" id="Curve3D_y4r2g"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 0, 0, 0, -2.7725, 0, -45.0422, 0, 0, 0, 0, 0, 0, -2.21162, 0, -72.683),
-"tilts": PackedFloat32Array(0, 0, 0)
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -2.45093, 0, -43.1951, 10, 0, 0, 0, 0, 0, -12.5505, 0, -50.6757, 0, 0, 0, 0, 0, 0, -66.5268, 0, -50.6273),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
 }
-point_count = 3
+point_count = 4
 
 [sub_resource type="Curve3D" id="Curve3D_3c65l"]
 _data = {
 "points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -2.43544, 0, -40.8887, -6, 0, 0, 0, 0, 0, 3.24057, 0, -45.6942, 0, 0, 0, 0, 0, 0, 66.3976, 1.13309, -45.5451),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
+}
+point_count = 4
+
+[sub_resource type="Curve3D" id="Curve3D_h8xky"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -10, 0, 0, -57.9016, 0, 0.318133, 0, 0, 0, 0, 0, 0, -75.1404, 0, -0.0544772, 0, 0, 0, 0, 0, 0, -144.79, 0, 0),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
+}
+point_count = 4
+
+[sub_resource type="Curve3D" id="Curve3D_xy45q"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -2, 0, 0, -57.2683, 0, 0.283496, 0, 0, 5, 0, 0, 0, -62.5114, 0, -4.88515, 0, 0, 0, 0, 0, 0, -62.5213, 0, -53.5491),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
+}
+point_count = 4
+
+[sub_resource type="Curve3D" id="Curve3D_d84wk"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -9.5, 0, 0, -59.5824, 0, 0.29223, 0, 0, -2, 0, 0, 0, -68.4333, 0, 9.24217, 0, 0, 0, 0, 0, 0, -66.3841, 0, 44.7244),
 "tilts": PackedFloat32Array(0, 0, 0, 0)
 }
 point_count = 4
@@ -51,44 +93,80 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4, 0)
 
 [node name="Spawners" type="Node" parent="." node_paths=PackedStringArray("car_spawners")]
 script = ExtResource("1_whyfp")
-car_spawners = [NodePath("Spawner A"), NodePath("Spawner B")]
-total_upm = 10.0
+car_spawners = [NodePath("Car spawners/Car Spawner A"), NodePath("Car spawners/Car Spawner B"), NodePath("Car spawners/Car Spawner C")]
+total_upm = 40.0
 car_percentage = 100.0
-car_percentage_per_spawner = Array[float]([40.0, 60.0])
+car_percentage_per_spawner = Array[float]([20.0, 60.0, 20.0])
 
-[node name="Spawner A" type="Node3D" parent="Spawners" node_paths=PackedStringArray("general_user_stats", "path")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -104.955, 0.5, 3.14964)
+[node name="Car spawners" type="Node" parent="Spawners"]
+
+[node name="Car Spawner A" type="Node3D" parent="Spawners/Car spawners" node_paths=PackedStringArray("general_user_stats", "path")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -104.955, 1.14607, 3.14964)
 script = ExtResource("2_xc2x4")
 spawn_time_deviation = 0.4
-general_user_stats = NodePath("../../GlobalRoadUserStats")
-path = [NodePath("Path3D")]
+general_user_stats = NodePath("../../../GlobalRoadUserStats")
+path = [NodePath("Path3D"), NodePath("Path3D2"), NodePath("Path3D3")]
 path_follow = ExtResource("3_57cep")
 user = ExtResource("1_v6fqk")
 
-[node name="Path3D" type="Path3D" parent="Spawners/Spawner A"]
+[node name="Path3D" type="Path3D" parent="Spawners/Car spawners/Car Spawner A"]
 curve = SubResource("Curve3D_b61m1")
 
-[node name="Spawner B" type="Node3D" parent="Spawners" node_paths=PackedStringArray("general_user_stats", "path")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.1882, 0.5, 48.874)
+[node name="Path3D2" type="Path3D" parent="Spawners/Car spawners/Car Spawner A"]
+curve = SubResource("Curve3D_qi87i")
+
+[node name="Path3D3" type="Path3D" parent="Spawners/Car spawners/Car Spawner A"]
+curve = SubResource("Curve3D_m6tod")
+
+[node name="RoadUserSpawner" type="Node3D" parent="Spawners/Car spawners/Car Spawner A" node_paths=PackedStringArray("general_user_stats")]
 script = ExtResource("2_xc2x4")
 spawn_time_deviation = 0.3
-general_user_stats = NodePath("../../GlobalRoadUserStats")
-path = [NodePath("Path3D"), NodePath("Path3D2")]
+general_user_stats = NodePath("../../../../GlobalRoadUserStats")
 path_follow = ExtResource("3_57cep")
 user = ExtResource("1_v6fqk")
 
-[node name="Path3D" type="Path3D" parent="Spawners/Spawner B"]
+[node name="Car Spawner B" type="Node3D" parent="Spawners/Car spawners" node_paths=PackedStringArray("general_user_stats", "path")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.1882, 1.14607, 48.874)
+script = ExtResource("2_xc2x4")
+spawn_time_deviation = 0.3
+general_user_stats = NodePath("../../../GlobalRoadUserStats")
+path = [NodePath("Path3D"), NodePath("Path3D2"), NodePath("Path3D3")]
+path_follow = ExtResource("3_57cep")
+user = ExtResource("1_v6fqk")
+
+[node name="Path3D" type="Path3D" parent="Spawners/Car spawners/Car Spawner B"]
 curve = SubResource("Curve3D_mt17p")
 
-[node name="Path3D2" type="Path3D" parent="Spawners/Spawner B"]
+[node name="Path3D3" type="Path3D" parent="Spawners/Car spawners/Car Spawner B"]
+curve = SubResource("Curve3D_y4r2g")
+
+[node name="Path3D2" type="Path3D" parent="Spawners/Car spawners/Car Spawner B"]
 curve = SubResource("Curve3D_3c65l")
+
+[node name="Car Spawner C" type="Node3D" parent="Spawners/Car spawners" node_paths=PackedStringArray("general_user_stats", "path")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 65.0902, 1.31366, -1.50315)
+script = ExtResource("2_xc2x4")
+spawn_time_deviation = 0.3
+general_user_stats = NodePath("../../../GlobalRoadUserStats")
+path = [NodePath("Path3D"), NodePath("Path3D2"), NodePath("Path3D3")]
+path_follow = ExtResource("3_57cep")
+user = ExtResource("1_v6fqk")
+
+[node name="Path3D" type="Path3D" parent="Spawners/Car spawners/Car Spawner C"]
+curve = SubResource("Curve3D_h8xky")
+
+[node name="Path3D2" type="Path3D" parent="Spawners/Car spawners/Car Spawner C"]
+curve = SubResource("Curve3D_xy45q")
+
+[node name="Path3D3" type="Path3D" parent="Spawners/Car spawners/Car Spawner C"]
+curve = SubResource("Curve3D_d84wk")
 
 [node name="GlobalRoadUserStats" type="Node" parent="."]
 script = ExtResource("1_xpqr5")
-max_speed = 0.14
+max_speed = 0.21
 max_speed_deviation = 0.01
 accel = 0.001
-deccel = 0.07
+deccel = 0.035
 visibility = 10.0
 visibility_deviation = 0.5
 reaction_time = 0.5
