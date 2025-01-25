@@ -2,10 +2,10 @@
 
 [ext_resource type="PackedScene" uid="uid://bm0seklaqgyds" path="res://assets/models/PWS Busje(1).fbx" id="1_h25bo"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4hlce"]
-albedo_color = Color(0.237539, 0.237539, 0.237539, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_71io5"]
+albedo_color = Color(0, 0, 0, 1)
 
 [node name="PWS Busje(1)" instance=ExtResource("1_h25bo")]
 
 [node name="Cube_024" parent="." index="0"]
-material_override = SubResource("StandardMaterial3D_4hlce")
+surface_material_override/0 = SubResource("StandardMaterial3D_71io5")

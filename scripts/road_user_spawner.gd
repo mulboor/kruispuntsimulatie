@@ -44,4 +44,5 @@ func spawn_user() -> void:
 	inst_user.visibility = maxf(randfn(general_user_stats.visibility, general_user_stats.visibility_deviation), 0.0)
 	inst_user.reaction_time = maxf(randfn(general_user_stats.reaction_time, general_user_stats.reaction_time_deviation), 0.0)
 	inst_user.path_follow = current_path_follow
+	inst_user.global_position.y = 0
 	add_child(inst_user)

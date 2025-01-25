@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://3ptqecnw5ex2"]
+[gd_scene load_steps=22 format=3 uid="uid://3ptqecnw5ex2"]
 
 [ext_resource type="PackedScene" uid="uid://bne2usp40hi4o" path="res://scenes/components/car.tscn" id="1_v6fqk"]
 [ext_resource type="Script" path="res://scripts/traffic_flow.gd" id="1_whyfp"]
@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://duiwbaifah0a" path="res://scenes/meshes/pws_omgeving_14.tscn" id="9_xh5fi"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ohesk"]
-size = Vector3(100, 0, 100)
+size = Vector3(173.756, 0, 100)
 
 [sub_resource type="Curve3D" id="Curve3D_b61m1"]
 _data = {
@@ -76,8 +76,15 @@ _data = {
 }
 point_count = 4
 
+[sub_resource type="Curve3D" id="Curve3D_t0tv6"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 49.714, 0, 0, -10, 0, 0, 5, 0, 0, 62.6912, 0, 0, 0, 0, 0, 0, 2.0774, 0, 97.2253),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
+}
+point_count = 4
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_2nhmh"]
-size = Vector3(4.0581, 1, 2)
+size = Vector3(4.0581, 1.84045, 2)
 
 [node name="Node3D" type="Node3D"]
 
@@ -86,6 +93,7 @@ size = Vector3(4.0581, 1, 2)
 [node name="Ground" type="StaticBody3D" parent="Enviroment"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Enviroment/Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.69345, 0, 0)
 shape = SubResource("BoxShape3D_ohesk")
 
 [node name="Pws Omgeving 14" parent="Enviroment" instance=ExtResource("9_xh5fi")]
@@ -93,15 +101,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4, 0)
 
 [node name="Spawners" type="Node" parent="." node_paths=PackedStringArray("car_spawners")]
 script = ExtResource("1_whyfp")
-car_spawners = [NodePath("Car spawners/Car Spawner A"), NodePath("Car spawners/Car Spawner B"), NodePath("Car spawners/Car Spawner C")]
+car_spawners = [NodePath("Car spawners/Car Spawner A"), NodePath("Car spawners/Car Spawner B"), NodePath("Car spawners/Car Spawner C"), NodePath("Car spawners/Car Spawner D")]
 total_upm = 40.0
 car_percentage = 100.0
-car_percentage_per_spawner = Array[float]([20.0, 60.0, 20.0])
+car_percentage_per_spawner = Array[float]([20.0, 30.0, 20.0, 30.0])
 
 [node name="Car spawners" type="Node" parent="Spawners"]
 
 [node name="Car Spawner A" type="Node3D" parent="Spawners/Car spawners" node_paths=PackedStringArray("general_user_stats", "path")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -104.955, 1.14607, 3.14964)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -104.955, 0.5, 3.14964)
 script = ExtResource("2_xc2x4")
 spawn_time_deviation = 0.4
 general_user_stats = NodePath("../../../GlobalRoadUserStats")
@@ -110,23 +118,19 @@ path_follow = ExtResource("3_57cep")
 user = ExtResource("1_v6fqk")
 
 [node name="Path3D" type="Path3D" parent="Spawners/Car spawners/Car Spawner A"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 curve = SubResource("Curve3D_b61m1")
 
 [node name="Path3D2" type="Path3D" parent="Spawners/Car spawners/Car Spawner A"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 curve = SubResource("Curve3D_qi87i")
 
 [node name="Path3D3" type="Path3D" parent="Spawners/Car spawners/Car Spawner A"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 curve = SubResource("Curve3D_m6tod")
 
-[node name="RoadUserSpawner" type="Node3D" parent="Spawners/Car spawners/Car Spawner A" node_paths=PackedStringArray("general_user_stats")]
-script = ExtResource("2_xc2x4")
-spawn_time_deviation = 0.3
-general_user_stats = NodePath("../../../../GlobalRoadUserStats")
-path_follow = ExtResource("3_57cep")
-user = ExtResource("1_v6fqk")
-
 [node name="Car Spawner B" type="Node3D" parent="Spawners/Car spawners" node_paths=PackedStringArray("general_user_stats", "path")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.1882, 1.14607, 48.874)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.1882, 0.5, 48.874)
 script = ExtResource("2_xc2x4")
 spawn_time_deviation = 0.3
 general_user_stats = NodePath("../../../GlobalRoadUserStats")
@@ -135,16 +139,19 @@ path_follow = ExtResource("3_57cep")
 user = ExtResource("1_v6fqk")
 
 [node name="Path3D" type="Path3D" parent="Spawners/Car spawners/Car Spawner B"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 curve = SubResource("Curve3D_mt17p")
 
 [node name="Path3D3" type="Path3D" parent="Spawners/Car spawners/Car Spawner B"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 curve = SubResource("Curve3D_y4r2g")
 
 [node name="Path3D2" type="Path3D" parent="Spawners/Car spawners/Car Spawner B"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 curve = SubResource("Curve3D_3c65l")
 
 [node name="Car Spawner C" type="Node3D" parent="Spawners/Car spawners" node_paths=PackedStringArray("general_user_stats", "path")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 65.0902, 1.31366, -1.50315)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 65.0902, 0.5, -1.50315)
 script = ExtResource("2_xc2x4")
 spawn_time_deviation = 0.3
 general_user_stats = NodePath("../../../GlobalRoadUserStats")
@@ -153,13 +160,29 @@ path_follow = ExtResource("3_57cep")
 user = ExtResource("1_v6fqk")
 
 [node name="Path3D" type="Path3D" parent="Spawners/Car spawners/Car Spawner C"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 curve = SubResource("Curve3D_h8xky")
 
 [node name="Path3D2" type="Path3D" parent="Spawners/Car spawners/Car Spawner C"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 curve = SubResource("Curve3D_xy45q")
 
 [node name="Path3D3" type="Path3D" parent="Spawners/Car spawners/Car Spawner C"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 curve = SubResource("Curve3D_d84wk")
+
+[node name="Car Spawner D" type="Node3D" parent="Spawners/Car spawners" node_paths=PackedStringArray("general_user_stats", "path")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.28923, 0.5, -54.5824)
+script = ExtResource("2_xc2x4")
+spawn_time_deviation = 0.3
+general_user_stats = NodePath("../../../GlobalRoadUserStats")
+path = [NodePath("Path3D")]
+path_follow = ExtResource("3_57cep")
+user = ExtResource("1_v6fqk")
+
+[node name="Path3D" type="Path3D" parent="Spawners/Car spawners/Car Spawner D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+curve = SubResource("Curve3D_t0tv6")
 
 [node name="GlobalRoadUserStats" type="Node" parent="."]
 script = ExtResource("1_xpqr5")
@@ -194,7 +217,7 @@ wait_at_signal = true
 metadata/_edit_group_ = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TrafficSignal"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.245362, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.245362, 0.420227, 0)
 shape = SubResource("BoxShape3D_2nhmh")
 
 [node name="TrafficLight" type="Area3D" parent="."]
