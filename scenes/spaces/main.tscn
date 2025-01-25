@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://3ptqecnw5ex2"]
+[gd_scene load_steps=25 format=3 uid="uid://3ptqecnw5ex2"]
 
 [ext_resource type="PackedScene" uid="uid://bne2usp40hi4o" path="res://scenes/components/car.tscn" id="1_v6fqk"]
 [ext_resource type="Script" path="res://scripts/traffic_flow.gd" id="1_whyfp"]
@@ -83,8 +83,25 @@ _data = {
 }
 point_count = 4
 
+[sub_resource type="Curve3D" id="Curve3D_ikyye"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 48.8437, 2, 0, 0, 0, 0, 0, -5.59273, 0, 53.0808, 0, 0, -2, 0, 0, 0, -75.6209, 0, 53.125),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
+}
+point_count = 4
+
+[sub_resource type="Curve3D" id="Curve3D_ic017"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 50.087, -10, 0, 0, 0, 0, 0, 11.0194, 0, 58.2052, 0, 0, 0, 0, 0, 0, 76.0675, 0, 57.9038),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
+}
+point_count = 4
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_2nhmh"]
 size = Vector3(4.0581, 1.84045, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hgbaj"]
+size = Vector3(3.26355, 1.33313, 1)
 
 [node name="Node3D" type="Node3D"]
 
@@ -176,7 +193,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.28923, 0.5, -54.5824)
 script = ExtResource("2_xc2x4")
 spawn_time_deviation = 0.3
 general_user_stats = NodePath("../../../GlobalRoadUserStats")
-path = [NodePath("Path3D")]
+path = [NodePath("Path3D"), NodePath("Path3D2"), NodePath("Path3D3")]
 path_follow = ExtResource("3_57cep")
 user = ExtResource("1_v6fqk")
 
@@ -184,13 +201,21 @@ user = ExtResource("1_v6fqk")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 curve = SubResource("Curve3D_t0tv6")
 
+[node name="Path3D2" type="Path3D" parent="Spawners/Car spawners/Car Spawner D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+curve = SubResource("Curve3D_ikyye")
+
+[node name="Path3D3" type="Path3D" parent="Spawners/Car spawners/Car Spawner D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+curve = SubResource("Curve3D_ic017")
+
 [node name="GlobalRoadUserStats" type="Node" parent="."]
 script = ExtResource("1_xpqr5")
-max_speed = 0.21
+max_speed = 0.14
 max_speed_deviation = 0.01
 accel = 0.001
 deccel = 0.035
-visibility = 10.0
+visibility = 15.0
 visibility_deviation = 0.5
 reaction_time = 0.5
 reaction_time_deviation = 0.3
@@ -219,6 +244,16 @@ metadata/_edit_group_ = true
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TrafficSignal"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.245362, 0.420227, 0)
 shape = SubResource("BoxShape3D_2nhmh")
+
+[node name="TrafficSignal2" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.53041, 0.451355, -4.9213)
+script = ExtResource("4_sv8g1")
+wait_at_signal = true
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TrafficSignal2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3634, 0.608445, -0.0116148)
+shape = SubResource("BoxShape3D_hgbaj")
 
 [node name="TrafficLight" type="Area3D" parent="."]
 script = ExtResource("8_mpscm")
