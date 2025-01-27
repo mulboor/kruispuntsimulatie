@@ -1,0 +1,81 @@
+[gd_scene load_steps=10 format=3 uid="uid://t1pvxur5tlj"]
+
+[ext_resource type="Script" path="res://scripts/road_user_vars.gd" id="1_aonvs"]
+[ext_resource type="Script" path="res://scripts/states/state base/state_machine.gd" id="1_sh80g"]
+[ext_resource type="Script" path="res://scripts/states/crash.gd" id="3_cpmtf"]
+[ext_resource type="Script" path="res://scripts/states/accelerate.gd" id="3_ugb6y"]
+[ext_resource type="Script" path="res://scripts/states/brake.gd" id="4_tnh46"]
+[ext_resource type="PackedScene" uid="uid://cu2bqc7i3thip" path="res://assets/models/PWS poppetje.fbx" id="6_11rn4"]
+[ext_resource type="Script" path="res://scripts/visioncone.gd" id="7_kn3e4"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nemoy"]
+size = Vector3(0.445068, 2.66266, 0.1875)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xnu1l"]
+size = Vector3(1, 1.56689, 0.183594)
+
+[node name="Mens" type="Node3D"]
+script = ExtResource("1_aonvs")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+can_sleep = false
+
+[node name="PWS poppetje" parent="RigidBody3D" instance=ExtResource("6_11rn4")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0159912, 0.3685, -0.0117188)
+shape = SubResource("BoxShape3D_nemoy")
+
+[node name="Traf sig detector" type="Area3D" parent="."]
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Traf sig detector"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.954818, -0.408203)
+shape = SubResource("BoxShape3D_xnu1l")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("inital_state")]
+script = ExtResource("1_sh80g")
+inital_state = NodePath("Accelerate")
+
+[node name="Crash" type="Node" parent="StateMachine" node_paths=PackedStringArray("rigidbody", "road_user")]
+script = ExtResource("3_cpmtf")
+rigidbody = NodePath("../../RigidBody3D")
+road_user = NodePath("../..")
+delete_timer = 1.0
+
+[node name="Accelerate" type="Node" parent="StateMachine" node_paths=PackedStringArray("danger_cone", "user_vars", "visioncone", "rigidbody", "traffic_signal_detection_area")]
+script = ExtResource("3_ugb6y")
+danger_cone = NodePath("../../Danger cone")
+danger_cone_ray_distance = 0.5
+user_vars = NodePath("../..")
+visioncone = NodePath("../../Visioncone")
+rigidbody = NodePath("../../RigidBody3D")
+traffic_signal_detection_area = NodePath("../../Traf sig detector")
+
+[node name="Brake" type="Node" parent="StateMachine" node_paths=PackedStringArray("static_vision_cone", "user_vars", "visioncone", "rigidbody", "traffic_signal_detection_area")]
+script = ExtResource("4_tnh46")
+static_vision_cone = NodePath("../../Visionconestatic")
+user_vars = NodePath("../..")
+visioncone = NodePath("../../Danger cone")
+rigidbody = NodePath("../../RigidBody3D")
+traffic_signal_detection_area = NodePath("../../Traf sig detector")
+
+[node name="Danger cone" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.239, -0.167734)
+script = ExtResource("7_kn3e4")
+ray_cone_angle = 20.0
+angle_between_rays = 10.0
+max_view_distance = 0.5
+
+[node name="Visioncone" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.239, -0.167734)
+script = ExtResource("7_kn3e4")
+ray_cone_angle = 120.0
+angle_between_rays = 10.0
+
+[node name="Visionconestatic" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.239, -0.167734)
+script = ExtResource("7_kn3e4")
+ray_cone_angle = 200.0
+angle_between_rays = 10.0

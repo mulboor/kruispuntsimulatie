@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://bi3ve0bp07kgq"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2fq3e"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0.156863)
+
+[node name="Crossing" type="Node3D"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.226196, 0.0271947, 0)
+size = Vector3(7.45874, 0.078125, 1)
+material = SubResource("StandardMaterial3D_2fq3e")

@@ -1,11 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://bne2usp40hi4o"]
+[gd_scene load_steps=12 format=3 uid="uid://bne2usp40hi4o"]
 
 [ext_resource type="Script" path="res://scripts/road_user_vars.gd" id="1_khxhq"]
 [ext_resource type="Script" path="res://scripts/states/accelerate.gd" id="2_6b7u3"]
 [ext_resource type="Script" path="res://scripts/states/state base/state_machine.gd" id="2_m5yyp"]
 [ext_resource type="Script" path="res://scripts/states/crash.gd" id="4_ocaxt"]
 [ext_resource type="Script" path="res://scripts/states/brake.gd" id="5_deujp"]
-[ext_resource type="Script" path="res://scripts/states/sweep.gd" id="6_0jj7n"]
 [ext_resource type="PackedScene" uid="uid://dob5n0rie65js" path="res://scenes/components/visioncone.tscn" id="6_xosei"]
 [ext_resource type="Script" path="res://scripts/random_model_generator.gd" id="7_iqjp2"]
 [ext_resource type="PackedScene" uid="uid://cvpeu5c0kjlre" path="res://scenes/meshes/pws_auto(1).tscn" id="8_1ovr6"]
@@ -47,9 +46,6 @@ visioncone = NodePath("../../Visioncone")
 rigidbody = NodePath("../../Carbody")
 traffic_signal_detection_area = NodePath("../../Traffic Sig detector")
 
-[node name="Sweep" type="Node" parent="Statemachine"]
-script = ExtResource("6_0jj7n")
-
 [node name="Carbody" type="RigidBody3D" parent="."]
 mass = 286.512
 
@@ -67,7 +63,7 @@ transform = Transform3D(-1.74846e-08, 0, 0.4, 0, 0.4, 0, -0.4, 0, -1.74846e-08, 
 
 [node name="Static visioncone" parent="." instance=ExtResource("6_xosei")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000445366, -0.239299, -1.67553)
-ray_cone_angle = 180.0
+ray_cone_angle = 90.0
 angle_between_rays = 7.0
 
 [node name="Visioncone" parent="." instance=ExtResource("6_xosei")]
