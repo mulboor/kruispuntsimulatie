@@ -212,12 +212,13 @@ transform = Transform3D(4.2, 0, 0, 0, 2, 0, 0, 0, 2, -0.0291779, 0.496139, 22.04
 [node name="Crossing2" parent="Enviroment" instance=ExtResource("8_khm63")]
 transform = Transform3D(4.2, 0, 0, 0, 2, 0, 0, 0, 2, -0.0291779, 0.496139, -19.8858)
 
-[node name="User stats" type="Node" parent="." node_paths=PackedStringArray("car_stats")]
+[node name="User stats" type="Node" parent="." node_paths=PackedStringArray("car_stats", "non_car_stats")]
 script = ExtResource("3_2ap0r")
 avg_car_speed = 0.14
 avg_visibility = 10.0
 avg_reaction_time = 1.0
 car_stats = NodePath("GlobalVehicleStats")
+non_car_stats = [NodePath("GlobalPedStats"), NodePath("GlobalFietsStats")]
 
 [node name="GlobalVehicleStats" type="Node" parent="User stats"]
 script = ExtResource("1_xpqr5")
@@ -256,7 +257,7 @@ script = ExtResource("1_whyfp")
 car_spawners = [NodePath("Car spawners/Car Spawner A"), NodePath("Car spawners/Car Spawner B"), NodePath("Car spawners/Car Spawner C"), NodePath("Car spawners/Car Spawner D")]
 bike_spawners = [NodePath("Fiets spawners/Fiets spawner A"), NodePath("Fiets spawners/Fiets spawner B")]
 ped_spawners = [NodePath("Ped spawners/Ped spawner A"), NodePath("Ped spawners/Ped spawner B")]
-total_upm = 60.0
+total_upm = 40.0
 ped_percentage = 20.0
 ped_percentage_per_spawner = Array[float]([50.0, 50.0])
 car_percentage = 20.0
@@ -426,7 +427,6 @@ curve = SubResource("Curve3D_41a5r")
 script = ExtResource("11_43mc1")
 stoplicht = NodePath("Stoplicht")
 hinder_voor_stoplicht = NodePath("Weg markeringen hinder voor s")
-stoplicht_aan = true
 
 [node name="Stoplicht" type="Node" parent="Traffic signals"]
 
