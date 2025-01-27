@@ -40,7 +40,7 @@ delete_timer = 3.0
 
 [node name="Brake" type="Node" parent="Statemachine" node_paths=PackedStringArray("static_vision_cone", "user_vars", "visioncone", "rigidbody", "traffic_signal_detection_area")]
 script = ExtResource("5_deujp")
-static_vision_cone = NodePath("../../Static visioncone")
+static_vision_cone = NodePath("../../Haaientandvisioncone")
 user_vars = NodePath("../..")
 visioncone = NodePath("../../Visioncone")
 rigidbody = NodePath("../../Carbody")
@@ -61,7 +61,7 @@ transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, 
 [node name="PWS Busje(1)" parent="Carbody/RandomModel" instance=ExtResource("9_josq3")]
 transform = Transform3D(-1.74846e-08, 0, 0.4, 0, 0.4, 0, -0.4, 0, -1.74846e-08, 0, -0.492254, 0)
 
-[node name="Static visioncone" parent="." instance=ExtResource("6_xosei")]
+[node name="Haaientandvisioncone" parent="." instance=ExtResource("6_xosei")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000445366, -0.239299, -1.67553)
 ray_cone_angle = 90.0
 angle_between_rays = 7.0
