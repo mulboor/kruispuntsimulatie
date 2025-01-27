@@ -1,0 +1,69 @@
+[gd_scene load_steps=2 format=3 uid="uid://bj6pmrewa7evp"]
+
+[ext_resource type="Script" path="res://ui/factors_test.gd" id="1_25ucd"]
+
+[node name="Test" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -3.0
+offset_top = -2.0
+offset_right = -3.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_25ucd")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_left = 506.0
+offset_top = 252.0
+offset_right = 576.0
+offset_bottom = 318.0
+scale = Vector2(2, 2)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Back" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Back"
+
+[node name="LineEdit" type="LineEdit" parent="."]
+layout_mode = 0
+offset_left = 188.0
+offset_top = 97.0
+offset_right = 340.0
+offset_bottom = 150.0
+placeholder_text = "Snelheid"
+
+[node name="CheckBox" type="CheckBox" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.01
+anchor_bottom = 0.019
+offset_left = 370.0
+offset_top = 112.0
+offset_right = 382.48
+offset_bottom = 123.688
+expand_icon = true
+
+[node name="LineEdit2" type="LineEdit" parent="."]
+layout_mode = 0
+offset_left = 503.0
+offset_top = 95.0
+offset_right = 658.0
+offset_bottom = 151.0
+placeholder_text = "Reactievermogen"
+
+[node name="LineEdit3" type="LineEdit" parent="."]
+layout_mode = 0
+offset_left = 788.0
+offset_top = 95.0
+offset_right = 954.0
+offset_bottom = 151.0
+placeholder_text = "Zichtvermogen"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]
