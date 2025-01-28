@@ -10,7 +10,8 @@ config_version=5
 
 [application]
 
-config/name="Kruispunt"
+config/name="Kruispuntsimulatie"
+config/version="1.0"
 run/main_scene="res://ui/startmenu.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://assets/icon.svg"
@@ -23,7 +24,6 @@ Singleton="*res://scripts/singleton.gd"
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
-window/size/borderless=true
 window/stretch/mode="viewport"
 
 [filesystem]
