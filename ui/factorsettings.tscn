@@ -8,7 +8,7 @@
 font = SubResource("SystemFont_0qd57")
 font_color = Color(0, 0, 0, 1)
 
-[node name="FactorSettings" type="Control" node_paths=PackedStringArray("avg_speed_ui", "avg_reacton_ui", "avg_vis_ui", "traflights_ui")]
+[node name="FactorSettings" type="Control" node_paths=PackedStringArray("avg_speed_ui", "avg_reacton_ui", "avg_vis_ui", "traflights_ui", "upm_ui")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -20,6 +20,7 @@ avg_speed_ui = NodePath("Text fields/Gemiddelde snelheiud")
 avg_reacton_ui = NodePath("Text fields/Gemiddeld reactievermogen")
 avg_vis_ui = NodePath("Text fields/Gemiddeld zichtvermogen")
 traflights_ui = NodePath("Stoplichten/CheckBox")
+upm_ui = NodePath("Text fields/Verkeersdoorstroming")
 
 [node name="Back" type="Button" parent="."]
 layout_mode = 1
@@ -48,15 +49,19 @@ metadata/_edit_group_ = true
 
 [node name="Gemiddelde snelheiud" type="LineEdit" parent="Text fields"]
 layout_mode = 2
-placeholder_text = "Snelheid"
+placeholder_text = "Gem. snelheid (M/16.6ms)"
+
+[node name="Verkeersdoorstroming" type="LineEdit" parent="Text fields"]
+layout_mode = 2
+placeholder_text = "Verkeersdoorstroming (p/min)"
 
 [node name="Gemiddeld reactievermogen" type="LineEdit" parent="Text fields"]
 layout_mode = 2
-placeholder_text = "Reactievermogen"
+placeholder_text = "Gemiddelde reactievermogen (s)"
 
 [node name="Gemiddeld zichtvermogen" type="LineEdit" parent="Text fields"]
 layout_mode = 2
-placeholder_text = "Zichtvermogen"
+placeholder_text = "Gemiddelde zichtvermogen (M)"
 
 [node name="Stoplichten" type="BoxContainer" parent="."]
 layout_mode = 0
@@ -77,3 +82,4 @@ layout_mode = 2
 expand_icon = true
 
 [connection signal="pressed" from="Back" to="." method="_on_back_pressed"]
+[connection signal="toggled" from="Stoplichten/CheckBox" to="." method="_on_check_box_toggled"]

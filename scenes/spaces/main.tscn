@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://3ptqecnw5ex2"]
+[gd_scene load_steps=49 format=3 uid="uid://3ptqecnw5ex2"]
 
 [ext_resource type="PackedScene" uid="uid://bne2usp40hi4o" path="res://scenes/components/car.tscn" id="1_v6fqk"]
 [ext_resource type="Script" path="res://scripts/traffic_flow.gd" id="1_whyfp"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" path="res://scenes/components/fietser.tscn" id="9_81ka1"]
 [ext_resource type="PackedScene" uid="uid://duiwbaifah0a" path="res://scenes/meshes/pws_omgeving_14.tscn" id="9_xh5fi"]
 [ext_resource type="Script" path="res://scripts/traffic_sigs_manager.gd" id="11_43mc1"]
+[ext_resource type="Script" path="res://scripts/in_sim_ui.gd" id="15_wqtd7"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ohesk"]
 size = Vector3(173.756, 0, 100)
@@ -193,6 +194,10 @@ size = Vector3(13.0642, 2.60498, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_hgbaj"]
 size = Vector3(13.177, 1.33313, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_3c5be"]
+font_size = 25
+font_color = Color(0, 0, 0, 1)
+
 [node name="Node3D" type="Node3D"]
 
 [node name="Enviroment" type="Node" parent="."]
@@ -214,9 +219,6 @@ transform = Transform3D(4.2, 0, 0, 0, 2, 0, 0, 0, 2, -0.0291779, 0.496139, -19.8
 
 [node name="User stats" type="Node" parent="." node_paths=PackedStringArray("car_stats", "non_car_stats")]
 script = ExtResource("3_2ap0r")
-avg_car_speed = 0.14
-avg_visibility = 10.0
-avg_reaction_time = 1.0
 car_stats = NodePath("GlobalVehicleStats")
 non_car_stats = [NodePath("GlobalPedStats"), NodePath("GlobalFietsStats")]
 
@@ -571,3 +573,64 @@ transform = Transform3D(-0.601815, -0.541602, -0.586929, -1.28497e-07, -0.734915
 light_color = Color(0.427493, 0.427493, 0.427493, 1)
 shadow_enabled = true
 shadow_blur = 0.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." node_paths=PackedStringArray("speed", "zicht", "upm", "reactie_s", "trafligt", "tijd", "crashes")]
+script = ExtResource("15_wqtd7")
+speed = NodePath("BoxContainer/Speed")
+zicht = NodePath("BoxContainer/Zicht")
+upm = NodePath("BoxContainer/Doorstroming")
+reactie_s = NodePath("BoxContainer/Reactie")
+trafligt = NodePath("BoxContainer/Stoplichten")
+tijd = NodePath("BoxContainer/Tijd")
+crashes = NodePath("BoxContainer/Verongelukte mensen_")
+
+[node name="BoxContainer" type="BoxContainer" parent="CanvasLayer"]
+offset_right = 195.0
+offset_bottom = 170.0
+vertical = true
+
+[node name="Speed" type="Label" parent="CanvasLayer/BoxContainer"]
+layout_mode = 2
+text = "Gemiddelde snelheid: "
+label_settings = SubResource("LabelSettings_3c5be")
+
+[node name="Zicht" type="Label" parent="CanvasLayer/BoxContainer"]
+layout_mode = 2
+text = "Gemiddeld zichtvermogen: "
+label_settings = SubResource("LabelSettings_3c5be")
+
+[node name="Doorstroming" type="Label" parent="CanvasLayer/BoxContainer"]
+layout_mode = 2
+text = "Doorstroming: "
+label_settings = SubResource("LabelSettings_3c5be")
+
+[node name="Reactie" type="Label" parent="CanvasLayer/BoxContainer"]
+layout_mode = 2
+text = "Gemiddelde reactiesnelheid:"
+label_settings = SubResource("LabelSettings_3c5be")
+
+[node name="Stoplichten" type="Label" parent="CanvasLayer/BoxContainer"]
+layout_mode = 2
+text = "Stoplichten: 
+"
+label_settings = SubResource("LabelSettings_3c5be")
+
+[node name="Tijd" type="Label" parent="CanvasLayer/BoxContainer"]
+layout_mode = 2
+text = "Tijd: "
+label_settings = SubResource("LabelSettings_3c5be")
+
+[node name="Verongelukte mensen_" type="Label" parent="CanvasLayer/BoxContainer"]
+layout_mode = 2
+text = "Slachtoffers verkeersongeluk: "
+label_settings = SubResource("LabelSettings_3c5be")
+
+[node name="Terug" type="Button" parent="CanvasLayer"]
+offset_left = 5.0
+offset_top = 1027.0
+offset_right = 104.0
+offset_bottom = 1071.0
+text = "Terug
+"
+
+[connection signal="pressed" from="CanvasLayer/Terug" to="CanvasLayer" method="_on_terug_pressed"]

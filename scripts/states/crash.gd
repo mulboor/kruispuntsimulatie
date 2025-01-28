@@ -10,6 +10,7 @@ class_name Crash
 func enter() -> void: 
 	rigidbody.freeze = false
 	current_delete_timer = delete_timer
+	Singleton.add_crash()
 
 func physics_update(_delta):
 	current_delete_timer -= _delta

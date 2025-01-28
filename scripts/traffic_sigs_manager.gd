@@ -5,6 +5,8 @@ extends Node
 @export var stoplicht_aan : bool
 
 func _ready():
+	stoplicht_aan = Singleton.traflights_singleton
+	
 	if stoplicht_aan: 
 		hinder_voor_stoplicht.process_mode = Node.PROCESS_MODE_DISABLED
 		stoplicht.process_mode = Node.PROCESS_MODE_INHERIT

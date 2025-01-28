@@ -24,6 +24,8 @@ extends Node
 
 
 func _ready() -> void:
+	total_upm = Singleton.upm_singleton
+	
 	# Check of de percentages wel kloppen
 	var total_percentage: float 
 	total_percentage = ped_percentage + bike_percentage + car_percentage
