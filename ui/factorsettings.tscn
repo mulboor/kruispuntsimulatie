@@ -1,0 +1,79 @@
+[gd_scene load_steps=4 format=3 uid="uid://bj6pmrewa7evp"]
+
+[ext_resource type="Script" path="res://ui/factors_ui.gd" id="1_kqmkt"]
+
+[sub_resource type="SystemFont" id="SystemFont_0qd57"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_6ve0q"]
+font = SubResource("SystemFont_0qd57")
+font_color = Color(0, 0, 0, 1)
+
+[node name="FactorSettings" type="Control" node_paths=PackedStringArray("avg_speed_ui", "avg_reacton_ui", "avg_vis_ui", "traflights_ui")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kqmkt")
+avg_speed_ui = NodePath("Text fields/Gemiddelde snelheiud")
+avg_reacton_ui = NodePath("Text fields/Gemiddeld reactievermogen")
+avg_vis_ui = NodePath("Text fields/Gemiddeld zichtvermogen")
+traflights_ui = NodePath("Stoplichten/CheckBox")
+
+[node name="Back" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = 104.0
+offset_right = 50.0
+offset_bottom = 135.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Back"
+
+[node name="Text fields" type="BoxContainer" parent="."]
+layout_mode = 0
+offset_left = 810.0
+offset_top = 497.0
+offset_right = 1110.0
+offset_bottom = 598.0
+alignment = 1
+vertical = true
+metadata/_edit_group_ = true
+
+[node name="Gemiddelde snelheiud" type="LineEdit" parent="Text fields"]
+layout_mode = 2
+placeholder_text = "Snelheid"
+
+[node name="Gemiddeld reactievermogen" type="LineEdit" parent="Text fields"]
+layout_mode = 2
+placeholder_text = "Reactievermogen"
+
+[node name="Gemiddeld zichtvermogen" type="LineEdit" parent="Text fields"]
+layout_mode = 2
+placeholder_text = "Zichtvermogen"
+
+[node name="Stoplichten" type="BoxContainer" parent="."]
+layout_mode = 0
+offset_left = 900.0
+offset_top = 436.0
+offset_right = 1020.0
+offset_bottom = 476.0
+metadata/_edit_group_ = true
+
+[node name="Label" type="Label" parent="Stoplichten"]
+layout_mode = 2
+text = "Stoplichten 
+"
+label_settings = SubResource("LabelSettings_6ve0q")
+
+[node name="CheckBox" type="CheckBox" parent="Stoplichten"]
+layout_mode = 2
+expand_icon = true
+
+[connection signal="pressed" from="Back" to="." method="_on_back_pressed"]
