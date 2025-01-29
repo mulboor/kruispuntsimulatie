@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://t1pvxur5tlj"]
+[gd_scene load_steps=10 format=3 uid="uid://dru2178be1oks"]
 
 [ext_resource type="Script" path="res://scripts/road_user_vars.gd" id="1_aonvs"]
 [ext_resource type="Script" path="res://scripts/states/state base/state_machine.gd" id="1_sh80g"]
@@ -47,7 +47,7 @@ delete_timer = 1.0
 [node name="Accelerate" type="Node" parent="StateMachine" node_paths=PackedStringArray("danger_cone", "user_vars", "visioncone", "rigidbody", "traffic_signal_detection_area")]
 script = ExtResource("3_ugb6y")
 danger_cone = NodePath("../../Danger cone")
-danger_cone_ray_distance = 0.5
+danger_cone_ray_distance = 1.5
 user_vars = NodePath("../..")
 visioncone = NodePath("../../Visioncone")
 rigidbody = NodePath("../../RigidBody3D")
@@ -65,17 +65,16 @@ traffic_signal_detection_area = NodePath("../../Traf sig detector")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.239, -0.167734)
 script = ExtResource("7_kn3e4")
 ray_cone_angle = 20.0
-angle_between_rays = 10.0
-max_view_distance = 0.5
+angle_between_rays = 4.0
 
 [node name="Visioncone" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.239, -0.167734)
 script = ExtResource("7_kn3e4")
 ray_cone_angle = 120.0
-angle_between_rays = 10.0
+angle_between_rays = 4.0
 
 [node name="Visionconestatic" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.239, -0.167734)
 script = ExtResource("7_kn3e4")
 ray_cone_angle = 200.0
-angle_between_rays = 10.0
+angle_between_rays = 4.0

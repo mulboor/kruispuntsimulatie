@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dwa2rmve3mulb"]
+[gd_scene load_steps=11 format=3 uid="uid://cdcp086dvcrgj"]
 
 [ext_resource type="Script" path="res://scripts/road_user_vars.gd" id="1_cs34b"]
 [ext_resource type="PackedScene" uid="uid://cu2bqc7i3thip" path="res://assets/models/PWS poppetje.fbx" id="2_s1gct"]
@@ -52,7 +52,7 @@ delete_timer = 1.0
 [node name="Accelerate" type="Node" parent="StateMachine" node_paths=PackedStringArray("danger_cone", "user_vars", "visioncone", "rigidbody", "traffic_signal_detection_area")]
 script = ExtResource("5_nalrp")
 danger_cone = NodePath("../../Danger cone")
-danger_cone_ray_distance = 3.0
+danger_cone_ray_distance = 2.0
 user_vars = NodePath("../..")
 visioncone = NodePath("../../Visioncone")
 rigidbody = NodePath("../../RigidBody3D")
@@ -70,17 +70,16 @@ traffic_signal_detection_area = NodePath("../../Traf sig detector")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.239, -0.167734)
 script = ExtResource("7_1f3ta")
 ray_cone_angle = 20.0
-angle_between_rays = 10.0
-max_view_distance = 0.5
+angle_between_rays = 4.0
 
 [node name="Visioncone" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.239, -0.167734)
 script = ExtResource("7_1f3ta")
 ray_cone_angle = 120.0
-angle_between_rays = 10.0
+angle_between_rays = 4.0
 
 [node name="Visionconestatic" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.239, -0.167734)
 script = ExtResource("7_1f3ta")
 ray_cone_angle = 120.0
-angle_between_rays = 10.0
+angle_between_rays = 4.0

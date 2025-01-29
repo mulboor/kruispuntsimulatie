@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://scripts/states/state base/state_machine.gd" id="2_m5yyp"]
 [ext_resource type="Script" path="res://scripts/states/crash.gd" id="4_ocaxt"]
 [ext_resource type="Script" path="res://scripts/states/brake.gd" id="5_deujp"]
-[ext_resource type="PackedScene" uid="uid://dob5n0rie65js" path="res://scenes/components/visioncone.tscn" id="6_xosei"]
+[ext_resource type="PackedScene" path="res://scenes/components/visioncone.tscn" id="6_xosei"]
 [ext_resource type="Script" path="res://scripts/random_model_generator.gd" id="7_iqjp2"]
 [ext_resource type="PackedScene" uid="uid://cvpeu5c0kjlre" path="res://scenes/meshes/pws_auto(1).tscn" id="8_1ovr6"]
 [ext_resource type="PackedScene" uid="uid://ci36ucpi50n18" path="res://scenes/meshes/pws_busje(1).tscn" id="9_josq3"]
@@ -25,8 +25,8 @@ inital_state = NodePath("Accelerate")
 
 [node name="Accelerate" type="Node" parent="Statemachine" node_paths=PackedStringArray("danger_cone", "user_vars", "visioncone", "rigidbody", "traffic_signal_detection_area")]
 script = ExtResource("2_6b7u3")
-danger_cone = NodePath("../../Accel visioncone (danger)")
-danger_cone_ray_distance = 4.0
+danger_cone = NodePath("../../Danger cone")
+danger_cone_ray_distance = 7.0
 user_vars = NodePath("../..")
 visioncone = NodePath("../../Visioncone")
 rigidbody = NodePath("../../Carbody")
@@ -40,7 +40,7 @@ delete_timer = 3.0
 
 [node name="Brake" type="Node" parent="Statemachine" node_paths=PackedStringArray("static_vision_cone", "user_vars", "visioncone", "rigidbody", "traffic_signal_detection_area")]
 script = ExtResource("5_deujp")
-static_vision_cone = NodePath("../../Haaientandvisioncone")
+static_vision_cone = NodePath("../../Visioncone static")
 user_vars = NodePath("../..")
 visioncone = NodePath("../../Visioncone")
 rigidbody = NodePath("../../Carbody")
@@ -61,20 +61,20 @@ transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, 
 [node name="PWS Busje(1)" parent="Carbody/RandomModel" instance=ExtResource("9_josq3")]
 transform = Transform3D(-1.74846e-08, 0, 0.4, 0, 0.4, 0, -0.4, 0, -1.74846e-08, 0, -0.492254, 0)
 
-[node name="Haaientandvisioncone" parent="." instance=ExtResource("6_xosei")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000445366, -0.239299, -1.67553)
-ray_cone_angle = 90.0
-angle_between_rays = 7.0
+[node name="Danger cone" parent="." instance=ExtResource("6_xosei")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000445366, -0.0949256, -1.67553)
+ray_cone_angle = 20.0
+angle_between_rays = 4.0
 
 [node name="Visioncone" parent="." instance=ExtResource("6_xosei")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000445366, -0.239299, -1.67553)
-ray_cone_angle = 20.0
-angle_between_rays = 5.0
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000445366, -0.0949256, -1.67553)
+ray_cone_angle = 102.0
+angle_between_rays = 4.0
 
-[node name="Accel visioncone (danger)" parent="." instance=ExtResource("6_xosei")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000445366, -0.239299, -1.67553)
-ray_cone_angle = 20.0
-angle_between_rays = 10.0
+[node name="Visioncone static" parent="." instance=ExtResource("6_xosei")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000445366, -0.0949256, -1.67553)
+ray_cone_angle = 120.0
+angle_between_rays = 4.0
 
 [node name="Traffic Sig detector" type="Area3D" parent="."]
 

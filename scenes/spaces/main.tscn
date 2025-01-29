@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://3ptqecnw5ex2"]
+[gd_scene load_steps=51 format=3 uid="uid://3ptqecnw5ex2"]
 
 [ext_resource type="PackedScene" uid="uid://bne2usp40hi4o" path="res://scenes/components/car.tscn" id="1_v6fqk"]
 [ext_resource type="Script" path="res://scripts/traffic_flow.gd" id="1_whyfp"]
@@ -8,12 +8,13 @@
 [ext_resource type="PackedScene" path="res://scenes/components/self_deleting_path_follow.tscn" id="3_57cep"]
 [ext_resource type="Script" path="res://scripts/traffic_signal.gd" id="4_sv8g1"]
 [ext_resource type="Script" path="res://scripts/freecam.gd" id="5_ts16x"]
-[ext_resource type="PackedScene" path="res://scenes/components/mens.tscn" id="7_rwyic"]
+[ext_resource type="PackedScene" uid="uid://dru2178be1oks" path="res://scenes/components/mens.tscn" id="7_rwyic"]
 [ext_resource type="PackedScene" uid="uid://bi3ve0bp07kgq" path="res://scenes/meshes/crossing.tscn" id="8_khm63"]
 [ext_resource type="Script" path="res://scripts/traffic_light.gd" id="8_mpscm"]
-[ext_resource type="PackedScene" path="res://scenes/components/fietser.tscn" id="9_81ka1"]
+[ext_resource type="PackedScene" uid="uid://cdcp086dvcrgj" path="res://scenes/components/fietser.tscn" id="9_81ka1"]
 [ext_resource type="PackedScene" uid="uid://duiwbaifah0a" path="res://scenes/meshes/pws_omgeving_14.tscn" id="9_xh5fi"]
 [ext_resource type="Script" path="res://scripts/traffic_sigs_manager.gd" id="11_43mc1"]
+[ext_resource type="Script" path="res://scenes/spaces/stoplicht.gd" id="12_ovwee"]
 [ext_resource type="Script" path="res://scripts/in_sim_ui.gd" id="15_wqtd7"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ohesk"]
@@ -162,10 +163,13 @@ point_count = 3
 up_vector_enabled = false
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_b8wcy"]
-size = Vector3(16.2739, 2.30078, 1)
+size = Vector3(6.87127, 2.30078, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7w3ig"]
+size = Vector3(10.9992, 2.30078, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_8b2cw"]
-size = Vector3(14.224, 2.18945, 1)
+size = Vector3(4.39145, 2.18945, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qgese"]
 size = Vector3(1.82622, 2.18945, 2.00195)
@@ -227,7 +231,7 @@ script = ExtResource("1_xpqr5")
 max_speed = 0.14
 max_speed_deviation = 0.01
 accel = 0.001
-deccel = 0.035
+deccel = 0.7
 visibility = 10.0
 visibility_deviation = 0.5
 reaction_time = 0.5
@@ -260,9 +264,9 @@ car_spawners = [NodePath("Car spawners/Car Spawner A"), NodePath("Car spawners/C
 bike_spawners = [NodePath("Fiets spawners/Fiets spawner A"), NodePath("Fiets spawners/Fiets spawner B")]
 ped_spawners = [NodePath("Ped spawners/Ped spawner A"), NodePath("Ped spawners/Ped spawner B")]
 total_upm = 40.0
-ped_percentage = 20.0
+ped_percentage = 30.0
 ped_percentage_per_spawner = Array[float]([50.0, 50.0])
-car_percentage = 20.0
+car_percentage = 30.0
 car_percentage_per_spawner = Array[float]([20.0, 30.0, 20.0, 30.0])
 bike_percentage = 40.0
 bike_percentage_per_spawner = Array[float]([50.0, 50.0])
@@ -430,18 +434,30 @@ script = ExtResource("11_43mc1")
 stoplicht = NodePath("Stoplicht")
 hinder_voor_stoplicht = NodePath("Weg markeringen hinder voor s")
 
-[node name="Stoplicht" type="Node" parent="Traffic signals"]
+[node name="Stoplicht" type="Node" parent="Traffic signals" node_paths=PackedStringArray("lights")]
+script = ExtResource("12_ovwee")
+lights = [NodePath("TrafficLight1"), NodePath("TrafficLight2"), NodePath("TrafficLight3"), NodePath("TrafficLight4"), NodePath("Fietser")]
+green_time = 5.0
 
 [node name="TrafficLight1" type="Area3D" parent="Traffic signals/Stoplicht"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.93455, 0, 6.23301)
 script = ExtResource("8_mpscm")
-green_time = 2.0
-red_time = 0.5
-start_at_red = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Traffic signals/Stoplicht/TrafficLight1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.36304, 0.865055, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.66173, 0.865055, 0)
 shape = SubResource("BoxShape3D_b8wcy")
+
+[node name="Fietser" type="Area3D" parent="Traffic signals/Stoplicht"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.7599, 0, 6.23301)
+script = ExtResource("8_mpscm")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Traffic signals/Stoplicht/Fietser"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.565934, 0.865, 0)
+shape = SubResource("BoxShape3D_7w3ig")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Traffic signals/Stoplicht/Fietser"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.1132, 0.865, -9.66015)
+shape = SubResource("BoxShape3D_7w3ig")
 
 [node name="TrafficLight2" type="Area3D" parent="Traffic signals/Stoplicht"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.7956, 0, -4.42283)
@@ -451,7 +467,7 @@ red_time = 2.5
 start_at_red = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Traffic signals/Stoplicht/TrafficLight2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.95925, 0.920719, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.87553, 0.920719, 0)
 shape = SubResource("BoxShape3D_8b2cw")
 
 [node name="TrafficLight3" type="Area3D" parent="Traffic signals/Stoplicht"]
